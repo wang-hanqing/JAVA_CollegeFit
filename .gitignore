@@ -1,0 +1,14 @@
+
+# Raw data is too large for GitHub (over 100 MB); download from College Scorecard
+data/raw/
+
+# Mac system files
+.DS_Store
+
+# Jupyter auto-saves
+.ipynb_checkpoints/
+
+# Java build output (for later)
+*.class
+out/
+bin/
