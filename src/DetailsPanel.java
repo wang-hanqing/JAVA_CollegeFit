@@ -113,6 +113,10 @@ class DetailsPanel extends JPanel {
     private JComponent tiles(CollegeRecommendation r, StudentProfile s) {
         College c = r.college;
         String degreesLabel = s.hasPrograms() ? Messages.get("tile.degrees") : Messages.get("tile.degreesAll");
+        boolean open = Boolean.TRUE.equals(c.openAdmission);
+        String admission = open ? Messages.get("ac.open")
+            : c.admissionRate != null && c.admissionRate > 0 ? Math.round(c.admissionRate * 100) + "%" : Messages.get("notReported");
+        String admissionNote = Messages.get(open ? "tile.admission.open" : "tile.admission.note");
         String deg = r.recentDegrees > 0 ? Messages.number(r.recentDegrees) : Messages.get("notReported");
         boolean oos = c.isPublic() && s.hasHomeState() && !s.getHomeState().equals(c.state);
         Integer cost = oos ? c.outOfStateCostEstimate() : c.costOfAttendance;
@@ -121,7 +125,7 @@ class DetailsPanel extends JPanel {
         String size = c.undergraduates == null ? Messages.get("notReported") : Messages.number(c.undergraduates);
         return grid(5,
             tile("cap", Ui.BLUE, new Color(238, 242, 252), degreesLabel, deg, r.recentDegrees > 0 ? r.levelText() : ""),
-            tile("check", Ui.BLUE, new Color(238, 242, 252), Messages.get("tile.admission"), r.academic.label, Messages.get("tile.admission.note")),
+            tile("check", Ui.BLUE, new Color(238, 242, 252), Messages.get(open ? "tile.admission" : "tile.admissionRate"), admission, admissionNote),
             tile("dollar", Ui.GREEN, Ui.GREEN_SOFT, Messages.get("tile.cost"), Messages.money(cost),
                 Messages.get(oos ? "tile.cost.oos" : c.isPublic() ? "tile.cost.public" : "tile.cost.private")),
             tile("book", Ui.PURPLE, Ui.PURPLE_SOFT, Messages.get("tile.completion"), compl, complNote),
@@ -147,12 +151,11 @@ class DetailsPanel extends JPanel {
         Ui.Card box = new Ui.Card(new BorderLayout(), Ui.WHITE, Ui.LINE);
         box.setBorder(new EmptyBorder(12, 16, 12, 16));
         JPanel col = Ui.column(0);
-        JPanel head = new JPanel(new BorderLayout());
-        head.setOpaque(false);
-        head.add(Ui.row(10, Ui.bubble(icon, color, bg, 32), Ui.text(title, 15f, Font.BOLD, color)), BorderLayout.WEST);
-        head.add(Ui.status(r.status, r.label, 12.5f), BorderLayout.EAST);
-        col.add(Ui.left(head));
-        col.add(Box.createVerticalStrut(6));
+        col.add(Ui.left(Ui.row(10, Ui.bubble(icon, color, bg, 32), Ui.text(title, 15f, Font.BOLD, color))));
+        JLabel status = Ui.status(r.status, r.label, 12.5f);
+        status.setBorder(new EmptyBorder(4, 42, 2, 0));
+        col.add(Ui.left(status));
+        col.add(Box.createVerticalStrut(4));
         if (extra instanceof List) for (Object f : (List<?>) extra) col.add(Ui.left(factRow((Fact) f)));
         for (Fact f : r.facts) col.add(Ui.left(factRow(f)));
         if (extra instanceof JComponent) { col.add(Box.createVerticalStrut(8)); col.add(Ui.left((JComponent) extra)); }
@@ -160,18 +163,14 @@ class DetailsPanel extends JPanel {
         return box;
     }
 
+    /** One fact: a small grey label, then the value in bold with an optional note. Stacked so nothing overlaps. */
     private static JComponent factRow(Fact f) {
-        JPanel row = new JPanel(new BorderLayout(10, 0));
-        row.setOpaque(false);
-        row.setBorder(new javax.swing.border.CompoundBorder(new MatteBorder(0, 0, 1, 0, new Color(238, 240, 244)), new EmptyBorder(5, 0, 5, 0)));
-        row.add(Ui.wrap(f.label, 130, 12.5f, Ui.MUTED), BorderLayout.WEST);
         String mark = f.match == null ? "" : f.match ? "<span style='color:#1f9d74'>&#10003;</span> " : "<span style='color:#b4475a'>&#10007;</span> ";
-        String note = f.note.isEmpty() ? "" : "<br><span style='color:#687085;font-size:10px'>" + Ui.escape(f.note) + "</span>";
-        JLabel v = new JLabel("<html><div style='width:" + Ui.css(200) + "px;text-align:right'>" + mark + "<b>" + Ui.escape(f.value) + "</b>" + note + "</div></html>");
-        v.setFont(Ui.sans(Font.PLAIN, 12.5f));
-        v.setForeground(Ui.INK);
-        row.add(v, BorderLayout.EAST);
-        return row;
+        String note = f.note.isEmpty() ? "" : "<br><span style='color:#687085'>" + Ui.escape(f.note) + "</span>";
+        JLabel l = Ui.html("<span style='color:#687085'>" + Ui.escape(f.label) + "</span><br>" + mark + "<b>" + Ui.escape(f.value) + "</b>" + note,
+            300, 12.5f, Ui.INK);
+        l.setBorder(new javax.swing.border.CompoundBorder(new MatteBorder(0, 0, 1, 0, new Color(238, 240, 244)), new EmptyBorder(6, 0, 6, 0)));
+        return l;
     }
 
     private JComponent whyVerify(CollegeRecommendation r, StudentProfile s, boolean wide) {

@@ -72,13 +72,26 @@ public class College {
         return ProgramEvidence.NOT_CONFIRMED;
     }
 
-    /** College type used to group starting options. */
-    public enum Type { TWO_YEAR, PUBLIC_FOUR_YEAR, PRIVATE_FOUR_YEAR }
+    /** Groups for starting options: public two-year (community) colleges, four-year public colleges, private nonprofit colleges. */
+    public enum Type { COMMUNITY_COLLEGE, PUBLIC_FOUR_YEAR, PRIVATE }
 
-    /** Two-year if every recent award is an associate degree; otherwise four-year, public or private. */
+    /** Two-year if every recent award is an associate degree. */
+    public boolean isTwoYear() { return offersLevel(2) && !offersLevel(3); }
+
+    /** Private two-year colleges (for example nursing schools) go to the private group, not "community colleges". */
     public Type type() {
-        if (offersLevel(2) && !offersLevel(3)) return Type.TWO_YEAR;
-        return isPublic() ? Type.PUBLIC_FOUR_YEAR : Type.PRIVATE_FOUR_YEAR;
+        if (!isPublic()) return Type.PRIVATE;
+        return isTwoYear() ? Type.COMMUNITY_COLLEGE : Type.PUBLIC_FOUR_YEAR;
+    }
+
+    /** 4-digit codes of programs with a positive award count at associate or bachelor's level. */
+    public Set<String> awardedPrograms() {
+        Set<String> out = new HashSet<>();
+        for (Map.Entry<String, Integer[]> e : programCounts.entrySet()) {
+            Integer[] c = e.getValue();
+            if ((c[0] != null && c[0] > 0) || (c[1] != null && c[1] > 0)) out.add(e.getKey().substring(0, 4));
+        }
+        return out;
     }
 
     /**

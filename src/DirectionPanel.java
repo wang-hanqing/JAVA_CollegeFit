@@ -35,6 +35,8 @@ class DirectionPanel extends JPanel {
     private final JLabel subheading = Ui.text("", 14.5f, Font.PLAIN, Ui.MUTED);
     private final PathwayExplainer explainer;
     private CollegeFitSwingApp.Start start = CollegeFitSwingApp.Start.SUBJECT;
+    private Map<String, Integer> counts = new HashMap<>();
+    private Set<String> countStates = Set.of();
 
     DirectionPanel(CollegeFitSwingApp app) {
         super(new BorderLayout());
@@ -59,6 +61,16 @@ class DirectionPanel extends JPanel {
         for (Ui.Pill p : where.values()) p.addActionListener(e -> updateStates());
 
         matchList.setVisibleRowCount(4);
+        // Counts follow the chosen states; with no states chosen they are national
+        matchList.setCellRenderer(new DefaultListCellRenderer() {
+            @Override public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean sel, boolean focus) {
+                Program p = (Program) value;
+                Integer n = counts.get(p.cipCode);
+                String where = countStates.isEmpty() ? Messages.get("dir.count.us", Messages.number(n == null ? 0 : n))
+                    : n == null ? Messages.get("dir.count.none", countPlace()) : Messages.get("dir.count.state", Messages.number(n), countPlace());
+                return super.getListCellRendererComponent(list, p.fullName + "   (" + where + ")", index, sel, focus);
+            }
+        });
         matchList.setFont(Ui.sans(Font.PLAIN, 13.5f));
         matchList.setFixedCellHeight(28);
         matchList.addMouseListener(new MouseAdapter() {
@@ -153,6 +165,7 @@ class DirectionPanel extends JPanel {
         JPanel searchRow = Ui.row(8, new JLabel(Ui.icon("search", Ui.MUTED, 16)), search);
         col.add(Ui.left(searchRow));
         JScrollPane list = new JScrollPane(matchList);
+        list.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         list.setPreferredSize(new Dimension(400, 116));
         list.setMaximumSize(new Dimension(460, 116));
         col.add(Box.createVerticalStrut(6));
@@ -264,8 +277,24 @@ class DirectionPanel extends JPanel {
         programChips.repaint();
     }
 
+    private String countPlace() {
+        return countStates.size() == 1 ? StateNames.name(countStates.iterator().next()) : Messages.get("dir.count.yourStates");
+    }
+
+    /** Recounts colleges per program for the chosen states (national when no state is chosen). */
+    private void refreshCounts() {
+        boolean specific = where.get(StudentProfile.LocationScope.PREFERRED_STATE).isSelected();
+        Set<String> st = specific ? new TreeSet<>(chosenStates) : Set.of();
+        if (!st.equals(countStates) || counts.isEmpty()) {
+            countStates = st;
+            counts = RecommendationEngine.programCounts(app.colleges, st);
+            matchList.repaint();
+        }
+    }
+
     private void updateStates() {
         boolean specific = where.get(StudentProfile.LocationScope.PREFERRED_STATE).isSelected();
+        refreshCounts();
         stateChips.removeAll();
         if (specific) {
             for (String s : new ArrayList<>(chosenStates)) {

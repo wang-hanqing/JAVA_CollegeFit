@@ -19,11 +19,11 @@ public class FinancialEvaluator implements LensEvaluator {
             Messages.get(c.isPublic() ? "fin.cost.public.note" : "fin.cost.note"), null));
         if (c.isPublic()) {
             facts.add(new Fact(Messages.get("fin.tuitionIn"), money(c.tuitionIn), Messages.get("fin.tuitionIn.note"), null));
-            facts.add(new Fact(Messages.get("fin.tuitionOut"), money(c.tuitionOut), "", null));
+            facts.add(new Fact(Messages.get("fin.tuitionOut"), money(c.tuitionOut), Messages.get("fin.tuitionOut.note"), null));
             if (outOfStatePublic)
                 facts.add(new Fact(Messages.get("fin.oosEstimate"), money(c.outOfStateCostEstimate()), Messages.get("fin.oosEstimate.note"), null));
         } else {
-            facts.add(new Fact(Messages.get("fin.tuition"), money(c.tuitionIn), "", null));
+            facts.add(new Fact(Messages.get("fin.tuition"), money(c.tuitionIn), Messages.get("fin.tuition.note"), null));
         }
 
         // 2. Historical net price: her income range if known, otherwise all aid recipients

@@ -37,11 +37,11 @@ public class ScenarioTests {
         check("Bronx CC: 2 of 2 social preferences", r.status == FitStatus.MATCH && r.label.equals("2 of 2 matched"));
 
         r = academic.evaluate(amina, lehman);
-        check("Lehman: admits 57%, test policy 5, SAT not assessed", r.status == FitStatus.INFO && r.label.equals("Admits 57%")
-            && r.summary().contains("Considered, not required") && r.summary().contains("Not assessed"));
+        check("Lehman: admission rate 57%, test policy 5, no SAT row without scores", r.status == FitStatus.INFO
+            && r.label.equals("Admission rate 57%") && r.summary().contains("Considered, not required") && !r.summary().contains("Your SAT"));
         CollegeRecommendation rec = new CollegeRecommendation(amina, lehman, r, financial.evaluate(amina, lehman), social.evaluate(amina, lehman));
         check("Lehman: nursing awarded with counts and a license step", rec.programPriority == 0
-            && rec.program.label.equals("Registered Nursing: awarded") && rec.program.summary().contains("167")
+            && rec.program.label.equals("Registered Nursing: awarded") && rec.program.summary().contains("145 graduates last year")
             && rec.program.nextStep.contains("nursing license"));
 
         r = social.evaluate(amina, tulsa);
@@ -56,10 +56,10 @@ public class ScenarioTests {
         nj.setLocationScope(StudentProfile.LocationScope.ANY_STATE);
         r = academic.evaluate(nj, college("Harvard University"));
         check("Harvard: highly selective even with strong scores", r.status == FitStatus.NEEDS_VERIFICATION
-            && r.label.startsWith("Highly selective") && r.summary().contains("Required"));
+            && r.label.startsWith("Admission rate") && r.label.contains("highly selective") && r.summary().contains("Required"));
         r = financial.evaluate(nj, college("CUNY Hunter College"));
         check("Hunter for NJ student: out-of-state estimate, net price not shown",
-            hasFact(r, "Estimated out-of-state cost") && r.summary().contains("Not shown"));
+            hasFact(r, "Estimated cost at out-of-state rates") && r.summary().contains("Not shown"));
 
         College ranged = null;
         for (College c : sample)
@@ -84,7 +84,7 @@ public class ScenarioTests {
         r = financial.evaluate(ca, college("PENSACOLA CHRISTIAN COLLEGE"));
         check("Pensacola: insufficient information", r.status == FitStatus.UNKNOWN);
         r = financial.evaluate(new StudentProfile(), tulsa);
-        check("Income not given: overall average net price (NPT4) shown", hasFact(r, "Average net price, all aid recipients"));
+        check("Income not given: overall average net price (NPT4) shown", hasFact(r, "Average paid after grants, all incomes"));
 
         // ---------- Program evidence: three states, and a missing net price calculator ----------
         Map<String, Integer[]> counts = new HashMap<>();
@@ -143,15 +143,18 @@ public class ScenarioTests {
         check("Default order: larger recent programs first (after preferences)", byDegrees);
         Map<College.Type, List<CollegeRecommendation>> groups = RecommendationEngine.groups(ranked, amina.getPathway());
         check("Groups: Bronx CC is two-year, Lehman is four-year public",
-            groups.get(College.Type.TWO_YEAR).stream().anyMatch(x -> x.college == bronx)
+            groups.get(College.Type.COMMUNITY_COLLEGE).stream().anyMatch(x -> x.college == bronx)
             && groups.get(College.Type.PUBLIC_FOUR_YEAR).stream().anyMatch(x -> x.college == lehman));
         CollegeRecommendation lr = engine.evaluate(amina, lehman);
-        check("Card line: Lehman nursing degrees in 2022-23", lr.programLine(amina).equals("145 bachelor's degrees in 2022-23"));
-        check("Card line: Lehman costs", lr.financialLine(amina).equals("$14,121 published; $1,589 average*"));
-        check("Card reason is built from data", lr.cardWhy().startsWith("Awarded 145 Registered Nursing bachelor's degrees in 2022-23."));
+        check("Card line: Lehman nursing graduates, no year shown", lr.programLine(amina).equals("Registered Nursing: 145 graduates last year (bachelor's)"));
+        check("Card line: Lehman costs in plain words", lr.financialLine(amina).equals("Cost before aid $14,121/yr. Average paid after grants $1,589/yr*"));
+        check("Reason is built from data", lr.cardWhy().startsWith("145 graduates last year in Registered Nursing (bachelor's)."));
         check("Completion rate loaded (Lehman 51%, 6 years)", Math.round(lehman.completionRate * 100) == 51 && lehman.completionYears == 6);
-        Map<College.Type, int[]> summary = RecommendationEngine.typeSummary(sample, Set.of("NY"));
-        check("Pathway facts: counts per college type", summary.get(College.Type.TWO_YEAR)[0] >= 1);
+        Map<RecommendationEngine.PathwayKind, int[]> summary = RecommendationEngine.pathwaySummary(sample, Set.of("NY"));
+        check("Pathway facts: counts per college type", summary.get(RecommendationEngine.PathwayKind.TWO_YEAR)[0] >= 1);
+        check("Private two-year colleges go to the private group", sample.stream().noneMatch(x -> !x.isPublic() && x.type() == College.Type.COMMUNITY_COLLEGE));
+        Map<String, Integer> nyCounts = RecommendationEngine.programCounts(sample, Set.of("NY")), allCounts = RecommendationEngine.programCounts(sample, Set.of());
+        check("Program counts follow the chosen state", nyCounts.getOrDefault("5138", 0) < allCounts.getOrDefault("5138", 0));
         StudentProfile econ = new StudentProfile();
         for (Program p : programs) if ("4506".equals(p.cipCode)) econ.setPrograms(List.of(p));
         econ.setLocationScope(StudentProfile.LocationScope.ANY_STATE);
@@ -190,8 +193,8 @@ public class ScenarioTests {
             StudentProfile eng = new StudentProfile();
             eng.setPrograms(List.of(engineering));
             CollegeRecommendation er = new RecommendationEngine().recommendAll(eng, List.of(harvard)).get(0);
-            check("Engineering field: card label and field count", er.program.label.startsWith("Engineering (all)")
-                && er.program.facts.get(0).note.contains("programs in this field"));
+            check("Engineering field: card label and field count", er.program.label.startsWith("Engineering:")
+                && er.program.facts.get(0).value.contains("program"));
         }
 
         // Review fixes (trust and accuracy)

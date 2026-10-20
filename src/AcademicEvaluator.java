@@ -24,17 +24,19 @@ public class AcademicEvaluator implements LensEvaluator {
             rate = null; // a 0% rate is not believable for a college with students
             facts.add(new Fact(Messages.get("ac.policy"), Messages.get("ac.rate.unusable"), Messages.get("ac.rate.unusable.note"), null));
         } else if (rate != null) {
-            facts.add(new Fact(Messages.get("ac.policy"), Messages.get("ac.rate", pct(rate)), Messages.get("ac.rate.note"), null));
+            facts.add(new Fact(Messages.get("ac.rateLabel"), pct(rate), Messages.get("ac.rate.note"), null));
         } else {
             facts.add(new Fact(Messages.get("ac.policy"), Messages.get("notReported"), "", null));
         }
-        facts.add(new Fact(Messages.get("ac.test"), testPolicy(c.testPolicy), Messages.get("ac.test.note"), null));
+        // Open-admission colleges rarely report a test policy; an empty "not reported" row would only confuse.
+        if (!(open && c.testPolicy == null))
+            facts.add(new Fact(Messages.get("ac.test"), testPolicy(c.testPolicy), "", null));
 
         // 2. SAT comparison, one section at a time. Section percentiles are never added together.
         Band reading = null, math = null;
         boolean hasScores = s.getSatStatus() == StudentProfile.SatStatus.PROVIDED;
         if (!hasScores) {
-            facts.add(new Fact(Messages.get("ac.sat"), Messages.get("ac.sat.notAssessed"), Messages.get("ac.sat.notAssessed.note"), null));
+            // no SAT row: the details page offers "Add scores or cost details" instead
         } else if (c.reading25 == null || c.reading75 == null || c.math25 == null || c.math75 == null) {
             facts.add(new Fact(Messages.get("ac.sat"), Messages.get("ac.sat.noRanges"), Messages.get("ac.sat.noRanges.note"), null));
         } else {

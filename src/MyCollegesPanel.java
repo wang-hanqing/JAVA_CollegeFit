@@ -83,7 +83,7 @@ class MyCollegesPanel extends JPanel {
         back.addActionListener(e -> app.backToOptions());
         Ui.Button over = new Ui.Button(Messages.get("startOver"), false);
         over.addActionListener(e -> app.startOver());
-        Ui.Button export = new Ui.Button(Messages.get("mine.export"), true);
+        Ui.Button export = new Ui.Button(Messages.get("mine.exportAll"), true);
         export.setEnabled(!saved.isEmpty());
         export.addActionListener(e -> export());
         body.removeAll();
@@ -100,7 +100,7 @@ class MyCollegesPanel extends JPanel {
         name.setFont(Ui.sans(Font.BOLD, 16f));
         col.add(Ui.left(name));
         col.add(Ui.left(Ui.row(6, Ui.text(c.city + ", " + c.state, 12f, Font.PLAIN, Ui.MUTED),
-            Ui.tag(Messages.get(c.isPublic() ? "type.public" : "type.private")), Ui.tag(Messages.get("tag." + c.type().name())))));
+            Ui.tag(Messages.get(c.isPublic() ? "type.public" : "type.private")), Ui.tag(Messages.get(c.isTwoYear() ? "tag.two" : "tag.four")))));
         col.add(Box.createVerticalStrut(8));
         boolean oos = c.isPublic() && s.hasHomeState() && !s.getHomeState().equals(c.state);
         Integer avg = oos ? null : s.getIncomeBracket().isKnown() ? c.netPrice(s.getIncomeBracket()) : c.netPriceAll;

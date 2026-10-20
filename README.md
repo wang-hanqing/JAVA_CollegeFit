@@ -30,6 +30,7 @@ java -jar CollegeFit.jar
 ```
 src/              Java source (Swing app, evaluators, tests) and messages_en.properties
 data/processed/   Cleaned data used by the Java app
+UI_UX/            Screenshots of the five-step journey
 notebooks/        Data exploration and export (Python)
 ```
 

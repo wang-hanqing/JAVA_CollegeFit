@@ -49,51 +49,43 @@ public class CollegeRecommendation {
         String singleLabel = "";
         for (Program p : s.getPrograms()) {
             College.ProgramEvidence best = College.ProgramEvidence.NOT_CONFIRMED;
+            String nm = p.isFamily() ? CipFamilies.name(p.cipCode) : p.shortName(); // "Agriculture", not "Agriculture (all)"
             List<String> parts = new ArrayList<>();
             boolean bachelorAwarded = false;
             for (int level : RecommendationEngine.levels(s.getPathway())) {
                 College.ProgramEvidence e = c.evidence(p.cipCode, level);
-                Integer[] n = c.awardCounts(p.cipCode, level);
-                String levelName = Messages.get("prog.level." + level);
-                if (p.isFamily()) {
-                    int k = c.familyProgramsAwarded(p.cipCode, level);
-                    parts.add(k == 0 ? Messages.get("prog.part.family.none", levelName)
-                        : k == 1 ? Messages.get("prog.part.family.one", levelName) : Messages.get("prog.part.family", levelName, k));
-                } else if (e == College.ProgramEvidence.AWARDED) {
-                    parts.add(Messages.get("prog.part.awarded", levelName, count(n[0]), count(n[1])));
-                    if (level == 3) bachelorAwarded = true;
-                }
                 if (e == College.ProgramEvidence.AWARDED) {
-                    if (level == 2) anyAssociate = true; else anyBachelor = true;
+                    String levelName = Messages.get("prog.level." + level);
+                    int graduates = c.recentDegrees(p.cipCode, level);
+                    if (p.isFamily()) {
+                        int k = c.familyProgramsAwarded(p.cipCode, level);
+                        parts.add(Messages.get(k == 1 ? "prog.part.family.one" : "prog.part.family", levelName, k, Messages.number(graduates)));
+                    } else {
+                        parts.add(Messages.get("prog.part.awarded", levelName, Messages.number(graduates)));
+                    }
+                    if (level == 2) anyAssociate = true; else { anyBachelor = true; bachelorAwarded = true; }
                     // a program inside a chosen field is already counted by the field
-                    if (p.isFamily() || !families.contains(p.cipCode.substring(0, 2))) degrees += c.recentDegrees(p.cipCode, level);
-                }
-                if (p.isFamily() || e == College.ProgramEvidence.AWARDED) {
-                    // already described above
-                } else if (e == College.ProgramEvidence.ZERO_AWARDS) {
-                    parts.add(Messages.get("prog.part.zero", levelName));
-                } else if (n != null) {
-                    parts.add(Messages.get("prog.part.missing", levelName));
-                } else {
-                    parts.add(Messages.get("prog.part.noRecord", levelName));
+                    if (p.isFamily() || !families.contains(p.cipCode.substring(0, 2))) degrees += graduates;
                 }
                 if (e.ordinal() < best.ordinal()) best = e; // AWARDED < ZERO_AWARDS < NOT_CONFIRMED
             }
             boolean isAwarded = best == College.ProgramEvidence.AWARDED;
+            String value = isAwarded ? String.join(". ", parts) : Messages.get("prog.value." + best.name());
+            String note = isAwarded ? "" : Messages.get("prog.note." + best.name());
             // With many programs, list the awarded ones in detail and summarize the rest
             if (s.getPrograms().size() <= MAX_LISTED || (isAwarded && awardedNames.size() < MAX_LISTED))
-                facts.add(new Fact(p.shortName(), Messages.get("prog.value." + best.name()), String.join("; ", parts), isAwarded));
+                facts.add(new Fact(nm, value, note, isAwarded));
             if (isAwarded) {
                 awarded++;
-                awardedNames.add(p.shortName());
+                awardedNames.add(nm);
                 // CIP 5138 also covers RN-to-BSN programs for nurses who are already licensed.
                 if ("5138".equals(p.cipCode) && bachelorAwarded) nursing = true;
             } else {
-                otherNames.add(p.shortName());
+                otherNames.add(nm);
                 if (s.getPrograms().size() <= MAX_LISTED)
-                    steps.add(Messages.get(best == College.ProgramEvidence.ZERO_AWARDS ? "prog.next.zero" : "prog.next.confirm", p.shortName()));
+                    steps.add(Messages.get(best == College.ProgramEvidence.ZERO_AWARDS ? "prog.next.zero" : "prog.next.confirm", nm));
             }
-            singleLabel = Messages.get("prog.label.one." + best.name(), p.shortName());
+            singleLabel = Messages.get("prog.label.one." + best.name(), nm);
         }
         int total = s.getPrograms().size();
         if (total > MAX_LISTED) {
@@ -132,7 +124,6 @@ public class CollegeRecommendation {
         return String.join(", ", list.subList(0, 3)) + " " + Messages.get("prog.andMore", list.size() - 3);
     }
 
-    private static String count(Integer n) { return n == null ? Messages.get("notReported") : String.valueOf(n); }
 
     public boolean hasProgramEvidence() { return programPriority == 0; }
 
@@ -146,13 +137,15 @@ public class CollegeRecommendation {
 
     // ---------- short lines for result cards ----------
 
-    /** e.g. "149 associate degrees in 2022-23". */
+    /** e.g. "Agriculture: 25 graduates last year (associate)". Graduates = degrees awarded in the latest year. */
     public String programLine(StudentProfile s) {
         if (!s.hasPrograms()) return Messages.get("card.program.all", Messages.number(recentDegrees));
         if (programsAwarded == 0) return program.label;
-        if (s.getPrograms().size() == 1)
-            return recentDegrees > 0 ? Messages.get("card.program.one", Messages.number(recentDegrees), levelText())
-                : Messages.get("card.program.awarded", levelText());
+        if (s.getPrograms().size() == 1) {
+            String name = s.getPrograms().get(0).isFamily() ? CipFamilies.name(s.getPrograms().get(0).cipCode) : s.getPrograms().get(0).shortName();
+            return recentDegrees > 0 ? Messages.get("card.program.one", name, Messages.number(recentDegrees), levelText())
+                : Messages.get("card.program.awarded", name, levelText());
+        }
         return Messages.get("card.program.many", programsAwarded, s.getPrograms().size(), Messages.number(recentDegrees));
     }
 
@@ -165,6 +158,7 @@ public class CollegeRecommendation {
         if (published == null) return Messages.get("card.cost.avgOnly", Messages.money(avg));
         if (avg == null) return Messages.get(oos ? "card.cost.oos" : "card.cost.published", Messages.money(published));
         return Messages.get("card.cost.both", Messages.money(published), Messages.money(avg));
+        // "Cost before aid" = published cost of attendance; "average paid after grants" = historical average net price
     }
 
     /** e.g. "NY ✓  City ✓  Large ✗" as HTML; only preferences she stated. */

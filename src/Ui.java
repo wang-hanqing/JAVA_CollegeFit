@@ -413,6 +413,7 @@ final class Ui {
         s.getViewport().setOpaque(false);
         s.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         s.getVerticalScrollBar().setUnitIncrement(18);
+        s.getViewport().setScrollMode(JViewport.SIMPLE_SCROLL_MODE); // repaint fully; avoids smearing with see-through panels
         return s;
     }
 }

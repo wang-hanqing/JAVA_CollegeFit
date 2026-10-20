@@ -21,8 +21,6 @@ class OptionCard extends Ui.Card {
         col.add(Ui.left(line(Messages.get("lens.academic"), Ui.ACADEMIC, aca)));
         col.add(Ui.left(line(Messages.get("lens.financial"), Ui.FINANCIAL, Ui.escape(r.financialLine(s)))));
         col.add(Ui.left(line(Messages.get("lens.social"), Ui.SOCIAL, r.socialHtml())));
-        String why = r.cardWhy();
-        if (!why.isEmpty()) { col.add(Box.createVerticalStrut(7)); col.add(Ui.left(Ui.note(why, Ui.GREEN_SOFT, Ui.GREEN_TEXT, 325, 12f))); }
         if (r.nursingBachelor) { col.add(Box.createVerticalStrut(6)); col.add(Ui.left(Ui.note(Messages.get("prog.next.license"), Ui.AMBER_SOFT, Ui.AMBER_TEXT, 325, 11.5f))); }
         col.add(Box.createVerticalStrut(9));
         Ui.Button details = new Ui.Button(Messages.get("card.details"), false).small();

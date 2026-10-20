@@ -19,9 +19,10 @@ class PathwayExplainer extends JPanel {
     }
 
     void update(Set<String> states) {
-        Map<College.Type, int[]> t = RecommendationEngine.typeSummary(colleges, states);
+        Map<RecommendationEngine.PathwayKind, int[]> t = RecommendationEngine.pathwaySummary(colleges, states);
         String where = states.size() == 1 ? StateNames.name(states.iterator().next()) : Messages.get("pathway.us");
-        int[] two = t.get(College.Type.TWO_YEAR), pub = t.get(College.Type.PUBLIC_FOUR_YEAR), priv = t.get(College.Type.PRIVATE_FOUR_YEAR);
+        int[] two = t.get(RecommendationEngine.PathwayKind.TWO_YEAR), pub = t.get(RecommendationEngine.PathwayKind.FOUR_YEAR_PUBLIC),
+            priv = t.get(RecommendationEngine.PathwayKind.FOUR_YEAR_PRIVATE);
         cards.removeAll();
         cards.add(card("bank", Ui.PURPLE, Ui.PURPLE_SOFT, Messages.get("pathway.two"), Messages.get("pathway.two.tag"),
             Messages.get("pathway.two.text", Messages.number(two[0]), where, Messages.money(two[1]))));

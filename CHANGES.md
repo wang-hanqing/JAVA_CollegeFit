@@ -1,5 +1,28 @@
 # CollegeFit Java changes
 
+## Update 9: user-flow review fixes (v0.3.1)
+
+Bugs
+- SAT and budget boxes now appear on their own lines when "I have scores" or "I know my budget" is chosen
+  (they were squeezed out of view on Mac). Error messages name the missing answer.
+- Details page: facts are stacked (label, then value), and box statuses sit under the title, so nothing overlaps.
+- Opaque page backgrounds and full repaints remove the black areas seen when switching pages on Mac.
+
+Navigation and data notes
+- Home button (and clickable logo) on every page; keeps answers and saved colleges. Start over still clears them.
+- Help includes "About the data" with the year of each data source; years are no longer repeated on cards.
+
+Grouping and wording
+- Groups: Community colleges (public two-year), Four-year public colleges, Private colleges
+  (nonprofit; the 78 private two-year colleges moved here).
+- Program counts in the program list follow the chosen states; with no state chosen they are national.
+- Cards: "Agriculture: 25 graduates last year (associate)", "Admission rate 84%",
+  "Cost before aid $12,429/yr. Average paid after grants $5,258/yr*". The green reason box was removed from cards.
+- Details: plain names for each cost, shorter program facts, no empty test-policy or SAT rows,
+  "Open admission" explained in words.
+- "How your answers are used" rewritten; the order menu shows a one-line explanation of each order.
+- Export button says "Export all saved colleges".
+
 ## Update 8: v0.3 student journey (new Swing interface)
 
 Five steps: Get started, Your direction, See options, Explore details, Next steps.

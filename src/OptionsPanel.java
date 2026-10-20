@@ -15,6 +15,7 @@ class OptionsPanel extends JPanel {
     private final JPanel directionChips = Ui.row(8);
     private final JLabel countText = Ui.text("", 12.5f, Font.PLAIN, Ui.MUTED);
     private final JComboBox<RecommendationEngine.Order> order = new JComboBox<>(RecommendationEngine.Order.values());
+    private final JLabel orderExplain = Ui.text("", 11.5f, Font.PLAIN, Ui.MUTED);
     private final JPanel columns = new JPanel(new GridLayout(1, 3, 16, 0));
     private final JLabel footnote = Ui.text("", 12f, Font.PLAIN, Ui.MUTED);
     private final Map<College.Type, Integer> shown = new EnumMap<>(College.Type.class);
@@ -45,6 +46,8 @@ class OptionsPanel extends JPanel {
         o.add(order);
         o.setAlignmentX(RIGHT_ALIGNMENT);
         right.add(o);
+        orderExplain.setAlignmentX(RIGHT_ALIGNMENT);
+        right.add(orderExplain);
         head.add(right, BorderLayout.EAST);
 
         JPanel content = Ui.column(0);
@@ -82,6 +85,7 @@ class OptionsPanel extends JPanel {
     private void render() {
         RecommendationEngine.Order o = (RecommendationEngine.Order) order.getSelectedItem();
         ranked.sort(RecommendationEngine.comparator(o, profile));
+        orderExplain.setText("<html><div style='text-align:right;width:" + Ui.css(330) + "px'>" + Ui.escape(Messages.get("order.explain." + o.name())) + "</div></html>");
         Map<College.Type, List<CollegeRecommendation>> groups = RecommendationEngine.groups(ranked, profile.getPathway());
         countText.setText("<html><div style='text-align:right'>" + Ui.escape(Messages.get("options.count", Messages.number(ranked.size()), place(profile)))
             + "<br>" + Ui.escape(Messages.get("options.showing")) + "</div></html>");

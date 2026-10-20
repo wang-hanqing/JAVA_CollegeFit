@@ -100,18 +100,33 @@ public class RecommendationEngine {
 
     // ---------- facts for the guided "not sure" page ----------
 
-    /** Number of colleges and median published cost per college type, in the given states (all if empty). */
-    public static Map<College.Type, int[]> typeSummary(List<College> colleges, Set<String> states) {
-        Map<College.Type, List<Integer>> costs = new EnumMap<>(College.Type.class);
-        Map<College.Type, int[]> out = new EnumMap<>(College.Type.class);
-        for (College.Type t : College.Type.values()) { costs.put(t, new ArrayList<>()); out.put(t, new int[]{0, 0}); }
+    /** For the pathway explainer: two-year, four-year public and four-year private colleges. */
+    public enum PathwayKind { TWO_YEAR, FOUR_YEAR_PUBLIC, FOUR_YEAR_PRIVATE }
+
+    /** Number of colleges and median published cost per pathway kind, in the given states (all if empty). */
+    public static Map<PathwayKind, int[]> pathwaySummary(List<College> colleges, Set<String> states) {
+        Map<PathwayKind, List<Integer>> costs = new EnumMap<>(PathwayKind.class);
+        Map<PathwayKind, int[]> out = new EnumMap<>(PathwayKind.class);
+        for (PathwayKind k : PathwayKind.values()) { costs.put(k, new ArrayList<>()); out.put(k, new int[]{0, 0}); }
         for (College c : colleges) {
             if (!states.isEmpty() && !states.contains(c.state)) continue;
-            College.Type t = c.type();
-            out.get(t)[0]++;
-            if (c.costOfAttendance != null) costs.get(t).add(c.costOfAttendance);
+            PathwayKind k = c.isTwoYear() ? PathwayKind.TWO_YEAR : c.isPublic() ? PathwayKind.FOUR_YEAR_PUBLIC : PathwayKind.FOUR_YEAR_PRIVATE;
+            out.get(k)[0]++;
+            if (c.costOfAttendance != null) costs.get(k).add(c.costOfAttendance);
         }
-        for (College.Type t : College.Type.values()) out.get(t)[1] = median(costs.get(t));
+        for (PathwayKind k : PathwayKind.values()) out.get(k)[1] = median(costs.get(k));
+        return out;
+    }
+
+    /** Colleges per program code and per 2-digit field, in the given states (all if empty). */
+    public static Map<String, Integer> programCounts(List<College> colleges, Set<String> states) {
+        Map<String, Integer> out = new HashMap<>();
+        for (College c : colleges) {
+            if (!states.isEmpty() && !states.contains(c.state)) continue;
+            Set<String> fields = new HashSet<>();
+            for (String cip : c.awardedPrograms()) { out.merge(cip, 1, Integer::sum); fields.add(cip.substring(0, 2)); }
+            for (String f : fields) out.merge(f, 1, Integer::sum);
+        }
         return out;
     }
 

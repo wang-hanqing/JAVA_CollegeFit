@@ -54,13 +54,14 @@ public class CollegeFitSwingApp extends JFrame {
         root.setBackground(Ui.BG);
         root.add(topBar(), BorderLayout.NORTH);
 
+        // Opaque backgrounds everywhere avoid black areas when pages switch on macOS
         JPanel body = new JPanel(new BorderLayout());
-        body.setOpaque(false);
+        body.setBackground(Ui.BG);
         JPanel stepRow = new JPanel(new FlowLayout(FlowLayout.CENTER, 0, 10));
-        stepRow.setOpaque(false);
+        stepRow.setBackground(Ui.BG);
         stepRow.add(stepper);
         body.add(stepRow, BorderLayout.NORTH);
-        pages.setOpaque(false);
+        pages.setBackground(Ui.BG);
         body.add(pages, BorderLayout.CENTER);
         root.add(body, BorderLayout.CENTER);
         setContentPane(root);
@@ -91,14 +92,24 @@ public class CollegeFitSwingApp extends JFrame {
         bar.setBorder(new javax.swing.border.CompoundBorder(new MatteBorder(0, 0, 1, 0, Ui.LINE), new EmptyBorder(10, 28, 10, 28)));
         JLabel brand = new JLabel("<html><span style='color:#1e2638'>College</span><span style='color:#3b5bcc'>Fit</span></html>");
         brand.setFont(Ui.serif(24f));
+        brand.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        brand.setToolTipText(Messages.get("nav.home.tip"));
+        brand.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override public void mouseClicked(java.awt.event.MouseEvent e) { showStart(); }
+        });
         bar.add(brand, BorderLayout.WEST);
+        Ui.Button home = new Ui.Button(Messages.get("nav.home"), false);
+        home.setToolTipText(Messages.get("nav.home.tip"));
+        home.addActionListener(e -> showStart());
         myColleges.setIcon(Ui.icon("heart", Ui.INK, 16));
         myColleges.addActionListener(e -> showMyColleges());
         Ui.Button help = new Ui.Button(Messages.get("nav.help"), false);
         help.setIcon(Ui.icon("help", Ui.INK, 16));
         help.addActionListener(e -> JOptionPane.showMessageDialog(this,
-            Ui.wrap(Messages.get("help.text"), 420, 13f, Ui.INK), Messages.get("nav.help"), JOptionPane.INFORMATION_MESSAGE));
-        bar.add(Ui.row(10, myColleges, help), BorderLayout.EAST);
+            Ui.html(Ui.escape(Messages.get("help.text")) + "<br><br><b>" + Ui.escape(Messages.get("help.data.title")) + "</b><br>"
+                + Ui.escape(Messages.get("help.data")).replace("\n", "<br>"), 460, 13f, Ui.INK),
+            Messages.get("nav.help"), JOptionPane.INFORMATION_MESSAGE));
+        bar.add(Ui.row(10, home, myColleges, help), BorderLayout.EAST);
         return bar;
     }
 
@@ -136,7 +147,7 @@ public class CollegeFitSwingApp extends JFrame {
         cards.show(pages, "mine");
     }
 
-    /** Clears answers, results and the saved list (for shared computers). */
+    /** Home keeps answers and saved colleges; Start over clears them. */
     void startOver() {
         int ok = JOptionPane.showConfirmDialog(this, Messages.get("startOver.confirm"), Messages.get("startOver"), JOptionPane.OK_CANCEL_OPTION);
         if (ok != JOptionPane.OK_OPTION) return;
