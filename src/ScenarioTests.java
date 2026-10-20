@@ -93,7 +93,7 @@ public class ScenarioTests {
         counts.put("4506:3", new Integer[]{null, null});
         College test = new College("999999", "Test College", "Town", "NY", "https://test.edu", "", 2, false, 0.6, 5,
             null, null, null, null, 30000, 20000, 20000, 15000, new EnumMap<>(StudentProfile.IncomeBracket.class),
-            StudentProfile.CampusSetting.URBAN, 3000, null, null, counts);
+            StudentProfile.CampusSetting.URBAN, 3000, null, null, null, 0, counts);
         check("Evidence: positive count = awarded", test.evidence("5138", 3) == College.ProgramEvidence.AWARDED);
         check("Evidence: 0 in both years = zero awards", test.evidence("1107", 3) == College.ProgramEvidence.ZERO_AWARDS);
         check("Evidence: missing counts = not confirmed", test.evidence("4506", 3) == College.ProgramEvidence.NOT_CONFIRMED);
@@ -135,17 +135,28 @@ public class ScenarioTests {
         // ---------- Ranking ----------
         ranked = engine.recommend(amina, sample);
         check("Amina: first result has program evidence", ranked.get(0).hasProgramEvidence());
-        check("Amina: discovery list has no New York colleges",
-            engine.worthALookElsewhere(amina, ranked, 4).stream().noneMatch(x -> x.college.state.equals("NY")));
+        check("Amina: chosen state is the scope (only New York colleges)", ranked.stream().allMatch(x -> x.college.state.equals("NY")));
+        boolean byDegrees = true;
+        for (int i = 1; i < ranked.size(); i++)
+            if (ranked.get(i).social.matched == ranked.get(i - 1).social.matched && ranked.get(i).recentDegrees > ranked.get(i - 1).recentDegrees)
+                byDegrees = false;
+        check("Default order: larger recent programs first (after preferences)", byDegrees);
+        Map<College.Type, List<CollegeRecommendation>> groups = RecommendationEngine.groups(ranked, amina.getPathway());
+        check("Groups: Bronx CC is two-year, Lehman is four-year public",
+            groups.get(College.Type.TWO_YEAR).stream().anyMatch(x -> x.college == bronx)
+            && groups.get(College.Type.PUBLIC_FOUR_YEAR).stream().anyMatch(x -> x.college == lehman));
+        CollegeRecommendation lr = engine.evaluate(amina, lehman);
+        check("Card line: Lehman nursing degrees in 2022-23", lr.programLine(amina).equals("145 bachelor's degrees in 2022-23"));
+        check("Card line: Lehman costs", lr.financialLine(amina).equals("$14,121 published; $1,589 average*"));
+        check("Card reason is built from data", lr.cardWhy().startsWith("Awarded 145 Registered Nursing bachelor's degrees in 2022-23."));
+        check("Completion rate loaded (Lehman 51%, 6 years)", Math.round(lehman.completionRate * 100) == 51 && lehman.completionYears == 6);
+        Map<College.Type, int[]> summary = RecommendationEngine.typeSummary(sample, Set.of("NY"));
+        check("Pathway facts: counts per college type", summary.get(College.Type.TWO_YEAR)[0] >= 1);
         StudentProfile econ = new StudentProfile();
         for (Program p : programs) if ("4506".equals(p.cipCode)) econ.setPrograms(List.of(p));
         econ.setLocationScope(StudentProfile.LocationScope.ANY_STATE);
         List<CollegeRecommendation> eco = engine.recommend(econ, sample);
-        CollegeRecommendation first = eco.get(0), second = eco.get(1);
-        boolean sameTier = first.programPriority == second.programPriority && first.mismatches() == second.mismatches()
-            && first.social.matched == second.social.matched;
-        check("Best fit: ties broken by name, not selectivity", !sameTier || first.college.name.compareToIgnoreCase(second.college.name) <= 0);
-        eco.sort(RecommendationEngine.comparator(RecommendationEngine.SortOrder.EASIER_ADMISSION, econ));
+        eco.sort(RecommendationEngine.comparator(RecommendationEngine.Order.EASIER_ADMISSION, econ));
         boolean ordered = true;
         for (int i = 1; i < eco.size(); i++)
             if (eco.get(i).programPriority == eco.get(i - 1).programPriority

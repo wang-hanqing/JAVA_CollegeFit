@@ -46,8 +46,9 @@ Raw files are not included because of their size. To rebuild the processed data:
 
 ## Design notes
 
-- Results are ranked without an overall score. Default "Best fit": program evidence, fewest mismatches,
-  most of her programs covered, most social preferences matched, preferred states, then name. Students can also sort by easier admission,
-  lowest reference cost, or name.
+- Five-step journey: start from what you know, get a small set of starting options grouped by college type,
+  understand each college through Academic, Financial and Social facts, then compare up to 3 and act.
+- Results are never ranked by an overall score. Default order inside each group: recent degrees awarded in
+  the chosen fields. Students can also order by easier admission, lowest reference cost, or name.
+- Every explanation comes from the data. Unsupported claims (program quality, campus life, aid generosity) are not shown.
 - All screen text is in `src/messages_en.properties`, so other languages can be added later.
-- Values are historical, school-level statistics, not personal predictions.

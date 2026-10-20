@@ -22,6 +22,8 @@ public class College {
     public final StudentProfile.CampusSetting setting;
     public final Integer undergraduates;       // UGDS; may include online students
     public final Double latitude, longitude;   // kept for a future distance feature
+    public final Double completionRate;        // C150_4 (4-year, within 6 years) or C150_L4 (2-year, within 3 years)
+    public final int completionYears;          // 6 or 3; 0 if no rate
     private final Map<String, Integer[]> programCounts; // "CIP:level" -> {IPEDSCOUNT1, IPEDSCOUNT2}, null = missing
 
     public College(String unitId, String name, String city, String state, String schoolUrl, String npcUrl,
@@ -30,7 +32,8 @@ public class College {
                    Integer costOfAttendance, Integer tuitionIn, Integer tuitionOut, Integer netPriceAll,
                    Map<StudentProfile.IncomeBracket, Integer> netPrices,
                    StudentProfile.CampusSetting setting, Integer undergraduates,
-                   Double latitude, Double longitude, Map<String, Integer[]> programCounts) {
+                   Double latitude, Double longitude, Double completionRate, int completionYears,
+                   Map<String, Integer[]> programCounts) {
         this.unitId = unitId; this.name = name; this.city = city; this.state = state;
         this.schoolUrl = schoolUrl; this.netPriceCalculatorUrl = npcUrl;
         this.control = control; this.openAdmission = openAdmission;
@@ -41,6 +44,7 @@ public class College {
         this.netPrices = Collections.unmodifiableMap(new EnumMap<>(netPrices));
         this.setting = setting; this.undergraduates = undergraduates;
         this.latitude = latitude; this.longitude = longitude;
+        this.completionRate = completionRate; this.completionYears = completionYears;
         this.programCounts = Collections.unmodifiableMap(new HashMap<>(programCounts));
     }
 
@@ -67,6 +71,34 @@ public class College {
         if (c[0] != null && c[1] != null) return ProgramEvidence.ZERO_AWARDS;
         return ProgramEvidence.NOT_CONFIRMED;
     }
+
+    /** College type used to group starting options. */
+    public enum Type { TWO_YEAR, PUBLIC_FOUR_YEAR, PRIVATE_FOUR_YEAR }
+
+    /** Two-year if every recent award is an associate degree; otherwise four-year, public or private. */
+    public Type type() {
+        if (offersLevel(2) && !offersLevel(3)) return Type.TWO_YEAR;
+        return isPublic() ? Type.PUBLIC_FOUR_YEAR : Type.PRIVATE_FOUR_YEAR;
+    }
+
+    /**
+     * Degrees awarded in 2022-23 for a program (4-digit) or a whole field (2-digit) at one level.
+     * Falls back to 2021-22 if 2022-23 is missing. Returns 0 when there is no positive count.
+     */
+    public int recentDegrees(String cipCode, int level) {
+        int total = 0;
+        for (Map.Entry<String, Integer[]> e : programCounts.entrySet()) {
+            String key = e.getKey();
+            if (!key.endsWith(":" + level) || !key.startsWith(cipCode)) continue;
+            Integer[] n = e.getValue();
+            Integer v = n[1] != null ? n[1] : n[0];
+            if (v != null && v > 0) total += v;
+        }
+        return total;
+    }
+
+    /** All degrees awarded at this level in 2022-23 (used when no program is chosen). */
+    public int recentDegreesAll(int level) { return recentDegrees("", level); }
 
     /** Number of programs in a 2-digit family with a positive award count at this level. */
     public int familyProgramsAwarded(String twoDigit, int level) {

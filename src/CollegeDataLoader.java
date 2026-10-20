@@ -64,6 +64,7 @@ public class CollegeDataLoader {
                     integer(get(r, ix, "TUITIONFEE_OUT")), integer(get(r, ix, "NPT4")), net,
                     locale(get(r, ix, "LOCALE")), integer(get(r, ix, "UGDS")),
                     decimal(get(r, ix, "LATITUDE")), decimal(get(r, ix, "LONGITUDE")),
+                    completion(r, ix), completionYears(r, ix),
                     programs.getOrDefault(id, Collections.emptyMap())));
             }
         }
@@ -121,6 +122,17 @@ public class CollegeDataLoader {
             if (programsPerFamily.get(e.getKey()) > 1) list.add(Program.family(e.getKey(), e.getValue().size()));
         Collections.sort(list);
         return list;
+    }
+
+    /** 4-year completion (C150_4) if reported, otherwise 2-year completion (C150_L4). Columns are optional. */
+    private static Double completion(List<String> r, Map<String, Integer> ix) {
+        Double four = decimal(get(r, ix, "C150_4"));
+        return four != null ? four : decimal(get(r, ix, "C150_L4"));
+    }
+
+    private static int completionYears(List<String> r, Map<String, Integer> ix) {
+        if (decimal(get(r, ix, "C150_4")) != null) return 6;
+        return decimal(get(r, ix, "C150_L4")) != null ? 3 : 0;
     }
 
     /** Restores leading zeros, e.g. "901" -> "0901". Returns null for anything that is not a CIP code. */

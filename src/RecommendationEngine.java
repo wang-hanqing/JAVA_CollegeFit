@@ -1,44 +1,34 @@
 import java.util.*;
 
 /**
- * Runs every lens on every college and ranks the results without an overall score.
- * The student can choose how results are ordered (SortOrder).
+ * Runs every lens on every college and builds the starting options without an overall score:
+ * colleges are grouped by type (two-year, four-year public, four-year private nonprofit),
+ * and each group is ordered by a rule the student can see and change.
  */
 public class RecommendationEngine {
     // Polymorphism: the engine only knows the LensEvaluator interface.
     private final List<LensEvaluator> lenses = List.of(
         new AcademicEvaluator(), new FinancialEvaluator(), new SocialEvaluator());
 
-    public enum SortOrder { BEST_FIT, EASIER_ADMISSION, LOWEST_COST, NAME;
-        @Override public String toString() { return Messages.get("SortOrder." + name()); } }
+    /** How colleges are ordered inside each group. Program evidence always comes first. */
+    public enum Order { RECENT_DEGREES, EASIER_ADMISSION, LOWEST_COST, NAME;
+        @Override public String toString() { return Messages.get("Order." + name()); } }
 
-    /**
-     * BEST_FIT (default, neutral): program evidence, most of her programs covered, fewest mismatches, most social preferences matched,
-     * preferred state first, then name. It never ranks by admission difficulty or price.
-     * The student can choose EASIER_ADMISSION or LOWEST_COST herself; both still put program evidence first.
-     */
-    public static Comparator<CollegeRecommendation> comparator(SortOrder order, StudentProfile s) {
+    public static Comparator<CollegeRecommendation> comparator(Order order, StudentProfile s) {
         Comparator<CollegeRecommendation> byName = Comparator.comparing(r -> r.college.name, String.CASE_INSENSITIVE_ORDER);
-        Comparator<CollegeRecommendation> byProgram = Comparator.comparingInt(r -> r.programPriority);
+        Comparator<CollegeRecommendation> base = Comparator.<CollegeRecommendation>comparingInt(r -> r.programPriority)
+            .thenComparing(r -> r.social.matched, Comparator.reverseOrder()); // stated preferences shape the order
         switch (order) {
             case NAME:
                 return byName;
             case LOWEST_COST:
-                return byProgram
-                    .thenComparing((CollegeRecommendation r) -> referenceCost(s, r.college),
-                        Comparator.nullsLast(Comparator.naturalOrder()))
-                    .thenComparing(byName);
+                return base.thenComparing((CollegeRecommendation r) -> referenceCost(s, r.college),
+                    Comparator.nullsLast(Comparator.naturalOrder())).thenComparing(byName);
             case EASIER_ADMISSION:
-                return byProgram
-                    .thenComparing((CollegeRecommendation r) -> admissionAccess(r.college), Comparator.reverseOrder())
+                return base.thenComparing((CollegeRecommendation r) -> admissionAccess(r.college), Comparator.reverseOrder())
                     .thenComparing(byName);
-            default:
-                return byProgram
-                    .thenComparing(r -> r.programsAwarded, Comparator.reverseOrder())
-                    .thenComparingInt(CollegeRecommendation::mismatches)
-                    .thenComparing(r -> r.social.matched, Comparator.reverseOrder())
-                    .thenComparingInt(r -> s.prefersState(r.college.state) ? 0 : 1)
-                    .thenComparing(byName);
+            default: // RECENT_DEGREES: larger recent programs in her fields first
+                return base.thenComparing(r -> r.recentDegrees, Comparator.reverseOrder()).thenComparing(byName);
         }
     }
 
@@ -49,13 +39,17 @@ public class RecommendationEngine {
         return -1.0;
     }
 
+    /** Scope: degree pathway, chosen states (if any) and program evidence (if programs are chosen). */
     public List<CollegeRecommendation> recommend(StudentProfile s, List<College> colleges) {
         List<CollegeRecommendation> result = new ArrayList<>();
         for (College c : colleges) {
             if (!offersPathway(s.getPathway(), c)) continue;
-            result.add(evaluate(s, c));
+            if (s.getLocationScope() == StudentProfile.LocationScope.PREFERRED_STATE && !s.prefersState(c.state)) continue;
+            CollegeRecommendation r = evaluate(s, c);
+            if (s.hasPrograms() && !r.hasProgramEvidence()) continue;
+            result.add(r);
         }
-        result.sort(comparator(SortOrder.BEST_FIT, s));
+        result.sort(comparator(Order.RECENT_DEGREES, s));
         return result;
     }
 
@@ -66,35 +60,27 @@ public class RecommendationEngine {
         return result;
     }
 
-    private CollegeRecommendation evaluate(StudentProfile s, College c) {
+    public CollegeRecommendation evaluate(StudentProfile s, College c) {
         EvaluationResult[] r = new EvaluationResult[lenses.size()];
         for (int i = 0; i < lenses.size(); i++) r[i] = lenses.get(i).evaluate(s, c);
         return new CollegeRecommendation(s, c, r[0], r[1], r[2]);
     }
 
-    /**
-     * Discovery list for students who chose specific states: colleges elsewhere with program evidence,
-     * lowest labeled reference cost first. Supports the "beyond the colleges she knows" idea.
-     */
-    public List<CollegeRecommendation> worthALookElsewhere(StudentProfile s, List<CollegeRecommendation> ranked, int limit) {
-        if (s.getLocationScope() != StudentProfile.LocationScope.PREFERRED_STATE) return List.of();
-        List<CollegeRecommendation> out = new ArrayList<>();
-        for (CollegeRecommendation r : ranked)
-            if (!s.prefersState(r.college.state) && r.hasProgramEvidence()) out.add(r);
-        out.sort(Comparator.comparing((CollegeRecommendation r) -> referenceCost(s, r.college),
-                Comparator.nullsLast(Comparator.naturalOrder()))
-            .thenComparing(r -> r.college.name, String.CASE_INSENSITIVE_ORDER));
-        return out.subList(0, Math.min(limit, out.size()));
+    /** Splits ranked results into the three college types, keeping the order inside each group. */
+    public static Map<College.Type, List<CollegeRecommendation>> groups(List<CollegeRecommendation> ranked, StudentProfile.Pathway p) {
+        Map<College.Type, List<CollegeRecommendation>> out = new EnumMap<>(College.Type.class);
+        for (College.Type t : College.Type.values()) {
+            out.put(t, new ArrayList<>());
+        }
+        for (CollegeRecommendation r : ranked) out.get(r.college.type()).add(r);
+        return out;
     }
 
-    /**
-     * Labeled reference cost used only for the optional cost sort and the discovery list:
-     * net price for her income range (or all aid recipients) where it applies, otherwise the published cost.
-     */
+    /** Labeled reference cost for the cost order: net price where it applies, otherwise the published cost. */
     static Integer referenceCost(StudentProfile s, College c) {
         if (c.isPublic() && s.hasHomeState() && !s.getHomeState().equals(c.state)) return c.outOfStateCostEstimate();
         Integer net = s.getIncomeBracket().isKnown() ? c.netPrice(s.getIncomeBracket()) : c.netPriceAll;
-        return net != null ? net : c.costOfAttendance; // negative averages stay as reported
+        return net != null ? net : c.costOfAttendance;
     }
 
     /** Credential levels to check: 2 = associate, 3 = bachelor's. */
@@ -106,13 +92,43 @@ public class RecommendationEngine {
         }
     }
 
-    /**
-     * Keeps a college unless the data shows it awards only the other degree level.
-     * Colleges with no award records at either level stay in, flagged by the program check.
-     */
+    /** Keeps a college unless the data shows it awards only the other degree level. */
     static boolean offersPathway(StudentProfile.Pathway p, College c) {
         for (int level : levels(p)) if (c.offersLevel(level)) return true;
-        boolean awardsOtherLevel = c.offersLevel(2) || c.offersLevel(3);
-        return !awardsOtherLevel;
+        return !(c.offersLevel(2) || c.offersLevel(3));
+    }
+
+    // ---------- facts for the guided "not sure" page ----------
+
+    /** Number of colleges and median published cost per college type, in the given states (all if empty). */
+    public static Map<College.Type, int[]> typeSummary(List<College> colleges, Set<String> states) {
+        Map<College.Type, List<Integer>> costs = new EnumMap<>(College.Type.class);
+        Map<College.Type, int[]> out = new EnumMap<>(College.Type.class);
+        for (College.Type t : College.Type.values()) { costs.put(t, new ArrayList<>()); out.put(t, new int[]{0, 0}); }
+        for (College c : colleges) {
+            if (!states.isEmpty() && !states.contains(c.state)) continue;
+            College.Type t = c.type();
+            out.get(t)[0]++;
+            if (c.costOfAttendance != null) costs.get(t).add(c.costOfAttendance);
+        }
+        for (College.Type t : College.Type.values()) out.get(t)[1] = median(costs.get(t));
+        return out;
+    }
+
+    private static int median(List<Integer> v) {
+        if (v.isEmpty()) return 0;
+        Collections.sort(v);
+        int n = v.size();
+        return n % 2 == 1 ? v.get(n / 2) : (v.get(n / 2 - 1) + v.get(n / 2)) / 2;
+    }
+
+    /** Colleges in the given states (all if empty) with recent awards in a 2-digit field. */
+    public static int fieldCount(List<College> colleges, Set<String> states, String family) {
+        int n = 0;
+        for (College c : colleges) {
+            if (!states.isEmpty() && !states.contains(c.state)) continue;
+            if (c.evidence(family, 2) == College.ProgramEvidence.AWARDED || c.evidence(family, 3) == College.ProgramEvidence.AWARDED) n++;
+        }
+        return n;
     }
 }
