@@ -1,65 +1,81 @@
+import java.util.ArrayList;
+import java.util.List;
+
 /**
- * Academic lens (appendix A2). Describes how a college admits students;
- * it never predicts whether this student will be admitted.
- * Order matters: open admission is checked first, because open-admission colleges have no admission rate.
+ * Academic lens. Describes how a college admits students in three parts: admission policy,
+ * SAT comparison by section, and program admission. It never predicts this student's admission,
+ * so it never returns MATCH: school statistics are context (INFO) or something to verify.
  */
 public class AcademicEvaluator implements LensEvaluator {
-    static final double HIGHLY_SELECTIVE = 0.15; // admits under 15%: always shown as highly selective
+    static final double HIGHLY_SELECTIVE = 0.15; // admits under 15%
+
+    private enum Band { BELOW, WITHIN, ABOVE }
 
     @Override
     public EvaluationResult evaluate(StudentProfile s, College c) {
-        if (Boolean.TRUE.equals(c.openAdmission)) {
-            return new EvaluationResult(FitStatus.MATCH, Messages.get("academic.open.label"),
-                Messages.get("academic.open.explain"), Messages.get("academic.open.next"));
-        }
+        List<Fact> facts = new ArrayList<>();
 
-        // An admission rate of 0 is not believable for a college with students (data issue 5).
+        // 1. Admission policy. Open admission is checked first: those colleges have no admission rate.
         Double rate = c.admissionRate;
-        String rateNote = "";
-        if (rate != null && rate <= 0) { rate = null; rateNote = Messages.get("academic.rate.suspicious") + " "; }
+        boolean open = Boolean.TRUE.equals(c.openAdmission);
+        if (open) {
+            facts.add(new Fact(Messages.get("ac.policy"), Messages.get("ac.open"), Messages.get("ac.open.note"), null));
+        } else if (rate != null && rate <= 0) {
+            rate = null; // a 0% rate is not believable for a college with students
+            facts.add(new Fact(Messages.get("ac.policy"), Messages.get("ac.rate.unusable"), Messages.get("ac.rate.unusable.note"), null));
+        } else if (rate != null) {
+            facts.add(new Fact(Messages.get("ac.policy"), Messages.get("ac.rate", pct(rate)), Messages.get("ac.rate.note"), null));
+        } else {
+            facts.add(new Fact(Messages.get("ac.policy"), Messages.get("notReported"), "", null));
+        }
+        facts.add(new Fact(Messages.get("ac.test"), testPolicy(c.testPolicy), Messages.get("ac.test.note"), null));
 
-        String context = rateNote + rateText(rate) + " " + testPolicyText(c.testPolicy);
-        boolean highlySelective = rate != null && rate < HIGHLY_SELECTIVE;
-
+        // 2. SAT comparison, one section at a time. Section percentiles are never added together.
+        Band reading = null, math = null;
         boolean hasScores = s.getSatStatus() == StudentProfile.SatStatus.PROVIDED;
-        boolean hasRanges = c.reading25 != null && c.reading75 != null && c.math25 != null && c.math75 != null;
-
-        if (hasScores && hasRanges) {
-            boolean below = s.getSatReadingWriting() < c.reading25 || s.getSatMath() < c.math25;
-            if (below) {
-                return new EvaluationResult(FitStatus.NEEDS_VERIFICATION, Messages.get("academic.below.label"),
-                    Messages.get("academic.below.explain") + " " + context, Messages.get("academic.next"));
-            }
-            if (highlySelective) {
-                return new EvaluationResult(FitStatus.NEEDS_VERIFICATION, Messages.get("academic.selective.label"),
-                    Messages.get("academic.selectiveWithScores.explain") + " " + context, Messages.get("academic.next"));
-            }
-            return new EvaluationResult(FitStatus.MATCH, Messages.get("academic.within.label"),
-                Messages.get("academic.within.explain") + " " + context, Messages.get("academic.next"));
+        if (!hasScores) {
+            facts.add(new Fact(Messages.get("ac.sat"), Messages.get("ac.sat.notAssessed"), Messages.get("ac.sat.notAssessed.note"), null));
+        } else if (c.reading25 == null || c.reading75 == null || c.math25 == null || c.math75 == null) {
+            facts.add(new Fact(Messages.get("ac.sat"), Messages.get("ac.sat.noRanges"), Messages.get("ac.sat.noRanges.note"), null));
+        } else {
+            reading = band(s.getSatReadingWriting(), c.reading25, c.reading75);
+            math = band(s.getSatMath(), c.math25, c.math75);
+            facts.add(new Fact(Messages.get("ac.sat.reading"), Messages.get("ac.band." + reading, s.getSatReadingWriting(),
+                c.reading25 + "-" + c.reading75), Messages.get("ac.sat.range.note"), null));
+            facts.add(new Fact(Messages.get("ac.sat.math"), Messages.get("ac.band." + math, s.getSatMath(),
+                c.math25 + "-" + c.math75), Messages.get("ac.sat.range.note"), null));
         }
 
-        if (highlySelective) {
-            return new EvaluationResult(FitStatus.NEEDS_VERIFICATION, Messages.get("academic.selective.label"),
-                Messages.get("academic.selective.explain") + " " + context, Messages.get("academic.next"));
+        // 3. Program admission cannot be confirmed from this data.
+        facts.add(new Fact(Messages.get("ac.program"), Messages.get("ac.program.value"), Messages.get("ac.program.note"), null));
+
+        String next = Messages.get("ac.next");
+        boolean selective = rate != null && rate < HIGHLY_SELECTIVE;
+        if (selective)
+            return new EvaluationResult(FitStatus.NEEDS_VERIFICATION, Messages.get("ac.label.selective", pct(rate)), facts, "", next);
+        if (reading != null) {
+            String overall = reading == math ? reading.name() : "MIXED";
+            FitStatus status = overall.equals("BELOW") || overall.equals("MIXED") ? FitStatus.NEEDS_VERIFICATION : FitStatus.INFO;
+            String reason = overall.equals("WITHIN") || overall.equals("ABOVE") ? Messages.get("ac.reason.sat") : "";
+            return new EvaluationResult(status, Messages.get("ac.label.sat." + overall), facts, reason, next);
         }
-        return new EvaluationResult(FitStatus.UNKNOWN, Messages.get("academic.moreInfo.label"),
-            Messages.get("academic.moreInfo.explain") + " " + context, Messages.get("academic.next"));
+        if (open)
+            return new EvaluationResult(FitStatus.INFO, Messages.get("ac.open"), facts, Messages.get("ac.reason.open"), "");
+        if (rate != null)
+            return new EvaluationResult(FitStatus.INFO, Messages.get("ac.label.rate", pct(rate)), facts,
+                rate >= 0.5 ? Messages.get("ac.reason.rate", pct(rate)) : "", next);
+        return new EvaluationResult(FitStatus.UNKNOWN, Messages.get("ac.label.unknown"), facts, "", next);
     }
 
-    private static String rateText(Double rate) {
-        if (rate == null) return Messages.get("academic.rate.none");
-        return Messages.get("academic.rate", Math.round(rate * 100) + "%");
+    private static Band band(int score, int p25, int p75) {
+        return score < p25 ? Band.BELOW : score > p75 ? Band.ABOVE : Band.WITHIN;
     }
+
+    private static String pct(double rate) { return Math.round(rate * 100) + "%"; }
 
     /** ADMCON7 from IPEDS, fall 2024. A missing SAT range does NOT mean test-optional. */
-    private static String testPolicyText(Integer code) {
-        if (code == null) return Messages.get("academic.policy.none");
-        switch (code) {
-            case 1: return Messages.get("academic.policy.1");
-            case 2: return Messages.get("academic.policy.2");
-            case 3: return Messages.get("academic.policy.3");
-            case 5: return Messages.get("academic.policy.5");
-            default: return Messages.get("academic.policy.none");
-        }
+    private static String testPolicy(Integer code) {
+        if (code == null || (code != 1 && code != 2 && code != 3 && code != 5)) return Messages.get("notReported");
+        return Messages.get("ac.test." + code);
     }
 }

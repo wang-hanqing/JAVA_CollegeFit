@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 
-/** One result card: name, program evidence, a status for each lens and a details button. */
+/** One result card: name, program evidence, a status for each lens, Save and details buttons. */
 public class CollegeCardPanel extends JPanel {
     public CollegeCardPanel(CollegeRecommendation rec, Runnable showDetails, Shortlist list, Runnable onListChange) {
         super(new BorderLayout(8, 10));
@@ -11,9 +11,9 @@ public class CollegeCardPanel extends JPanel {
         JPanel top = new JPanel(new GridLayout(0, 1, 0, 2));
         top.setOpaque(false);
         JLabel name = new JLabel("<html><div style='width:250px'><b>" + Ui.escape(rec.college.name) + "</b></div></html>");
-        name.setFont(name.getFont().deriveFont(16f));
+        name.setFont(Ui.font(name, Font.PLAIN, 16f));
         top.add(name);
-        top.add(Ui.muted(rec.college.city + ", " + rec.college.state));
+        top.add(Ui.muted(rec.college.city + ", " + rec.college.state + "   " + Messages.get(rec.college.isPublic() ? "type.public" : "type.private")));
         JToggleButton save = new JToggleButton();
         save.setSelected(list.contains(rec.college));
         save.setText(Messages.get(save.isSelected() ? "list.saved" : "list.save"));
@@ -49,7 +49,7 @@ public class CollegeCardPanel extends JPanel {
         p.setOpaque(false);
         JLabel l = new JLabel(lens);
         l.setForeground(color);
-        l.setFont(l.getFont().deriveFont(Font.BOLD));
+        l.setFont(Ui.font(l, Font.BOLD, 13f));
         p.add(l, BorderLayout.WEST);
         p.add(Ui.dot(r.status, r.label), BorderLayout.EAST);
         return p;

@@ -1,46 +1,68 @@
+import java.util.ArrayList;
+import java.util.List;
+
 /**
- * Social lens (appendix A2). Only preferences she stated are compared;
- * "not sure" is left out, never counted as a mismatch. Missing college data is also left out.
+ * Social lens: location, campus setting and size. Every item is listed with the college's actual value.
+ * Only preferences she stated are compared; "not sure" and missing college data are left out of the count.
  */
 public class SocialEvaluator implements LensEvaluator {
-    // Illustrative size bands based on undergraduate enrollment
-    static final int SMALL_MAX = 1999, MEDIUM_MAX = 9999;
+    static final int SMALL_MAX = 1999, MEDIUM_MAX = 9999; // illustrative size bands
 
     @Override
     public EvaluationResult evaluate(StudentProfile s, College c) {
+        List<Fact> facts = new ArrayList<>();
         int considered = 0, matched = 0;
-        StringBuilder details = new StringBuilder();
 
+        // State
         if (s.getLocationScope() == StudentProfile.LocationScope.PREFERRED_STATE) {
-            considered++;
-            boolean ok = s.getPreferredState().equals(c.state);
-            if (ok) matched++;
-            details.append(Messages.get(ok ? "pref.state.yes" : "pref.state.no", c.state)).append(' ');
-        }
-        if (s.getCampusSetting() != StudentProfile.CampusSetting.NOT_SURE
-                && c.setting != StudentProfile.CampusSetting.NOT_SURE) {
-            considered++;
-            boolean ok = s.getCampusSetting() == c.setting;
-            if (ok) matched++;
-            details.append(Messages.get(ok ? "pref.setting.yes" : "pref.setting.no", c.setting)).append(' ');
-        }
-        if (s.getCollegeSize() != StudentProfile.CollegeSize.NOT_SURE && c.undergraduates != null) {
-            considered++;
-            StudentProfile.CollegeSize size = c.undergraduates <= SMALL_MAX ? StudentProfile.CollegeSize.SMALL
-                : c.undergraduates <= MEDIUM_MAX ? StudentProfile.CollegeSize.MEDIUM : StudentProfile.CollegeSize.LARGE;
-            boolean ok = size == s.getCollegeSize();
-            if (ok) matched++;
-            details.append(Messages.get(ok ? "pref.size.yes" : "pref.size.no",
-                String.format("%,d", c.undergraduates))).append(' ').append(Messages.get("pref.size.online")).append(' ');
+            boolean ok = s.getPreferredStates().contains(c.state);
+            considered++; if (ok) matched++;
+            facts.add(new Fact(Messages.get("soc.state"), c.state,
+                Messages.get("soc.youChose", String.join(", ", s.getPreferredStates())), ok));
+        } else {
+            facts.add(new Fact(Messages.get("soc.state"), c.state, Messages.get("soc.noPreference"), null));
         }
 
-        if (considered == 0) {
-            return new EvaluationResult(FitStatus.UNKNOWN, Messages.get("pref.none.label"),
-                Messages.get("pref.none.explain"), Messages.get("pref.none.next"));
+        // Campus setting
+        String settingValue = c.setting == StudentProfile.CampusSetting.NOT_SURE ? Messages.get("unavailable") : c.setting.toString();
+        if (s.getSettings().isEmpty()) {
+            facts.add(new Fact(Messages.get("soc.setting"), settingValue, Messages.get("soc.noPreference"), null));
+        } else if (c.setting == StudentProfile.CampusSetting.NOT_SURE) {
+            facts.add(new Fact(Messages.get("soc.setting"), settingValue, Messages.get("soc.dataMissing"), null));
+        } else {
+            boolean ok = s.getSettings().contains(c.setting);
+            considered++; if (ok) matched++;
+            facts.add(new Fact(Messages.get("soc.setting"), settingValue, Messages.get("soc.youChose", join(s.getSettings())), ok));
         }
-        String label = Messages.get("pref.label", matched, considered);
+
+        // Size
+        StudentProfile.CollegeSize size = c.undergraduates == null ? null
+            : c.undergraduates <= SMALL_MAX ? StudentProfile.CollegeSize.SMALL
+            : c.undergraduates <= MEDIUM_MAX ? StudentProfile.CollegeSize.MEDIUM : StudentProfile.CollegeSize.LARGE;
+        String sizeValue = size == null ? Messages.get("unavailable")
+            : Messages.get("soc.size.value", Messages.number(c.undergraduates), Messages.get("CollegeSize.short." + size.name()));
+        String online = Messages.get("soc.size.online");
+        if (s.getSizes().isEmpty()) {
+            facts.add(new Fact(Messages.get("soc.size"), sizeValue, Messages.get("soc.noPreference") + " " + online, null));
+        } else if (size == null) {
+            facts.add(new Fact(Messages.get("soc.size"), sizeValue, Messages.get("soc.dataMissing"), null));
+        } else {
+            boolean ok = s.getSizes().contains(size);
+            considered++; if (ok) matched++;
+            facts.add(new Fact(Messages.get("soc.size"), sizeValue, Messages.get("soc.youChose", join(s.getSizes())) + " " + online, ok));
+        }
+
+        if (considered == 0)
+            return new EvaluationResult(FitStatus.UNKNOWN, Messages.get("soc.label.none"), facts, "", Messages.get("soc.next.none"));
         boolean all = matched == considered;
-        return new EvaluationResult(all ? FitStatus.MATCH : FitStatus.MISMATCH, label,
-            details.toString().trim(), all ? "" : Messages.get("pref.flexible.next"), matched, considered);
+        return new EvaluationResult(all ? FitStatus.MATCH : FitStatus.MISMATCH, Messages.get("soc.label", matched, considered),
+            facts, all ? Messages.get("soc.reason", matched, considered) : "", all ? "" : Messages.get("soc.next.flexible"),
+            matched, considered);
+    }
+
+    private static String join(Iterable<?> values) {
+        List<String> out = new ArrayList<>();
+        for (Object v : values) out.add(v.toString());
+        return String.join(", ", out);
     }
 }

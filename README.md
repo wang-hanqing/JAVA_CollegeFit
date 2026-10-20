@@ -47,7 +47,7 @@ Raw files are not included because of their size. To rebuild the processed data:
 ## Design notes
 
 - Results are ranked without an overall score. Default "Best fit": program evidence, fewest mismatches,
-  most social preferences matched, preferred state, then name. Students can also sort by easier admission,
+  most of her programs covered, most social preferences matched, preferred states, then name. Students can also sort by easier admission,
   lowest reference cost, or name.
 - All screen text is in `src/messages_en.properties`, so other languages can be added later.
 - Values are historical, school-level statistics, not personal predictions.

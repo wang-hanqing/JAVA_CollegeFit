@@ -35,7 +35,7 @@ public class CollegeFitSwingApp extends JFrame {
         Set<String> states = new TreeSet<>();
         for (College c : colleges) states.add(c.state);
         form = new StudentFormPanel(this::search, new ArrayList<>(states), programs);
-        results = new ResultsPanel(() -> pages.show(center, "form"));
+        results = new ResultsPanel(() -> pages.show(center, "form"), () -> { form.reset(); pages.show(center, "form"); });
         center.add(form, "form");
         center.add(results, "results");
         add(center, BorderLayout.CENTER);

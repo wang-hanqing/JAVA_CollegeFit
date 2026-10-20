@@ -26,10 +26,14 @@ public final class Messages {
         return args.length == 0 ? text : String.format(Locale.US, text, args);
     }
 
-    /** Formats dollars; negative averages are shown as "$0 or less" (see data issue 8). */
+    /** Formats dollars. Negative historical averages are shown as reported, e.g. "-$1,264". */
     public static String money(Integer dollars) {
         if (dollars == null) return get("money.notReported");
-        if (dollars <= 0) return get("money.zeroOrLess");
+        if (dollars < 0) return String.format(Locale.US, "-$%,d", -dollars);
         return String.format(Locale.US, "$%,d", dollars);
+    }
+
+    public static String number(Integer n) {
+        return n == null ? get("money.notReported") : String.format(Locale.US, "%,d", n);
     }
 }

@@ -1,2 +1,5 @@
-/** The four statuses every lens can return (proposal slide 7, appendix A2). */
-public enum FitStatus { MATCH, MISMATCH, UNKNOWN, NEEDS_VERIFICATION }
+/**
+ * Statuses a lens can return. INFO is neutral context (for example open admission or an admission rate);
+ * the academic lens uses it so that school statistics are never shown as a personal "match".
+ */
+public enum FitStatus { MATCH, MISMATCH, INFO, UNKNOWN, NEEDS_VERIFICATION }

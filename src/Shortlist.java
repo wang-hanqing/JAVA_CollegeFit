@@ -15,6 +15,7 @@ public class Shortlist {
     public void remove(College c) { saved.remove(c.unitId); }
     public int size() { return saved.size(); }
     public List<College> colleges() { return new ArrayList<>(saved.values()); }
+    public void clear() { saved.clear(); }
 
     /** Evaluates every saved college for this student, in the order they were saved. */
     public List<CollegeRecommendation> evaluate(StudentProfile s, RecommendationEngine engine) {

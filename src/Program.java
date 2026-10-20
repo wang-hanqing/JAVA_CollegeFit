@@ -1,6 +1,9 @@
 import java.util.Objects;
 
-/** A field of study from the Scorecard program file (4-digit CIP code). */
+/**
+ * A field of study from the Scorecard program file: a 4-digit CIP code (one program, e.g. 5138 Nursing)
+ * or a 2-digit family (all programs in a field, e.g. 14 Engineering).
+ */
 public class Program implements Comparable<Program> {
     public static final Program NOT_SURE = new Program(null, null, 0);
 
@@ -16,9 +19,17 @@ public class Program implements Comparable<Program> {
 
     public boolean isNotSure() { return cipCode == null; }
 
+    /** A 2-digit family covers every 4-digit program that starts with it. */
+    public boolean isFamily() { return cipCode != null && cipCode.length() == 2; }
+
+    public static Program family(String twoDigit, int collegeCount) {
+        return new Program(twoDigit, Messages.get("program.family", CipFamilies.name(twoDigit)), collegeCount);
+    }
+
     /** Text before the first comma, e.g. "Registered Nursing". Used on result cards. */
     public String shortName() {
         if (isNotSure()) return Messages.get("program.notSure");
+        if (isFamily()) return Messages.get("program.family.short", CipFamilies.name(cipCode));
         int comma = fullName.indexOf(',');
         return comma > 0 ? fullName.substring(0, comma) : fullName;
     }
@@ -31,6 +42,7 @@ public class Program implements Comparable<Program> {
     @Override public int compareTo(Program o) {
         if (isNotSure()) return o.isNotSure() ? 0 : -1;
         if (o.isNotSure()) return 1;
+        if (isFamily() != o.isFamily()) return isFamily() ? -1 : 1; // whole fields first
         return fullName.compareToIgnoreCase(o.fullName);
     }
 

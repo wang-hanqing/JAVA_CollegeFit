@@ -2,150 +2,211 @@ import java.nio.file.*;
 import java.util.*;
 
 /**
- * Phase 1 success check: fictional profiles must return the expected statuses and next steps.
+ * Phase 1 success check: fictional profiles must return the expected statuses, facts and next steps.
  * Uses data/processed/colleges_sample.csv, whose colleges were picked to cover each rule.
  * Run from the CollegeFit root folder:  java -cp out ScenarioTests
  */
 public class ScenarioTests {
     private static int passed = 0, failed = 0;
-    private static Map<String, College> byName = new HashMap<>();
+    private static final Map<String, College> byName = new HashMap<>();
 
     public static void main(String[] args) throws Exception {
         Path data = Paths.get("data", "processed");
         for (College c : CollegeDataLoader.load(data.resolve("colleges_sample.csv"), data.resolve("programs_sample.csv")))
             byName.put(c.name, c);
+        List<College> sample = new ArrayList<>(byName.values());
+        List<Program> programs = CollegeDataLoader.loadProgramList(data.resolve("programs_sample.csv"), sample);
         check("sample has 30 colleges", byName.size() == 30);
-        List<Program> programs = CollegeDataLoader.loadProgramList(data.resolve("programs_sample.csv"), new ArrayList<>(byName.values()));
-        check("program list is read from the data, not hard-coded", programs.size() > 50);
+        check("program list is read from the data", programs.size() > 50);
         check("program short name", new Program("5138", "Registered Nursing, Nursing Administration.", 1).shortName().equals("Registered Nursing"));
 
-        LensEvaluator academic = new AcademicEvaluator();
-        LensEvaluator afford = new FinancialEvaluator();
-        LensEvaluator pref = new SocialEvaluator();
+        LensEvaluator academic = new AcademicEvaluator(), financial = new FinancialEvaluator(), social = new SocialEvaluator();
+        RecommendationEngine engine = new RecommendationEngine();
 
-        // ---------- Profile 1: Amina (proposal slides 2 and 6) ----------
+        // ---------- Profile 1: Amina ----------
         StudentProfile amina = StudentProfile.amina();
-        College bronx = college("CUNY Bronx Community College");
-        College lehman = college("CUNY Lehman College");
-        College tulsa = college("University of Tulsa");
+        College bronx = college("CUNY Bronx Community College"), lehman = college("CUNY Lehman College"), tulsa = college("University of Tulsa");
 
         EvaluationResult r = academic.evaluate(amina, bronx);
-        check("Bronx CC: open admission", r.status == FitStatus.MATCH && r.label.equals("Open admission"));
-        r = afford.evaluate(amina, bronx);
-        check("Bronx CC: verify costs, residency step", r.status == FitStatus.NEEDS_VERIFICATION && r.nextStep.contains("in-state"));
-        r = pref.evaluate(amina, bronx);
-        check("Bronx CC: 2 of 2 preferences", r.status == FitStatus.MATCH && r.label.equals("2 of 2 matched"));
+        check("Bronx CC: open admission is context (INFO), not a match", r.status == FitStatus.INFO && r.label.equals("Open admission"));
+        r = financial.evaluate(amina, bronx);
+        check("Bronx CC: verify costs with a residency step", r.status == FitStatus.NEEDS_VERIFICATION && r.nextStep.contains("in-state"));
+        check("Bronx CC: in-state and out-of-state tuition listed separately",
+            hasFact(r, "In-state tuition and fees") && hasFact(r, "Out-of-state tuition and fees"));
+        r = social.evaluate(amina, bronx);
+        check("Bronx CC: 2 of 2 social preferences", r.status == FitStatus.MATCH && r.label.equals("2 of 2 matched"));
 
         r = academic.evaluate(amina, lehman);
-        check("Lehman: more info needed, 57%, test policy 5", r.status == FitStatus.UNKNOWN
-            && r.explanation.contains("57%") && r.explanation.contains("considered, not required"));
-        CollegeRecommendation rec = new CollegeRecommendation(amina, lehman, r, afford.evaluate(amina, lehman), pref.evaluate(amina, lehman));
-        check("Lehman: nursing bachelor's awarded + license step", rec.programPriority == 0
-            && rec.program.label.contains("bachelor's") && rec.program.nextStep.contains("nursing license"));
+        check("Lehman: admits 57%, test policy 5, SAT not assessed", r.status == FitStatus.INFO && r.label.equals("Admits 57%")
+            && r.summary().contains("Considered, not required") && r.summary().contains("Not assessed"));
+        CollegeRecommendation rec = new CollegeRecommendation(amina, lehman, r, financial.evaluate(amina, lehman), social.evaluate(amina, lehman));
+        check("Lehman: nursing awarded with counts and a license step", rec.programPriority == 0
+            && rec.program.label.equals("Registered Nursing: awarded") && rec.program.summary().contains("167")
+            && rec.program.nextStep.contains("nursing license"));
 
-        r = pref.evaluate(amina, tulsa);
-        check("Tulsa: 1 of 2 preferences (not NY)", r.status == FitStatus.MISMATCH && r.label.equals("1 of 2 matched"));
-        r = afford.evaluate(amina, tulsa);
-        check("Tulsa: shows $5,578 net price for under $30k", r.explanation.contains("$5,578"));
+        r = social.evaluate(amina, tulsa);
+        check("Tulsa: 1 of 2 matched, all three items listed", r.status == FitStatus.MISMATCH && r.label.equals("1 of 2 matched") && r.facts.size() == 3);
+        r = financial.evaluate(amina, tulsa);
+        check("Tulsa: $5,578 net price for income under $30k", r.summary().contains("$5,578"));
 
-        // ---------- Profile 2: NJ student with high SAT, budget and aid known ----------
+        // ---------- Profile 2: NJ student with SAT scores ----------
         StudentProfile nj = new StudentProfile();
         nj.setSatScores(770, 790); // Harvard range: reading 740-780, math 770-800
         nj.setHomeState("NJ");
         nj.setLocationScope(StudentProfile.LocationScope.ANY_STATE);
-        nj.setAnnualBudget(20000);
-        nj.setAidEligibility(StudentProfile.AidEligibility.YES);
-        nj.setIncomeBracket(StudentProfile.IncomeBracket.FROM_75K_TO_110K);
         r = academic.evaluate(nj, college("Harvard University"));
         check("Harvard: highly selective even with strong scores", r.status == FitStatus.NEEDS_VERIFICATION
-            && r.label.equals("Highly selective") && r.explanation.contains("required"));
-        r = afford.evaluate(nj, college("CUNY Hunter College"));
-        check("Hunter for NJ student: out-of-state cost, no net price", r.explanation.contains("out-of-state")
-            && !r.explanation.contains("paid"));
+            && r.label.startsWith("Highly selective") && r.summary().contains("Required"));
+        r = financial.evaluate(nj, college("CUNY Hunter College"));
+        check("Hunter for NJ student: out-of-state estimate, net price not shown",
+            hasFact(r, "Estimated out-of-state cost") && r.summary().contains("Not shown"));
+
+        College ranged = null;
+        for (College c : sample)
+            if (c.reading25 != null && c.math25 != null && c.reading75 != null && c.math75 != null
+                && c.admissionRate != null && c.admissionRate >= 0.15) { ranged = c; break; }
+        StudentProfile mixed = new StudentProfile();
+        mixed.setSatScores(ranged.reading25, Math.max(200, ranged.math25 - 10));
+        r = academic.evaluate(mixed, ranged);
+        check("SAT compared by section: mixed result needs checking", r.label.equals("SAT mixed") && r.status == FitStatus.NEEDS_VERIFICATION);
+        mixed.setSatScores(Math.min(800, ranged.reading75 + 10), Math.min(800, ranged.math75 + 10));
+        r = academic.evaluate(mixed, ranged);
+        check("SAT above range is context, never a match", r.label.equals("SAT above range") && r.status == FitStatus.INFO);
 
         // ---------- Profile 3: data problems ----------
         StudentProfile ca = new StudentProfile();
         ca.setHomeState("CA");
         ca.setIncomeBracket(StudentProfile.IncomeBracket.UNDER_30K);
-        r = afford.evaluate(ca, college("Moorpark College"));
-        check("Moorpark: negative net price shown as $0 or less", r.explanation.contains("$0 or less on average"));
+        r = financial.evaluate(ca, college("Moorpark College"));
+        check("Moorpark: negative net price shown as reported, not a refund", r.summary().contains("-$") && r.summary().contains("not a refund"));
         r = academic.evaluate(ca, college("Belanger School of Nursing"));
-        check("Belanger: 0% admission rate treated as suspicious", r.explanation.contains("looks incorrect")
-            && r.status != FitStatus.NEEDS_VERIFICATION);
-        r = afford.evaluate(ca, college("PENSACOLA CHRISTIAN COLLEGE"));
+        check("Belanger: 0% admission rate flagged as not usable", r.summary().contains("not usable"));
+        r = financial.evaluate(ca, college("PENSACOLA CHRISTIAN COLLEGE"));
         check("Pensacola: insufficient information", r.status == FitStatus.UNKNOWN);
+        r = financial.evaluate(new StudentProfile(), tulsa);
+        check("Income not given: overall average net price (NPT4) shown", hasFact(r, "Average net price, all aid recipients"));
+
+        // ---------- Program evidence: three states, and a missing net price calculator ----------
+        Map<String, Integer[]> counts = new HashMap<>();
+        counts.put("5138:3", new Integer[]{5, 0});
+        counts.put("1107:3", new Integer[]{0, 0});
+        counts.put("4506:3", new Integer[]{null, null});
+        College test = new College("999999", "Test College", "Town", "NY", "https://test.edu", "", 2, false, 0.6, 5,
+            null, null, null, null, 30000, 20000, 20000, 15000, new EnumMap<>(StudentProfile.IncomeBracket.class),
+            StudentProfile.CampusSetting.URBAN, 3000, null, null, counts);
+        check("Evidence: positive count = awarded", test.evidence("5138", 3) == College.ProgramEvidence.AWARDED);
+        check("Evidence: 0 in both years = zero awards", test.evidence("1107", 3) == College.ProgramEvidence.ZERO_AWARDS);
+        check("Evidence: missing counts = not confirmed", test.evidence("4506", 3) == College.ProgramEvidence.NOT_CONFIRMED);
+        check("Evidence: no record = not confirmed", test.evidence("2601", 3) == College.ProgramEvidence.NOT_CONFIRMED);
+        r = financial.evaluate(new StudentProfile(), test);
+        check("No net price calculator: contact the financial aid office", r.nextStep.contains("financial aid office"));
 
         // ---------- Profile 4: budget comparison ----------
         StudentProfile budget = new StudentProfile();
         budget.setAnnualBudget(10000);
         budget.setAidEligibility(StudentProfile.AidEligibility.YES);
         budget.setIncomeBracket(StudentProfile.IncomeBracket.UNDER_30K);
-        r = afford.evaluate(budget, tulsa);
-        check("Tulsa within $10k budget using average net price", r.status == FitStatus.MATCH);
+        EvaluationResult within = financial.evaluate(budget, tulsa);
+        check("Tulsa: reference cost within budget is INFO, never an affordability match",
+            within.status == FitStatus.INFO && within.label.equals("Reference cost within budget"));
         budget.setAidEligibility(StudentProfile.AidEligibility.NOT_SURE);
-        r = afford.evaluate(budget, tulsa);
-        check("Tulsa above budget before aid when aid is unsure", r.status == FitStatus.NEEDS_VERIFICATION
-            && r.label.equals("Above budget before aid"));
+        check("Tulsa above budget before aid when aid is unsure", financial.evaluate(budget, tulsa).label.equals("Above budget before aid"));
 
         // ---------- Profile 5: everything "not sure" ----------
         StudentProfile unsure = new StudentProfile();
-        List<CollegeRecommendation> ranked = new RecommendationEngine().recommend(unsure, new ArrayList<>(byName.values()));
+        List<CollegeRecommendation> ranked = engine.recommend(unsure, sample);
         check("All not sure: still returns colleges", !ranked.isEmpty());
-        check("All not sure: preferences unknown, never mismatch", ranked.get(0).social.status == FitStatus.UNKNOWN);
+        check("All not sure: social unknown, never mismatch", ranked.get(0).social.status == FitStatus.UNKNOWN);
         check("All not sure: 7 next steps", new NextStepGenerator().profileSteps(unsure).size() == 7);
 
-        // ---------- Engine: ranking and discovery for Amina ----------
-        ranked = new RecommendationEngine().recommend(amina, new ArrayList<>(byName.values()));
-        check("Amina: first result awards nursing", ranked.get(0).programPriority == 0);
-        List<CollegeRecommendation> elsewhere = new RecommendationEngine().worthALookElsewhere(amina, ranked, 4);
-        check("Amina: discovery list has no New York colleges", elsewhere.stream().noneMatch(x -> x.college.state.equals("NY")));
-        // Best fit puts easier admission ahead of highly selective colleges when everything else ties
+        // ---------- Multi-select ----------
+        StudentProfile multi = new StudentProfile();
+        multi.setPreferredStates(List.of("NY", "OK"));
+        multi.setSettings(List.of(StudentProfile.CampusSetting.URBAN, StudentProfile.CampusSetting.SUBURBAN));
+        check("Two preferred states: Tulsa (OK) matches", social.evaluate(multi, tulsa).label.equals("2 of 2 matched"));
+        List<Program> many = new ArrayList<>(programs.subList(0, 10));
+        many.add(amina.getPrograms().get(0));
+        multi.setPrograms(many);
+        check("No program limit: 11 programs accepted", multi.getPrograms().size() == 11);
+        rec = engine.recommendAll(multi, List.of(lehman)).get(0);
+        check("Many programs: label counts awarded programs", rec.program.label.matches("\\d+ of 11 programs awarded"));
+        check("Many programs: details stay short", rec.program.facts.size() <= CollegeRecommendation.MAX_LISTED + 2);
+
+        // ---------- Ranking ----------
+        ranked = engine.recommend(amina, sample);
+        check("Amina: first result has program evidence", ranked.get(0).hasProgramEvidence());
+        check("Amina: discovery list has no New York colleges",
+            engine.worthALookElsewhere(amina, ranked, 4).stream().noneMatch(x -> x.college.state.equals("NY")));
         StudentProfile econ = new StudentProfile();
-        Program economics = null;
-        for (Program p : programs) if ("4506".equals(p.cipCode)) economics = p;
-        if (economics != null) econ.setProgram(economics);
+        for (Program p : programs) if ("4506".equals(p.cipCode)) econ.setPrograms(List.of(p));
         econ.setLocationScope(StudentProfile.LocationScope.ANY_STATE);
-        List<CollegeRecommendation> eco = new RecommendationEngine().recommend(econ, new ArrayList<>(byName.values()));
-        // Best fit is neutral: it does not use admission rate or price
+        List<CollegeRecommendation> eco = engine.recommend(econ, sample);
         CollegeRecommendation first = eco.get(0), second = eco.get(1);
         boolean sameTier = first.programPriority == second.programPriority && first.mismatches() == second.mismatches()
             && first.social.matched == second.social.matched;
-        check("Best fit: ties are broken by name, not by selectivity",
-            !sameTier || first.college.name.compareToIgnoreCase(second.college.name) <= 0);
+        check("Best fit: ties broken by name, not selectivity", !sameTier || first.college.name.compareToIgnoreCase(second.college.name) <= 0);
         eco.sort(RecommendationEngine.comparator(RecommendationEngine.SortOrder.EASIER_ADMISSION, econ));
         boolean ordered = true;
         for (int i = 1; i < eco.size(); i++)
             if (eco.get(i).programPriority == eco.get(i - 1).programPriority
                 && RecommendationEngine.admissionAccess(eco.get(i).college) > RecommendationEngine.admissionAccess(eco.get(i - 1).college))
                 ordered = false;
-        check("Easier admission: open admission and higher rates come first", ordered);
-        boolean harvardLate = true;
-        for (int i = 0; i < eco.size(); i++)
-            if (eco.get(i).college.name.equals("Harvard University")) harvardLate = i > 0;
-        check("Easier admission: Harvard is not first", harvardLate);
-        eco.sort(RecommendationEngine.comparator(RecommendationEngine.SortOrder.NAME, econ));
-        check("Name order is alphabetical", eco.get(0).college.name.compareToIgnoreCase(eco.get(1).college.name) <= 0);
+        check("Easier admission: open admission and higher rates first", ordered);
 
-        // Shortlist export: one row per college, commas safely quoted
+        // ---------- Shortlist ----------
         Shortlist list = new Shortlist();
         list.add(bronx); list.add(lehman); list.add(bronx);
-        check("Shortlist ignores duplicates", list.size() == 2);
+        check("Shortlist ignores duplicates", list.colleges().size() == 2);
         Path tmp = Files.createTempFile("collegefit", ".csv");
-        list.exportCsv(tmp, amina, new RecommendationEngine());
+        list.exportCsv(tmp, amina, engine);
         List<String> lines = Files.readAllLines(tmp);
-        check("Export has header, 2 colleges and a note", lines.size() == 4);
-        check("Export keeps commas inside quotes", lines.get(1).contains("\"") && CollegeDataLoader.readCsvRecord(
+        check("Export: header, 2 colleges and a note", lines.size() == 4);
+        check("Export keeps commas inside quotes", CollegeDataLoader.readCsvRecord(
             new java.io.BufferedReader(new java.io.StringReader(lines.get(1)))).size() == 10);
         Files.delete(tmp);
+        list.clear();
+        check("Start over clears the list", list.colleges().isEmpty());
 
-        System.out.println("\nAmina's top results:");
-        for (int i = 0; i < Math.min(5, ranked.size()); i++)
-            System.out.println("  " + ranked.get(i).college + " | " + ranked.get(i).program.label);
-        System.out.println("Worth a look outside NY:");
-        for (CollegeRecommendation x : elsewhere) System.out.println("  " + x.college);
+        // Whole fields: "All Engineering programs" covers every 14xx program
+        Program engineering = null;
+        for (Program p : programs) if ("14".equals(p.cipCode)) engineering = p;
+        check("Program list offers whole fields such as Engineering", engineering != null
+            && engineering.isFamily() && engineering.shortName().equals("Engineering (all)"));
+        if (engineering != null) {
+            College harvard = college("Harvard University");
+            check("Engineering field: evidence from any 14xx program", harvard.evidence("14", 3) == College.ProgramEvidence.AWARDED
+                && harvard.familyProgramsAwarded("14", 3) >= 1);
+            StudentProfile eng = new StudentProfile();
+            eng.setPrograms(List.of(engineering));
+            CollegeRecommendation er = new RecommendationEngine().recommendAll(eng, List.of(harvard)).get(0);
+            check("Engineering field: card label and field count", er.program.label.startsWith("Engineering (all)")
+                && er.program.facts.get(0).note.contains("programs in this field"));
+        }
+
+        // Review fixes (trust and accuracy)
+        StudentProfile allUnsure = new StudentProfile();
+        List<CollegeRecommendation> everyone = new RecommendationEngine().recommend(allUnsure, new ArrayList<>(byName.values()));
+        boolean pensacolaKept = false;
+        for (CollegeRecommendation x : everyone) if (x.college.name.equals("PENSACOLA CHRISTIAN COLLEGE")) pensacolaKept = true;
+        check("Missing award data does not remove a college", pensacolaKept);
+        StudentProfile assocOnly = new StudentProfile();
+        assocOnly.setPathway(StudentProfile.Pathway.ASSOCIATE);
+        check("Pathway filter: a bachelor's-only college is left out for an associate pathway",
+            !RecommendationEngine.offersPathway(StudentProfile.Pathway.ASSOCIATE, college("CUNY Lehman College")));
+        boolean anyFinancialMatch = false;
+        for (CollegeRecommendation x : everyone) if (x.financial.status == FitStatus.MATCH) anyFinancialMatch = true;
+        check("Financial lens never returns MATCH", !anyFinancialMatch);
+        StudentProfile focused = amina.withPrograms(List.of());
+        check("Focus copy keeps answers but changes programs", !focused.hasPrograms()
+            && focused.getPreferredStates().equals(amina.getPreferredStates()) && focused.getIncomeBracket() == amina.getIncomeBracket());
 
         System.out.println("\n" + passed + " passed, " + failed + " failed");
         if (failed > 0) System.exit(1);
+    }
+
+    private static boolean hasFact(EvaluationResult r, String label) {
+        for (Fact f : r.facts) if (f.label.equals(label)) return true;
+        return false;
     }
 
     private static College college(String name) {

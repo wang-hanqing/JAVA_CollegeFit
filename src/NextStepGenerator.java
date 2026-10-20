@@ -1,13 +1,13 @@
 import java.util.*;
 
-/** Turns every "not sure" answer and every Unknown or Needs verification status into a checklist item. */
+/** Turns every "not sure" answer and every status that needs checking into a checklist item. */
 public class NextStepGenerator {
 
     /** Steps that come from her own answers; the same for every college. */
     public List<String> profileSteps(StudentProfile s) {
         List<String> steps = new ArrayList<>();
         if (s.getPathway() == StudentProfile.Pathway.NOT_SURE) steps.add(Messages.get("step.pathway"));
-        if (s.getProgram().isNotSure()) steps.add(Messages.get("step.program"));
+        if (!s.hasPrograms()) steps.add(Messages.get("step.program"));
         if (s.getSatStatus() != StudentProfile.SatStatus.PROVIDED) steps.add(Messages.get("step.sat"));
         if (s.getAidEligibility() == StudentProfile.AidEligibility.NOT_SURE
                 || s.getAidEligibility() == StudentProfile.AidEligibility.PREFER_NOT_TO_SAY) steps.add(Messages.get("step.aid"));
@@ -21,7 +21,7 @@ public class NextStepGenerator {
     public List<String> collegeSteps(StudentProfile s, CollegeRecommendation r) {
         Set<String> steps = new LinkedHashSet<>(); // keeps order and drops duplicates
         for (EvaluationResult e : new EvaluationResult[]{r.program, r.academic, r.financial, r.social})
-            if (!e.nextStep.isBlank()) steps.add(e.nextStep);
+            for (String line : e.nextStep.split("\n")) if (!line.isBlank()) steps.add(line);
         steps.add(Messages.get("step.support"));
         return new ArrayList<>(steps);
     }

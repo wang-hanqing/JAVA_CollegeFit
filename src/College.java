@@ -1,11 +1,14 @@
 import java.util.*;
 
 /**
- * One row of data/processed/colleges.csv plus its program awards.
+ * One row of data/processed/colleges.csv plus its program records.
  * Values are historical school-level statistics, not personal predictions.
  * A null value always means "missing in the data" (NA or PS), never zero.
  */
 public class College {
+    /** What the program file says about one program at one credential level. */
+    public enum ProgramEvidence { AWARDED, ZERO_AWARDS, NOT_CONFIRMED }
+
     public final String unitId, name, city, state, schoolUrl, netPriceCalculatorUrl;
     public final int control;                  // 1 = public, 2 = private nonprofit
     public final Boolean openAdmission;        // OPENADMP: true, false, or null if not reported
@@ -14,45 +17,79 @@ public class College {
     public final Integer reading25, reading75, math25, math75;
     public final Integer costOfAttendance;     // COSTT4_A; publics use in-state tuition
     public final Integer tuitionIn, tuitionOut;
-    public final Map<StudentProfile.IncomeBracket, Integer> netPrices; // may be negative (data issue 8)
+    public final Integer netPriceAll;          // NPT4: all aid recipients; may be negative
+    public final Map<StudentProfile.IncomeBracket, Integer> netPrices; // NPT41-45; may be negative
     public final StudentProfile.CampusSetting setting;
-    public final Integer undergraduates;       // UGDS; may include online students (data issue 7)
+    public final Integer undergraduates;       // UGDS; may include online students
     public final Double latitude, longitude;   // kept for a future distance feature
-    private final Set<String> awards;          // "CIP:level", e.g. "5138:2" = nursing associate awarded
+    private final Map<String, Integer[]> programCounts; // "CIP:level" -> {IPEDSCOUNT1, IPEDSCOUNT2}, null = missing
 
     public College(String unitId, String name, String city, String state, String schoolUrl, String npcUrl,
                    int control, Boolean openAdmission, Double admissionRate, Integer testPolicy,
                    Integer reading25, Integer reading75, Integer math25, Integer math75,
-                   Integer costOfAttendance, Integer tuitionIn, Integer tuitionOut,
+                   Integer costOfAttendance, Integer tuitionIn, Integer tuitionOut, Integer netPriceAll,
                    Map<StudentProfile.IncomeBracket, Integer> netPrices,
                    StudentProfile.CampusSetting setting, Integer undergraduates,
-                   Double latitude, Double longitude, Set<String> awards) {
+                   Double latitude, Double longitude, Map<String, Integer[]> programCounts) {
         this.unitId = unitId; this.name = name; this.city = city; this.state = state;
         this.schoolUrl = schoolUrl; this.netPriceCalculatorUrl = npcUrl;
         this.control = control; this.openAdmission = openAdmission;
         this.admissionRate = admissionRate; this.testPolicy = testPolicy;
         this.reading25 = reading25; this.reading75 = reading75; this.math25 = math25; this.math75 = math75;
         this.costOfAttendance = costOfAttendance; this.tuitionIn = tuitionIn; this.tuitionOut = tuitionOut;
+        this.netPriceAll = netPriceAll;
         this.netPrices = Collections.unmodifiableMap(new EnumMap<>(netPrices));
         this.setting = setting; this.undergraduates = undergraduates;
         this.latitude = latitude; this.longitude = longitude;
-        this.awards = Collections.unmodifiableSet(new HashSet<>(awards));
+        this.programCounts = Collections.unmodifiableMap(new HashMap<>(programCounts));
     }
 
     public boolean isPublic() { return control == 1; }
 
-    /** True if the program file shows at least one award at this level in 2021-22 or 2022-23. */
-    public boolean awarded(String cipCode, int credentialLevel) {
-        return cipCode != null && awards.contains(cipCode + ":" + credentialLevel);
+    /**
+     * Positive count in either year = awarded; both reported as 0 = zero awards; anything else = not confirmed.
+     * For a 2-digit family, the best evidence among all its programs at this level is used.
+     */
+    public ProgramEvidence evidence(String cipCode, int level) {
+        if (cipCode.length() == 2) {
+            ProgramEvidence best = ProgramEvidence.NOT_CONFIRMED;
+            for (String key : programCounts.keySet()) {
+                if (!key.startsWith(cipCode) || !key.endsWith(":" + level)) continue;
+                ProgramEvidence e = evidence(key.substring(0, 4), level);
+                if (e.ordinal() < best.ordinal()) best = e;
+            }
+            return best;
+        }
+        Integer[] c = programCounts.get(cipCode + ":" + level);
+        if (c == null) return ProgramEvidence.NOT_CONFIRMED;
+        boolean positive = (c[0] != null && c[0] > 0) || (c[1] != null && c[1] > 0);
+        if (positive) return ProgramEvidence.AWARDED;
+        if (c[0] != null && c[1] != null) return ProgramEvidence.ZERO_AWARDS;
+        return ProgramEvidence.NOT_CONFIRMED;
     }
 
-    /** Any associate (level 2) or bachelor's (level 3) award in any program. */
-    public boolean offersLevel(int credentialLevel) {
-        for (String key : awards) if (key.endsWith(":" + credentialLevel)) return true;
+    /** Number of programs in a 2-digit family with a positive award count at this level. */
+    public int familyProgramsAwarded(String twoDigit, int level) {
+        int n = 0;
+        for (String key : programCounts.keySet())
+            if (key.startsWith(twoDigit) && key.endsWith(":" + level) && evidence(key.substring(0, 4), level) == ProgramEvidence.AWARDED) n++;
+        return n;
+    }
+
+    /** {2021-22 count, 2022-23 count}, or null if there is no record. */
+    public Integer[] awardCounts(String cipCode, int level) { return programCounts.get(cipCode + ":" + level); }
+
+    /** True if any program at this level has a positive award count. */
+    public boolean offersLevel(int level) {
+        for (Map.Entry<String, Integer[]> e : programCounts.entrySet()) {
+            if (!e.getKey().endsWith(":" + level)) continue;
+            Integer[] c = e.getValue();
+            if ((c[0] != null && c[0] > 0) || (c[1] != null && c[1] > 0)) return true;
+        }
         return false;
     }
 
-    /** Out-of-state cost estimate for publics: in-state cost of attendance with the tuition difference added. */
+    /** Out-of-state cost estimate for publics: in-state cost of attendance plus the tuition difference. */
     public Integer outOfStateCostEstimate() {
         if (costOfAttendance == null || tuitionIn == null || tuitionOut == null) return null;
         return costOfAttendance - tuitionIn + tuitionOut;
