@@ -54,3 +54,16 @@ Raw files are not included because of their size. To rebuild the processed data:
 - Comparisons mark differences only when they are large and measured the same way. Associate and bachelor's
   programs are shown as different paths.
 - Every explanation comes from the data. All screen text is in `src/messages_en.properties`.
+
+## Data limitations and future enrichment
+
+CollegeFit describes colleges; it does not measure academic quality.
+
+- Program records (degrees awarded) show that a college has a related program and how large it was. They do not show
+  teaching quality, research opportunities or reputation.
+- Program earnings are medians for graduates who received federal aid and were working; many small programs are not reported.
+- Completion and transfer rates describe past first-time, full-time students, not a student's own outcome.
+- Program accreditation (for example, for nursing) is not in the data and must be checked with the college.
+
+Possible future enrichment: retention and other College Scorecard outcome fields, IPEDS institutional indicators,
+and information from college and program websites. Rankings, if ever used, would stay outside the core logic.

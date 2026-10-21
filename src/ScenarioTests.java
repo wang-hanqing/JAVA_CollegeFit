@@ -41,7 +41,7 @@ public class ScenarioTests {
             && r.label.equals("Admission rate 57%") && r.summary().contains("Considered, not required") && !r.summary().contains("Your SAT"));
         CollegeRecommendation rec = new CollegeRecommendation(amina, lehman, r, financial.evaluate(amina, lehman), social.evaluate(amina, lehman));
         check("Lehman: nursing awarded with counts and a license step", rec.programPriority == 0
-            && rec.program.label.equals("Registered Nursing: awarded") && rec.program.summary().contains("145 graduates last year")
+            && rec.program.label.equals("Registered Nursing: awarded") && rec.program.summary().contains("145 degrees awarded (historical)")
             && rec.program.nextStep.contains("nursing license"));
 
         r = social.evaluate(amina, tulsa);
@@ -93,7 +93,7 @@ public class ScenarioTests {
         counts.put("4506:3", new Integer[]{null, null});
         College test = new College("999999", "Test College", "Town", "NY", "https://test.edu", "", 2, false, 0.6, 5,
             null, null, null, null, 30000, 20000, 20000, 15000, new EnumMap<>(StudentProfile.IncomeBracket.class),
-            StudentProfile.CampusSetting.URBAN, 3000, null, null, null, 0, counts);
+            StudentProfile.CampusSetting.URBAN, 3000, null, null, null, 0, null, 0, null, counts, Map.of());
         check("Evidence: positive count = awarded", test.evidence("5138", 3) == College.ProgramEvidence.AWARDED);
         check("Evidence: 0 in both years = zero awards", test.evidence("1107", 3) == College.ProgramEvidence.ZERO_AWARDS);
         check("Evidence: missing counts = not confirmed", test.evidence("4506", 3) == College.ProgramEvidence.NOT_CONFIRMED);
@@ -146,9 +146,9 @@ public class ScenarioTests {
             groups.get(College.Type.COMMUNITY_COLLEGE).stream().anyMatch(x -> x.college == bronx)
             && groups.get(College.Type.PUBLIC_FOUR_YEAR).stream().anyMatch(x -> x.college == lehman));
         CollegeRecommendation lr = engine.evaluate(amina, lehman);
-        check("Card line: Lehman nursing graduates, no year shown", lr.programLine(amina).equals("Registered Nursing: 145 graduates last year (bachelor's)"));
+        check("Card line: degrees awarded, labeled historical", lr.programLine(amina).equals("Registered Nursing: 145 bachelor's degrees awarded (historical)"));
         check("Card line: Lehman costs in plain words", lr.financialLine(amina).equals("Cost before aid $14,121/yr. Average paid after grants $1,589/yr*"));
-        check("Reason is built from data", lr.cardWhy().startsWith("145 graduates last year in Registered Nursing (bachelor's)."));
+        check("Reason is built from data", lr.cardWhy().startsWith("145 degrees awarded in Registered Nursing (bachelor's, historical)."));
         check("Completion rate loaded (Lehman 51%, 6 years)", Math.round(lehman.completionRate * 100) == 51 && lehman.completionYears == 6);
         Map<RecommendationEngine.PathwayKind, int[]> summary = RecommendationEngine.pathwaySummary(sample, Set.of("NY"));
         check("Pathway facts: counts per college type", summary.get(RecommendationEngine.PathwayKind.TWO_YEAR)[0] >= 1);
@@ -234,6 +234,35 @@ public class ScenarioTests {
         StudentProfile focused = amina.withPrograms(List.of());
         check("Focus copy keeps answers but changes programs", !focused.hasPrograms()
             && focused.getPreferredStates().equals(amina.getPreferredStates()) && focused.getIncomeBracket() == amina.getIncomeBracket());
+
+        // ---------- added data: program earnings, transfer rate, students per faculty ----------
+        CollegeRecommendation lrec = engine.evaluate(amina, lehman);
+        check("Program earnings shown when reported (Lehman nursing)", lrec.program.summary().contains("$101,531")
+            && lrec.program.summary().contains("Not a measure of program quality"));
+        check("Students per faculty and transfer rate loaded (Lehman)", lehman.studentFacultyRatio == 15
+            && Math.round(lehman.transferRate * 100) == 21 && lehman.transferYears == 6);
+        check("Bronx CC transfer rate uses the two-year measure", bronx.transferYears == 3);
+        // "My area of study": relevance first, not program size
+        StudentProfile two = new StudentProfile();
+        Program nursing = null, biology = null;
+        for (Program p : programs) { if ("5138".equals(p.cipCode)) nursing = p; if ("26".equals(p.cipCode)) biology = p; }
+        two.setPrograms(List.of(nursing, biology));
+        two.setPriorities(List.of(StudentProfile.Priority.STUDY));
+        List<CollegeRecommendation> rel = engine.recommend(two, sample);
+        boolean relevanceFirst = true;
+        for (int i = 1; i < rel.size(); i++)
+            if (rel.get(i).programPriority == rel.get(i - 1).programPriority && rel.get(i).programsAwarded > rel.get(i - 1).programsAwarded) relevanceFirst = false;
+        check("Area of study orders by relevance (programs covered) before program size", relevanceFirst);
+        List<CollegeRecommendation> pair = engine.recommendAll(cost, List.of(college("CUNY Hunter College"), lehman));
+        Comparison cmp2 = new Comparison(cost, pair);
+        check("No 'more graduates' marker in Compare", cmp2.marker(pair.get(0), Comparison.Row.STUDY) == null && cmp2.marker(pair.get(1), Comparison.Row.STUDY) == null);
+
+        // Earnings for a whole field: the largest programs with reported earnings
+        StudentProfile engField = new StudentProfile();
+        for (Program p : programs) if ("14".equals(p.cipCode)) engField.setPrograms(List.of(p));
+        engField.setPathway(StudentProfile.Pathway.BACHELOR);
+        CollegeRecommendation hv = engine.evaluate(engField, college("Harvard University"));
+        check("Whole field: program earnings listed when reported", !college("Harvard University").fieldEarnings("14", 3, 3).isEmpty() == hv.program.summary().contains("Median earnings 1 year after"));
 
         System.out.println("\n" + passed + " passed, " + failed + " failed");
         if (failed > 0) System.exit(1);

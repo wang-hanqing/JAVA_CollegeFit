@@ -57,8 +57,7 @@ class DetailsPanel extends JPanel {
 
         switch (tab) {
             case "program":
-                content.add(Ui.left(grid(2, factBox("book", Ui.INK, new Color(238, 241, 246), Messages.get("lens.program"), r.program, null),
-                    factBox("cap", Ui.ACADEMIC, Ui.BLUE_SOFT, Messages.get("lens.academic"), r.academic, null))));
+                content.add(Ui.left(grid(2, academicsBox(r, 0, 1), academicsBox(r, 2, 3))));
                 break;
             case "costs":
                 content.add(Ui.left(grid(2, factBox("dollar", Ui.FINANCIAL, Ui.GREEN_SOFT, Messages.get("lens.financial"), r.financial, npcButton()),
@@ -72,7 +71,7 @@ class DetailsPanel extends JPanel {
                 content.add(Ui.left(tiles(r, s)));
                 content.add(Box.createVerticalStrut(12));
                 content.add(Ui.left(grid(3,
-                    factBox("cap", Ui.ACADEMIC, Ui.BLUE_SOFT, Messages.get("details.programAcademic"), r.academic, programRows(r)),
+                    academicsBox(r, 0, 3),
                     factBox("dollar", Ui.FINANCIAL, Ui.GREEN_SOFT, Messages.get("lens.financial"), r.financial, npcButton()),
                     factBox("people", Ui.SOCIAL, Ui.ORANGE_SOFT, Messages.get("lens.social"), r.social, null))));
                 content.add(Box.createVerticalStrut(12));
@@ -152,6 +151,54 @@ class DetailsPanel extends JPanel {
 
     /** Program facts shown at the top of the academic box on the overview tab. */
     private static List<Fact> programRows(CollegeRecommendation r) { return r.program.facts; }
+
+    /**
+     * "Academics and programs" in four parts: Program information, Admissions, Student outcomes,
+     * Academic resources. Shows parts first..last (0 to 3). Descriptive only; none of this ranks colleges.
+     */
+    private JComponent academicsBox(CollegeRecommendation r, int first, int last) {
+        College c = r.college;
+        Ui.Card box = new Ui.Card(new BorderLayout(), Ui.WHITE, Ui.LINE);
+        box.setBorder(new EmptyBorder(12, 16, 12, 16));
+        JPanel col = Ui.column(0);
+        col.add(Ui.left(Ui.row(10, Ui.bubble("cap", Ui.ACADEMIC, Ui.BLUE_SOFT, 32), Ui.text(Messages.get("details.academics"), 15f, Font.BOLD, Ui.ACADEMIC))));
+        JLabel status = Ui.status(r.academic.status, r.academic.label, 12.5f);
+        status.setBorder(new EmptyBorder(4, 42, 2, 0));
+        col.add(Ui.left(status));
+        for (int part = first; part <= last; part++) {
+            col.add(Ui.left(sectionTitle("details.part." + part)));
+            switch (part) {
+                case 0:
+                    for (Fact f : r.program.facts) col.add(Ui.left(factRow(f)));
+                    break;
+                case 1:
+                    for (Fact f : r.academic.facts) col.add(Ui.left(factRow(f)));
+                    break;
+                case 2:
+                    col.add(Ui.left(factRow(new Fact(Messages.get("out.completion"),
+                        c.completionRate == null ? Messages.get("notReported") : Math.round(c.completionRate * 100) + "%",
+                        c.completionRate == null ? "" : Messages.get("out.completion.note", c.completionYears), null))));
+                    col.add(Ui.left(factRow(new Fact(Messages.get("out.transfer"),
+                        c.transferRate == null ? Messages.get("notReported") : Math.round(c.transferRate * 100) + "%",
+                        c.transferRate == null ? "" : Messages.get(c.isTwoYear() ? "out.transfer.note.two" : "out.transfer.note.four", c.transferYears), null))));
+                    break;
+                default:
+                    col.add(Ui.left(factRow(new Fact(Messages.get("res.ratio"),
+                        c.studentFacultyRatio == null ? Messages.get("notReported") : Messages.get("res.ratio.value", c.studentFacultyRatio),
+                        Messages.get("res.ratio.note"), null))));
+                    col.add(Box.createVerticalStrut(6));
+                    col.add(Ui.left(Ui.note(Messages.get("res.explore"), Ui.BLUE_PALE, Ui.INK, 300, 12f)));
+            }
+        }
+        box.add(col, BorderLayout.NORTH);
+        return box;
+    }
+
+    private static JComponent sectionTitle(String key) {
+        JLabel l = Ui.text(Messages.get(key).toUpperCase(), 11f, Font.BOLD, Ui.MUTED);
+        l.setBorder(new EmptyBorder(12, 0, 2, 0));
+        return l;
+    }
 
     private JComponent factBox(String icon, Color color, Color bg, String title, EvaluationResult r, Object extra) {
         Ui.Card box = new Ui.Card(new BorderLayout(), Ui.WHITE, Ui.LINE);

@@ -1,5 +1,38 @@
 # CollegeFit Java changes
 
+## Update 14: "Private college" wording (v0.4.4)
+
+- Screen text says "Private college" everywhere instead of "Private nonprofit". Help states that for-profit colleges are not included.
+
+## Update 13: earnings for whole fields (v0.4.3)
+
+- Program earnings now also appear when a whole field is chosen (for example "Engineering (all)"):
+  the details page lists the 3 largest programs in that field with reported earnings, by name and degree level.
+  Before, earnings were shown only for a single program. Earnings stay on the details page only.
+- Earnings are skipped when many programs are chosen, so the details stay short. Tests: 70.
+
+## Update 12: easier browsing on Explore (v0.4.2)
+
+- "Show all N" opens one college group with every college, three per row, and "Back to all college types".
+  (Before, "Show more" added 4 colleges at a time and made the three columns very long.)
+- A "?" next to the order line explains, step by step, how colleges are ordered for the current priorities.
+- Empty groups explain why: for example, no community colleges when a bachelor's degree is chosen,
+  with a link to include associate degrees.
+
+## Update 11: program relevance is not academic quality (v0.4.1)
+
+- Three fields added from the data already downloaded (no new source):
+  transfer-out rate (TRANS_4 / TRANS_L4), students per faculty member (STUFACR),
+  and program-level median earnings 1 year after completing (EARN_MDN_1YR, field-of-study file).
+  They are shown on the details page only; they never change the order of colleges. Compare has no new rows.
+- Details: "Academics and programs" in four parts: Program information, Admissions, Student outcomes
+  (completion and transfer-out rates), Academic resources (students per faculty, and what to explore on the college website).
+- "My area of study" priority: colleges offering more of the chosen programs first, then degree levels that fit the pathway.
+  Historical degree counts only break remaining ties and are labeled as size, not quality.
+- Wording: "degrees awarded (historical)" instead of "graduates last year"; the Compare "more graduates" marker was removed.
+- Update notebooks/03_export.ipynb: add "TRANS_4", "TRANS_L4", "STUFACR" to the colleges keep list and
+  "EARN_MDN_1YR" to the programs usecols, then re-run. Updated CSVs are included. Tests: 69.
+
 ## Update 10: guided decision-making (v0.4)
 
 Six steps: Get started, Your direction, Priorities, Explore, Compare and decide, Next steps.

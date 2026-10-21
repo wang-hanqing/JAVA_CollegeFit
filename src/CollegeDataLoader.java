@@ -37,7 +37,8 @@ public class CollegeDataLoader {
     }
 
     public static List<College> load(Source collegesCsv, Source programsCsv) throws IOException {
-        Map<String, Map<String, Integer[]>> programs = loadProgramCounts(programsCsv);
+        Map<String, Map<String, Integer>> earnings = new HashMap<>();
+        Map<String, Map<String, Integer[]>> programs = loadProgramCounts(programsCsv, earnings);
         List<College> colleges = new ArrayList<>();
         try (BufferedReader in = collegesCsv.open()) {
             Map<String, Integer> ix = header(in, "colleges CSV",
@@ -65,14 +66,15 @@ public class CollegeDataLoader {
                     locale(get(r, ix, "LOCALE")), integer(get(r, ix, "UGDS")),
                     decimal(get(r, ix, "LATITUDE")), decimal(get(r, ix, "LONGITUDE")),
                     completion(r, ix), completionYears(r, ix),
-                    programs.getOrDefault(id, Collections.emptyMap())));
+                    transfer(r, ix), transferYears(r, ix), integer(get(r, ix, "STUFACR")),
+                    programs.getOrDefault(id, Collections.emptyMap()), earnings.getOrDefault(id, Collections.emptyMap())));
             }
         }
         return colleges;
     }
 
     /** UNITID -> ("CIP:level" -> {count1, count2}) for every associate and bachelor's row, including zeros. */
-    private static Map<String, Map<String, Integer[]>> loadProgramCounts(Source source) throws IOException {
+    private static Map<String, Map<String, Integer[]>> loadProgramCounts(Source source, Map<String, Map<String, Integer>> earnings) throws IOException {
         Map<String, Map<String, Integer[]>> map = new HashMap<>();
         try (BufferedReader in = source.open()) {
             Map<String, Integer> ix = header(in, "programs CSV", "UNITID", "CIPCODE", "CREDLEV", "IPEDSCOUNT1", "IPEDSCOUNT2");
@@ -84,6 +86,8 @@ public class CollegeDataLoader {
                 if (cip == null) continue;
                 Integer[] counts = { integer(get(r, ix, "IPEDSCOUNT1")), integer(get(r, ix, "IPEDSCOUNT2")) };
                 map.computeIfAbsent(get(r, ix, "UNITID"), k -> new HashMap<>()).put(cip + ":" + level, counts);
+                Integer pay = integer(get(r, ix, "EARN_MDN_1YR")); // optional column
+                if (pay != null) earnings.computeIfAbsent(get(r, ix, "UNITID"), k -> new HashMap<>()).put(cip + ":" + level, pay);
             }
         }
         return map;
@@ -112,7 +116,9 @@ public class CollegeDataLoader {
         List<Program> list = new ArrayList<>();
         Map<String, Set<String>> collegesByFamily = new TreeMap<>();
         for (String cip : names.keySet()) {
-            list.add(new Program(cip, names.get(cip), collegesByCip.get(cip).size()));
+            Program program = new Program(cip, names.get(cip), collegesByCip.get(cip).size());
+            Program.register(program);
+            list.add(program);
             collegesByFamily.computeIfAbsent(cip.substring(0, 2), k -> new HashSet<>()).addAll(collegesByCip.get(cip));
         }
         // A family is offered only when it contains more than one program; otherwise it would duplicate the program.
@@ -133,6 +139,17 @@ public class CollegeDataLoader {
     private static int completionYears(List<String> r, Map<String, Integer> ix) {
         if (decimal(get(r, ix, "C150_4")) != null) return 6;
         return decimal(get(r, ix, "C150_L4")) != null ? 3 : 0;
+    }
+
+    /** Transfer-out rate: four-year measure (TRANS_4) if reported, otherwise two-year (TRANS_L4). Columns are optional. */
+    private static Double transfer(List<String> r, Map<String, Integer> ix) {
+        Double four = decimal(get(r, ix, "TRANS_4"));
+        return four != null ? four : decimal(get(r, ix, "TRANS_L4"));
+    }
+
+    private static int transferYears(List<String> r, Map<String, Integer> ix) {
+        if (decimal(get(r, ix, "TRANS_4")) != null) return 6;
+        return decimal(get(r, ix, "TRANS_L4")) != null ? 3 : 0;
     }
 
     /** Restores leading zeros, e.g. "901" -> "0901". Returns null for anything that is not a CIP code. */

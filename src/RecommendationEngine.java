@@ -22,6 +22,8 @@ public class RecommendationEngine {
         List<StudentProfile.Priority> order = s.hasPriorities() ? s.getPriorities()
             : List.of(StudentProfile.Priority.CAMPUS, StudentProfile.Priority.STUDY);
         for (StudentProfile.Priority p : order) c = c.thenComparing(r -> sortKey(p, s, r), Comparator.nullsLast(Comparator.naturalOrder()));
+        // Historical degree activity breaks remaining ties only when "My area of study" is used; it is size, not quality.
+        if (order.contains(StudentProfile.Priority.STUDY)) c = c.thenComparing(r -> r.recentDegrees, Comparator.reverseOrder());
         return c.thenComparing(r -> r.college.name, String.CASE_INSENSITIVE_ORDER);
     }
 
@@ -42,13 +44,28 @@ public class RecommendationEngine {
                 return a < 0 ? null : -(int) Math.floor(a * 100 / ADMIT_STEP);         // open admission first, then 10-point steps
             }
             case STUDY:
-                return -r.recentDegrees;                                               // more recent graduates first
+                return -studyRelevance(s, r);                                          // relevance, not program size
             default:
                 return -r.social.matched;                                              // more campus matches first
         }
     }
 
     static final int COST_STEP = 1000, RATE_STEP = 5, ADMIT_STEP = 10;
+
+    /**
+     * How related a college is to her study plans: more of her chosen programs offered first,
+     * then whether the degree levels fit her pathway (with "Not sure", colleges offering both levels come first).
+     */
+    static int studyRelevance(StudentProfile s, CollegeRecommendation r) {
+        if (!s.hasPrograms()) return 0;
+        int levelFit;
+        switch (s.getPathway()) {
+            case ASSOCIATE: levelFit = r.associateAwarded ? 1 : 0; break;
+            case BACHELOR: levelFit = r.bachelorAwarded ? 1 : 0; break;
+            default: levelFit = r.associateAwarded && r.bachelorAwarded ? 1 : 0;
+        }
+        return r.programsAwarded * 2 + levelFit;
+    }
 
     /**
      * Average cost after grants that can be compared across colleges: her income range if given, otherwise all incomes.

@@ -1,1096 +1,1096 @@
-UNITID,CIPCODE,CIPDESC,CREDLEV,IPEDSCOUNT1,IPEDSCOUNT2
-106883,1312,"Teacher Education and Professional Development, Specific Levels and Methods.",2,10,10
-106883,1506,Industrial Production Technologies/Technicians.,2,0,0
-106883,1907,"Human Development, Family Studies, and Related Services.",2,4,2
-106883,2401,"Liberal Arts and Sciences, General Studies and Humanities.",2,57,31
-106883,3099,"Multi/Interdisciplinary Studies, Other.",2,1,3
-106883,4301,Criminal Justice and Corrections.,2,11,11
-106883,5108,Allied Health and Medical Assisting Services.,2,0,0
-106883,5109,"Allied Health Diagnostic, Intervention, and Treatment Professions.",2,6,11
-106883,5138,"Registered Nursing, Nursing Administration, Nursing Research and Clinical Nursing.",2,17,10
-106883,5201,"Business/Commerce, General.",2,11,8
-106883,5202,"Business Administration, Management and Operations.",2,3,2
-106883,5204,Business Operations Support and Assistant Services.,2,0,1
-110538,0100,"Agriculture, General.",3,48,52
-110538,0101,Agricultural Business and Management.,3,77,69
-110538,0109,Animal Sciences.,3,67,98
-110538,0111,Plant Sciences.,3,15,22
-110538,0301,Natural Resources Conservation and Research.,3,25,29
-110538,0501,Area Studies.,3,23,17
-110538,0502,"Ethnic, Cultural Minority, Gender, and Group Studies.",3,16,17
-110538,0901,Communication and Media Studies.,3,114,94
-110538,0904,Journalism.,3,44,21
-110538,0907,"Radio, Television, and Digital Communication.",3,18,20
-110538,1101,"Computer and Information Sciences, General.",3,77,78
-110538,1107,Computer Science.,3,81,66
-110538,1108,Computer Software and Media Applications.,3,0,0
-110538,1305,Educational/Instructional Media Design.,3,0,0
-110538,1312,"Teacher Education and Professional Development, Specific Levels and Methods.",3,90,55
-110538,1313,"Teacher Education and Professional Development, Specific Subject Areas.",3,0,0
-110538,1408,Civil Engineering.,3,88,58
-110538,1409,Computer Engineering.,3,12,8
-110538,1410,"Electrical, Electronics, and Communications Engineering.",3,28,29
-110538,1419,Mechanical Engineering.,3,72,88
-110538,1499,"Engineering, Other.",3,34,30
-110538,1503,Electrical/Electronic Engineering Technologies/Technicians.,3,,
-110538,1506,Industrial Production Technologies/Technicians.,3,1,1
-110538,1510,Construction Engineering Technology/Technician.,3,95,116
-110538,1515,Engineering-Related Fields.,3,30,15
-110538,1601,"Linguistic, Comparative, and Related Language Studies and Services.",3,0,0
-110538,1605,"Germanic Languages, Literatures, and Linguistics.",3,3,3
-110538,1609,"Romance Languages, Literatures, and Linguistics.",3,23,13
-110538,1905,"Foods, Nutrition, and Related Services.",3,,
-110538,1907,"Human Development, Family Studies, and Related Services.",3,,
-110538,2301,"English Language and Literature, General.",3,75,56
-110538,2313,Rhetoric and Composition/Writing Studies.,3,0,0
-110538,2401,"Liberal Arts and Sciences, General Studies and Humanities.",3,216,184
-110538,2601,"Biology, General.",3,87,89
-110538,2602,"Biochemistry, Biophysics and Molecular Biology.",3,25,11
-110538,2603,Botany/Plant Biology.,3,,
-110538,2605,Microbiological Sciences and Immunology.,3,19,16
-110538,2609,"Physiology, Pathology and Related Sciences.",3,,
-110538,2613,"Ecology, Evolution, Systematics, and Population Biology.",3,,
-110538,2701,Mathematics.,3,37,36
-110538,2705,Statistics.,3,,
-110538,3001,Biological and Physical Sciences.,3,0,0
-110538,3008,Mathematics and Computer Science.,3,,
-110538,3018,Natural Sciences.,3,6,8
-110538,3019,Nutrition Sciences.,3,52,34
-110538,3023,Intercultural/Multicultural and Diversity Studies.,3,,
-110538,3099,"Multi/Interdisciplinary Studies, Other.",3,0,0
-110538,3101,"Parks, Recreation, and Leisure Studies.",3,101,49
-110538,3105,"Sports, Kinesiology, and Physical Education/Fitness.",3,196,180
-110538,3601,Leisure and Recreational Activities.,3,,
-110538,3801,Philosophy.,3,10,8
-110538,3802,Religion/Religious Studies.,3,12,14
-110538,4005,Chemistry.,3,9,4
-110538,4006,Geological and Earth Sciences/Geosciences.,3,8,7
-110538,4008,Physics.,3,4,11
-110538,4201,"Psychology, General.",3,346,313
-110538,4301,Criminal Justice and Corrections.,3,139,152
-110538,4404,Public Administration.,3,12,6
-110538,4407,Social Work.,3,66,63
-110538,4501,"Social Sciences, General.",3,58,52
-110538,4502,Anthropology.,3,42,45
-110538,4506,Economics.,3,33,27
-110538,4507,Geography and Cartography.,3,19,17
-110538,4509,International Relations and National Security Studies.,3,14,10
-110538,4510,Political Science and Government.,3,76,67
-110538,4511,Sociology.,3,162,158
-110538,5004,Design and Applied Arts.,3,102,85
-110538,5005,Drama/Theatre Arts and Stagecraft.,3,17,20
-110538,5007,Fine and Studio Arts.,3,58,54
-110538,5009,Music.,3,61,44
-110538,5100,"Health Services/Allied Health/Health Sciences, General.",3,31,6
-110538,5102,Communication Disorders Sciences and Services.,3,58,54
-110538,5122,Public Health.,3,120,122
-110538,5131,Dietetics and Clinical Nutrition Services.,3,0,0
-110538,5138,"Registered Nursing, Nursing Administration, Nursing Research and Clinical Nursing.",3,127,113
-110538,5199,"Health Professions and Related Clinical Sciences, Other.",3,0,0
-110538,5202,"Business Administration, Management and Operations.",3,585,503
-110538,5203,Accounting and Related Services.,3,,
-110538,5212,Management Information Systems and Services.,3,,
-110538,5220,Construction Management.,3,,
-110538,5401,History.,3,53,47
-119137,0103,Agricultural Production Operations.,2,33,32
-119137,0301,Natural Resources Conservation and Research.,2,5,16
-119137,0502,"Ethnic, Cultural Minority, Gender, and Group Studies.",2,2,2
-119137,0901,Communication and Media Studies.,2,65,49
-119137,0904,Journalism.,2,17,9
-119137,0907,"Radio, Television, and Digital Communication.",2,36,44
-119137,1002,Audiovisual Communications Technologies/Technicians.,2,0,0
-119137,1003,Graphic Communications.,2,2,5
-119137,1101,"Computer and Information Sciences, General.",2,0,0
-119137,1107,Computer Science.,2,28,42
-119137,1109,Computer Systems Networking and Telecommunications.,2,13,7
-119137,1110,Computer/Information Technology Administration and Management.,2,8,10
-119137,1310,Special Education and Teaching.,2,65,35
-119137,1401,"Engineering, General.",2,16,15
-119137,1504,Electromechanical Technologies/Technicians.,2,2,6
-119137,1505,Environmental Control Technologies/Technicians.,2,0,0
-119137,1609,"Romance Languages, Literatures, and Linguistics.",2,3,1
-119137,1905,"Foods, Nutrition, and Related Services.",2,4,7
-119137,1907,"Human Development, Family Studies, and Related Services.",2,73,28
-119137,2200,Non-Professional Legal Studies.,2,5,6
-119137,2301,"English Language and Literature, General.",2,28,18
-119137,2401,"Liberal Arts and Sciences, General Studies and Humanities.",2,1302,1288
-119137,2601,"Biology, General.",2,59,49
-119137,2701,Mathematics.,2,55,55
-119137,3001,Biological and Physical Sciences.,2,346,363
-119137,3017,Behavioral Sciences.,2,0,0
-119137,3105,"Sports, Kinesiology, and Physical Education/Fitness.",2,52,46
-119137,3801,Philosophy.,2,8,6
-119137,4002,Astronomy and Astrophysics.,2,0,0
-119137,4005,Chemistry.,2,28,28
-119137,4006,Geological and Earth Sciences/Geosciences.,2,4,1
-119137,4008,Physics.,2,50,43
-119137,4201,"Psychology, General.",2,188,170
-119137,4299,"Psychology, Other.",2,0,0
-119137,4301,Criminal Justice and Corrections.,2,73,63
-119137,4501,"Social Sciences, General.",2,0,0
-119137,4502,Anthropology.,2,31,31
-119137,4503,Archeology.,2,0,5
-119137,4506,Economics.,2,157,162
-119137,4507,Geography and Cartography.,2,1,0
-119137,4509,International Relations and National Security Studies.,2,0,0
-119137,4510,Political Science and Government.,2,28,23
-119137,4511,Sociology.,2,68,47
-119137,5001,"Visual and Performing Arts, General.",2,10,12
-119137,5003,Dance.,2,1,2
-119137,5004,Design and Applied Arts.,2,23,17
-119137,5005,Drama/Theatre Arts and Stagecraft.,2,18,29
-119137,5006,Film/Video and Photographic Arts.,2,4,1
-119137,5007,Fine and Studio Arts.,2,27,33
-119137,5009,Music.,2,13,9
-119137,5100,"Health Services/Allied Health/Health Sciences, General.",2,2,5
-119137,5109,"Allied Health Diagnostic, Intervention, and Treatment Professions.",2,20,15
-119137,5118,Ophthalmic and Optometric Support Services and Allied Professions.,2,0,0
-119137,5138,"Registered Nursing, Nursing Administration, Nursing Research and Clinical Nursing.",2,67,51
-119137,5201,"Business/Commerce, General.",2,50,42
-119137,5202,"Business Administration, Management and Operations.",2,254,160
-119137,5203,Accounting and Related Services.,2,0,0
-119137,5204,Business Operations Support and Assistant Services.,2,0,0
-119137,5209,Hospitality Administration/Management.,2,4,7
-119137,5218,"General Sales, Merchandising and Related Marketing Operations.",2,0,0
-119137,5401,History.,2,31,28
-138187,0106,Applied Horticulture and Horticultural Business Services.,2,19,19
-138187,0904,Journalism.,2,0,0
-138187,0909,"Public Relations, Advertising, and Applied Communication.",2,2,13
-138187,1101,"Computer and Information Sciences, General.",2,57,59
-138187,1101,"Computer and Information Sciences, General.",3,46,73
-138187,1102,Computer Programming.,2,57,60
-138187,1108,Computer Software and Media Applications.,2,70,76
-138187,1110,Computer/Information Technology Administration and Management.,2,49,55
-138187,1205,Culinary Arts and Related Services.,2,83,72
-138187,1500,"Engineering Technologies/Technicians, General.",2,1,2
-138187,1502,Civil Engineering Technologies/Technicians.,2,1,0
-138187,1503,Electrical/Electronic Engineering Technologies/Technicians.,2,19,20
-138187,1503,Electrical/Electronic Engineering Technologies/Technicians.,3,22,11
-138187,1510,Construction Engineering Technology/Technician.,2,25,19
-138187,1512,Computer Engineering Technologies/Technicians.,2,0,0
-138187,1513,Drafting/Design Engineering Technologies/Technicians.,2,11,7
-138187,1517,Energy Systems Technologies/Technicians.,2,8,10
-138187,2203,Legal Support Services.,2,39,52
-138187,2401,"Liberal Arts and Sciences, General Studies and Humanities.",2,7147,6534
-138187,4101,Biology/Biotechnology Technologies/Technicians.,2,17,18
-138187,4103,Physical Science Technologies/Technicians.,2,,2
-138187,4301,Criminal Justice and Corrections.,2,89,51
-138187,4302,Fire Protection.,2,63,56
-138187,5005,Drama/Theatre Arts and Stagecraft.,2,11,11
-138187,5006,Film/Video and Photographic Arts.,2,45,49
-138187,5009,Music.,2,36,32
-138187,5106,Dental Support Services and Allied Professions.,2,23,42
-138187,5107,Health and Medical Administrative Services.,2,41,42
-138187,5109,"Allied Health Diagnostic, Intervention, and Treatment Professions.",2,87,85
-138187,5109,"Allied Health Diagnostic, Intervention, and Treatment Professions.",3,66,41
-138187,5138,"Registered Nursing, Nursing Administration, Nursing Research and Clinical Nursing.",2,228,437
-138187,5138,"Registered Nursing, Nursing Administration, Nursing Research and Clinical Nursing.",3,137,140
-138187,5202,"Business Administration, Management and Operations.",2,225,209
-138187,5202,"Business Administration, Management and Operations.",3,490,466
-138187,5203,Accounting and Related Services.,2,38,42
-138187,5204,Business Operations Support and Assistant Services.,2,,
-138187,5209,Hospitality Administration/Management.,2,98,67
-138187,5214,Marketing.,2,0,0
-138187,5215,Real Estate.,2,11,10
-146205,0101,Agricultural Business and Management.,2,,1
-146205,0901,Communication and Media Studies.,2,,
-146205,1101,"Computer and Information Sciences, General.",2,6,2
-146205,1110,Computer/Information Technology Administration and Management.,2,22,10
-146205,1204,Cosmetology and Related Personal Grooming Services.,2,2,4
-146205,1312,"Teacher Education and Professional Development, Specific Levels and Methods.",2,,
-146205,1313,"Teacher Education and Professional Development, Specific Subject Areas.",2,0,0
-146205,1401,"Engineering, General.",2,5,4
-146205,1503,Electrical/Electronic Engineering Technologies/Technicians.,2,4,3
-146205,1504,Electromechanical Technologies/Technicians.,2,1,7
-146205,1505,Environmental Control Technologies/Technicians.,2,0,0
-146205,1506,Industrial Production Technologies/Technicians.,2,1,1
-146205,1616,American Sign Language.,2,3,1
-146205,1907,"Human Development, Family Studies, and Related Services.",2,4,6
-146205,2200,Non-Professional Legal Studies.,2,,
-146205,2401,"Liberal Arts and Sciences, General Studies and Humanities.",2,210,210
-146205,3001,Biological and Physical Sciences.,2,45,55
-146205,4201,"Psychology, General.",2,,
-146205,4301,Criminal Justice and Corrections.,2,8,5
-146205,4407,Social Work.,2,,
-146205,4511,Sociology.,2,,
-146205,4600,"Construction Trades, General.",2,0,0
-146205,4603,Electrical and Power Transmission Installers.,2,0,0
-146205,4701,Electrical/Electronics Maintenance and Repair Technologies/Technicians.,2,4,5
-146205,4702,"Heating, Air Conditioning, Ventilation and Refrigeration Maintenance Technology/Technician (HAC, HACR, HVAC, HVACR).",2,12,14
-146205,4703,Heavy/Industrial Equipment Maintenance Technologies/Technicians.,2,2,2
-146205,4706,Vehicle Maintenance and Repair Technologies/Technicians.,2,5,6
-146205,4805,Precision Metal Working.,2,6,3
-146205,5004,Design and Applied Arts.,2,4,3
-146205,5007,Fine and Studio Arts.,2,1,1
-146205,5009,Music.,2,0,0
-146205,5106,Dental Support Services and Allied Professions.,2,,
-146205,5107,Health and Medical Administrative Services.,2,0,1
-146205,5108,Allied Health and Medical Assisting Services.,2,8,5
-146205,5109,"Allied Health Diagnostic, Intervention, and Treatment Professions.",2,8,4
-146205,5110,Clinical/Medical Laboratory Science/Research and Allied Professions.,2,6,4
-146205,5138,"Registered Nursing, Nursing Administration, Nursing Research and Clinical Nursing.",2,49,65
-146205,5139,"Practical Nursing, Vocational Nursing and Nursing Assistants.",2,,
-146205,5202,"Business Administration, Management and Operations.",2,7,0
-146205,5203,Accounting and Related Services.,2,2,3
-146205,5204,Business Operations Support and Assistant Services.,2,2,6
-146205,5220,Construction Management.,2,10,10
-146205,5401,History.,2,,
-153834,0301,Natural Resources Conservation and Research.,3,14,13
-153834,0901,Communication and Media Studies.,3,16,10
-153834,1104,Information Science/Studies.,3,14,21
-153834,1107,Computer Science.,3,13,17
-153834,1312,"Teacher Education and Professional Development, Specific Levels and Methods.",3,22,13
-153834,1605,"Germanic Languages, Literatures, and Linguistics.",3,11,6
-153834,1609,"Romance Languages, Literatures, and Linguistics.",3,10,7
-153834,1612,"Classics and Classical Languages, Literatures, and Linguistics.",3,2,
-153834,2200,Non-Professional Legal Studies.,3,0,0
-153834,2301,"English Language and Literature, General.",3,24,22
-153834,2401,"Liberal Arts and Sciences, General Studies and Humanities.",3,,
-153834,2601,"Biology, General.",3,36,37
-153834,2615,Neurobiology and Neurosciences.,3,7,8
-153834,2701,Mathematics.,3,5,8
-153834,2705,Statistics.,3,2,6
-153834,3020,International/Globalization Studies.,3,6,6
-153834,3026,Cultural Studies/Critical Theory and Analysis.,3,2,0
-153834,3099,"Multi/Interdisciplinary Studies, Other.",3,4,3
-153834,3105,"Sports, Kinesiology, and Physical Education/Fitness.",3,7,5
-153834,3801,Philosophy.,3,3,6
-153834,3802,Religion/Religious Studies.,3,3,1
-153834,4005,Chemistry.,3,14,8
-153834,4008,Physics.,3,2,5
-153834,4201,"Psychology, General.",3,,
-153834,4227,Research and Experimental Psychology.,3,30,23
-153834,4407,Social Work.,3,15,14
-153834,4502,Anthropology.,3,5,7
-153834,4506,Economics.,3,10,8
-153834,4510,Political Science and Government.,3,18,18
-153834,4511,Sociology.,3,8,9
-153834,5003,Dance.,3,1,
-153834,5004,Design and Applied Arts.,3,17,15
-153834,5005,Drama/Theatre Arts and Stagecraft.,3,9,6
-153834,5007,Fine and Studio Arts.,3,10,7
-153834,5009,Music.,3,37,33
-153834,5100,"Health Services/Allied Health/Health Sciences, General.",3,13,11
-153834,5109,"Allied Health Diagnostic, Intervention, and Treatment Professions.",3,2,
-153834,5122,Public Health.,3,2,5
-153834,5138,"Registered Nursing, Nursing Administration, Nursing Research and Clinical Nursing.",3,40,31
-153834,5202,"Business Administration, Management and Operations.",3,30,31
-153834,5203,Accounting and Related Services.,3,23,11
-153834,5212,Management Information Systems and Services.,3,0,
-153834,5401,History.,3,12,11
-155308,1312,"Teacher Education and Professional Development, Specific Levels and Methods.",3,1,0
-155308,2401,"Liberal Arts and Sciences, General Studies and Humanities.",2,1,0
-155308,3000,"Multi-/Interdisciplinary Studies, General.",2,,2
-155308,3000,"Multi-/Interdisciplinary Studies, General.",3,,0
-155308,3105,"Sports, Kinesiology, and Physical Education/Fitness.",2,0,0
-155308,3105,"Sports, Kinesiology, and Physical Education/Fitness.",3,0,0
-155308,3902,Bible/Biblical Studies.,2,0,0
-155308,3902,Bible/Biblical Studies.,3,2,0
-155308,3903,Missions/Missionary Studies and Missiology.,2,0,0
-155308,3903,Missions/Missionary Studies and Missiology.,3,0,0
-155308,3905,Religious Music and Worship.,2,0,0
-155308,3907,Pastoral Counseling and Specialized Ministries.,2,1,0
-155308,3907,Pastoral Counseling and Specialized Ministries.,3,1,0
-155308,4201,"Psychology, General.",2,0,0
-155308,4201,"Psychology, General.",3,1,2
-155308,5202,"Business Administration, Management and Operations.",2,8,1
-155308,5202,"Business Administration, Management and Operations.",3,10,11
-157535,0901,Communication and Media Studies.,3,13,8
-157535,1101,"Computer and Information Sciences, General.",3,5,2
-157535,1110,Computer/Information Technology Administration and Management.,3,0,0
-157535,1301,"Education, General.",3,2,4
-157535,1312,"Teacher Education and Professional Development, Specific Levels and Methods.",3,11,16
-157535,1313,"Teacher Education and Professional Development, Specific Subject Areas.",3,1,4
-157535,2301,"English Language and Literature, General.",3,3,2
-157535,2601,"Biology, General.",3,35,30
-157535,2701,Mathematics.,3,0,1
-157535,3099,"Multi/Interdisciplinary Studies, Other.",3,0,2
-157535,3105,"Sports, Kinesiology, and Physical Education/Fitness.",3,0,0
-157535,3802,Religion/Religious Studies.,3,0,2
-157535,4005,Chemistry.,3,1,0
-157535,4201,"Psychology, General.",3,17,24
-157535,4301,Criminal Justice and Corrections.,2,0,0
-157535,4301,Criminal Justice and Corrections.,3,24,22
-157535,4407,Social Work.,3,7,12
-157535,4511,Sociology.,3,7,10
-157535,5001,"Visual and Performing Arts, General.",3,0,0
-157535,5006,Film/Video and Photographic Arts.,3,8,3
-157535,5007,Fine and Studio Arts.,3,1,0
-157535,5010,"Arts, Entertainment, and Media Management.",3,,
-157535,5138,"Registered Nursing, Nursing Administration, Nursing Research and Clinical Nursing.",2,41,40
-157535,5138,"Registered Nursing, Nursing Administration, Nursing Research and Clinical Nursing.",3,14,10
-157535,5202,"Business Administration, Management and Operations.",2,1,0
-157535,5202,"Business Administration, Management and Operations.",3,41,49
-157535,5401,History.,3,7,6
-166027,0301,Natural Resources Conservation and Research.,3,15,13
-166027,0501,Area Studies.,3,11,25
-166027,0502,"Ethnic, Cultural Minority, Gender, and Group Studies.",3,29,34
-166027,1107,Computer Science.,3,173,183
-166027,1110,Computer/Information Technology Administration and Management.,3,0,0
-166027,1301,"Education, General.",3,0,0
-166027,1405,Biomedical/Medical Engineering.,3,8,16
-166027,1410,"Electrical, Electronics, and Communications Engineering.",3,7,8
-166027,1413,Engineering Science.,3,45,43
-166027,1419,Mechanical Engineering.,3,18,20
-166027,1601,"Linguistic, Comparative, and Related Language Studies and Services.",3,20,22
-166027,1602,"African Languages, Literatures, and Linguistics.",3,0,0
-166027,1603,"East Asian Languages, Literatures, and Linguistics.",3,0,0
-166027,1604,"Slavic, Baltic and Albanian Languages, Literatures, and Linguistics.",3,1,3
-166027,1605,"Germanic Languages, Literatures, and Linguistics.",3,2,0
-166027,1607,"South Asian Languages, Literatures, and Linguistics.",3,0,0
-166027,1609,"Romance Languages, Literatures, and Linguistics.",3,6,5
-166027,1611,"Middle/Near Eastern and Semitic Languages, Literatures, and Linguistics.",3,0,0
-166027,1612,"Classics and Classical Languages, Literatures, and Linguistics.",3,15,14
-166027,1613,"Celtic Languages, Literatures, and Linguistics.",3,0,0
-166027,1614,"Southeast Asian and Australasian/Pacific Languages, Literatures, and Linguistics.",3,0,0
-166027,1615,"Turkic, Uralic-Altaic, Caucasian, and Central Asian Languages, Literatures, and Linguistics.",3,0,0
-166027,2301,"English Language and Literature, General.",3,34,38
-166027,2401,"Liberal Arts and Sciences, General Studies and Humanities.",2,0,1
-166027,2401,"Liberal Arts and Sciences, General Studies and Humanities.",3,31,25
-166027,2601,"Biology, General.",3,0,0
-166027,2602,"Biochemistry, Biophysics and Molecular Biology.",3,0,0
-166027,2604,Cell/Cellular Biology and Anatomical Sciences.,3,75,75
-166027,2605,Microbiological Sciences and Immunology.,3,0,0
-166027,2613,"Ecology, Evolution, Systematics, and Population Biology.",3,73,60
-166027,2615,Neurobiology and Neurosciences.,3,86,100
-166027,2701,Mathematics.,3,77,61
-166027,2703,Applied Mathematics.,3,80,120
-166027,2705,Statistics.,3,61,52
-166027,2902,"Intelligence, Command Control and Information Operations.",3,0,0
-166027,3013,Medieval and Renaissance Studies.,3,0,0
-166027,3017,Behavioral Sciences.,3,0,0
-166027,3018,Natural Sciences.,3,35,29
-166027,3026,Cultural Studies/Critical Theory and Analysis.,3,0,0
-166027,3033,Sustainability Studies.,3,0,0
-166027,3601,Leisure and Recreational Activities.,3,,
-166027,3801,Philosophy.,3,34,32
-166027,3802,Religion/Religious Studies.,3,7,8
-166027,3906,Theological and Ministerial Studies.,3,0,0
-166027,4002,Astronomy and Astrophysics.,3,5,18
-166027,4005,Chemistry.,3,42,76
-166027,4006,Geological and Earth Sciences/Geosciences.,3,0,0
-166027,4008,Physics.,3,41,51
-166027,4201,"Psychology, General.",3,0,0
-166027,4227,Research and Experimental Psychology.,3,66,101
-166027,4501,"Social Sciences, General.",3,195,189
-166027,4502,Anthropology.,3,13,25
-166027,4503,Archeology.,3,0,0
-166027,4506,Economics.,3,186,258
-166027,4510,Political Science and Government.,3,121,164
-166027,4511,Sociology.,3,42,33
-166027,5001,"Visual and Performing Arts, General.",3,31,26
-166027,5005,Drama/Theatre Arts and Stagecraft.,3,0,0
-166027,5006,Film/Video and Photographic Arts.,3,0,0
-166027,5007,Fine and Studio Arts.,3,23,19
-166027,5009,Music.,3,18,10
-166027,5122,Public Health.,3,0,0
-166027,5202,"Business Administration, Management and Operations.",3,0,0
-166027,5205,Business/Corporate Communications.,3,0,0
-166027,5210,Human Resources Management and Services.,3,0,0
-166027,5214,Marketing.,3,0,0
-166027,5401,History.,3,139,161
-167905,0106,Applied Horticulture and Horticultural Business Services.,2,3,2
-167905,0409,Architectural Sciences and Technology.,2,14,16
-167905,1002,Audiovisual Communications Technologies/Technicians.,2,8,3
-167905,1003,Graphic Communications.,2,8,6
-167905,1102,Computer Programming.,2,10,8
-167905,1107,Computer Science.,2,12,13
-167905,1108,Computer Software and Media Applications.,2,0,0
-167905,1110,Computer/Information Technology Administration and Management.,2,30,26
-167905,1312,"Teacher Education and Professional Development, Specific Levels and Methods.",2,25,17
-167905,1401,"Engineering, General.",2,11,13
-167905,1502,Civil Engineering Technologies/Technicians.,2,1,1
-167905,1503,Electrical/Electronic Engineering Technologies/Technicians.,2,7,5
-167905,1504,Electromechanical Technologies/Technicians.,2,13,15
-167905,1508,Mechanical Engineering Related Technologies/Technicians.,2,24,21
-167905,1512,Computer Engineering Technologies/Technicians.,2,12,8
-167905,2401,"Liberal Arts and Sciences, General Studies and Humanities.",2,150,120
-167905,2601,"Biology, General.",2,13,13
-167905,2612,Biotechnology.,2,,2
-167905,2701,Mathematics.,2,0,3
-167905,4005,Chemistry.,2,0,1
-167905,4008,Physics.,2,0,0
-167905,4301,Criminal Justice and Corrections.,2,45,28
-167905,4302,Fire Protection.,2,15,12
-167905,4604,"Building/Construction Finishing, Management, and Inspection.",2,0,0
-167905,4702,"Heating, Air Conditioning, Ventilation and Refrigeration Maintenance Technology/Technician (HAC, HACR, HVAC, HVACR).",2,6,5
-167905,4706,Vehicle Maintenance and Repair Technologies/Technicians.,2,2,0
-167905,5004,Design and Applied Arts.,2,5,8
-167905,5007,Fine and Studio Arts.,2,12,3
-167905,5100,"Health Services/Allied Health/Health Sciences, General.",2,15,15
-167905,5106,Dental Support Services and Allied Professions.,2,20,16
-167905,5107,Health and Medical Administrative Services.,2,12,15
-167905,5108,Allied Health and Medical Assisting Services.,2,45,25
-167905,5109,"Allied Health Diagnostic, Intervention, and Treatment Professions.",2,52,45
-167905,5110,Clinical/Medical Laboratory Science/Research and Allied Professions.,2,13,8
-167905,5111,Health/Medical Preparatory Programs.,2,,
-167905,5138,"Registered Nursing, Nursing Administration, Nursing Research and Clinical Nursing.",2,66,57
-167905,5201,"Business/Commerce, General.",2,59,58
-167905,5202,"Business Administration, Management and Operations.",2,1,2
-167905,5203,Accounting and Related Services.,2,2,0
-167905,5204,Business Operations Support and Assistant Services.,2,7,8
-167905,5207,Entrepreneurial and Small Business Operations.,2,1,0
-167905,5214,Marketing.,2,,1
-171304,0101,Agricultural Business and Management.,2,4,4
-171304,0104,Agricultural and Food Products Processing.,2,,1
-171304,0901,Communication and Media Studies.,2,,0
-171304,0907,"Radio, Television, and Digital Communication.",2,0,2
-171304,1002,Audiovisual Communications Technologies/Technicians.,2,1,3
-171304,1102,Computer Programming.,2,0,4
-171304,1106,Data Entry/Microcomputer Applications.,2,0,0
-171304,1108,Computer Software and Media Applications.,2,3,1
-171304,1109,Computer Systems Networking and Telecommunications.,2,9,11
-171304,1110,Computer/Information Technology Administration and Management.,2,1,1
-171304,1312,"Teacher Education and Professional Development, Specific Levels and Methods.",2,7,12
-171304,1315,Teaching Assistants/Aides.,2,0,1
-171304,1401,"Engineering, General.",2,2,4
-171304,1419,Mechanical Engineering.,2,,0
-171304,1500,"Engineering Technologies/Technicians, General.",2,4,3
-171304,1503,Electrical/Electronic Engineering Technologies/Technicians.,2,5,8
-171304,1504,Electromechanical Technologies/Technicians.,2,1,0
-171304,1506,Industrial Production Technologies/Technicians.,2,4,3
-171304,1513,Drafting/Design Engineering Technologies/Technicians.,2,2,5
-171304,1907,"Human Development, Family Studies, and Related Services.",2,,0
-171304,2401,"Liberal Arts and Sciences, General Studies and Humanities.",2,321,289
-171304,2601,"Biology, General.",2,,0
-171304,3105,"Sports, Kinesiology, and Physical Education/Fitness.",2,,1
-171304,4201,"Psychology, General.",2,,0
-171304,4301,Criminal Justice and Corrections.,2,7,8
-171304,4706,Vehicle Maintenance and Repair Technologies/Technicians.,2,4,1
-171304,4805,Precision Metal Working.,2,10,3
-171304,5004,Design and Applied Arts.,2,4,18
-171304,5007,Fine and Studio Arts.,2,,1
-171304,5009,Music.,2,0,0
-171304,5100,"Health Services/Allied Health/Health Sciences, General.",2,8,7
-171304,5107,Health and Medical Administrative Services.,2,3,4
-171304,5108,Allied Health and Medical Assisting Services.,2,19,24
-171304,5109,"Allied Health Diagnostic, Intervention, and Treatment Professions.",2,,0
-171304,5122,Public Health.,2,,0
-171304,5138,"Registered Nursing, Nursing Administration, Nursing Research and Clinical Nursing.",2,64,69
-171304,5201,"Business/Commerce, General.",2,5,11
-171304,5202,"Business Administration, Management and Operations.",2,10,9
-171304,5203,Accounting and Related Services.,2,2,4
-171304,5204,Business Operations Support and Assistant Services.,2,1,4
-171304,5214,Marketing.,2,4,4
-176178,0101,Agricultural Business and Management.,2,1,12
-176178,0102,Agricultural Mechanization.,2,16,14
-176178,0103,Agricultural Production Operations.,2,0,4
-176178,0108,Agricultural Public Services.,2,,
-176178,0109,Animal Sciences.,2,,1
-176178,0113,Agriculture/Veterinary Preparatory Programs.,2,,
-176178,0183,Veterinary/Animal Health Technologies/Technicians.,2,,
-176178,1102,Computer Programming.,2,2,7
-176178,1104,Information Science/Studies.,2,,9
-176178,1107,Computer Science.,2,,10
-176178,1109,Computer Systems Networking and Telecommunications.,2,9,10
-176178,1203,Funeral Service and Mortuary Science.,2,8,9
-176178,1312,"Teacher Education and Professional Development, Specific Levels and Methods.",2,,28
-176178,1313,"Teacher Education and Professional Development, Specific Subject Areas.",2,,2
-176178,1401,"Engineering, General.",2,,2
-176178,1502,Civil Engineering Technologies/Technicians.,2,7,6
-176178,1907,"Human Development, Family Studies, and Related Services.",2,7,13
-176178,2203,Legal Support Services.,2,4,9
-176178,2401,"Liberal Arts and Sciences, General Studies and Humanities.",2,705,465
-176178,2601,"Biology, General.",2,,6
-176178,3105,"Sports, Kinesiology, and Physical Education/Fitness.",2,,6
-176178,4005,Chemistry.,2,,1
-176178,4201,"Psychology, General.",2,,7
-176178,4301,Criminal Justice and Corrections.,2,,12
-176178,4407,Social Work.,2,,18
-176178,4701,Electrical/Electronics Maintenance and Repair Technologies/Technicians.,2,13,17
-176178,4702,"Heating, Air Conditioning, Ventilation and Refrigeration Maintenance Technology/Technician (HAC, HACR, HVAC, HVACR).",2,9,13
-176178,4706,Vehicle Maintenance and Repair Technologies/Technicians.,2,13,27
-176178,4805,Precision Metal Working.,2,12,9
-176178,5004,Design and Applied Arts.,2,21,22
-176178,5005,Drama/Theatre Arts and Stagecraft.,2,,3
-176178,5007,Fine and Studio Arts.,2,,9
-176178,5009,Music.,2,,2
-176178,5010,"Arts, Entertainment, and Media Management.",2,,3
-176178,5102,Communication Disorders Sciences and Services.,2,,10
-176178,5106,Dental Support Services and Allied Professions.,2,,5
-176178,5107,Health and Medical Administrative Services.,2,14,26
-176178,5109,"Allied Health Diagnostic, Intervention, and Treatment Professions.",2,36,50
-176178,5110,Clinical/Medical Laboratory Science/Research and Allied Professions.,2,,1
-176178,5111,Health/Medical Preparatory Programs.,2,,10
-176178,5123,Rehabilitation and Therapeutic Professions.,2,,
-176178,5138,"Registered Nursing, Nursing Administration, Nursing Research and Clinical Nursing.",2,106,120
-176178,5202,"Business Administration, Management and Operations.",2,25,72
-176178,5203,Accounting and Related Services.,2,,25
-176178,5204,Business Operations Support and Assistant Services.,2,5,5
-176178,5209,Hospitality Administration/Management.,2,2,5
-176178,5214,Marketing.,2,13,14
-179159,0301,Natural Resources Conservation and Research.,3,9,16
-179159,0501,Area Studies.,3,4,4
-179159,0502,"Ethnic, Cultural Minority, Gender, and Group Studies.",3,7,4
-179159,0901,Communication and Media Studies.,3,46,39
-179159,1101,"Computer and Information Sciences, General.",3,7,14
-179159,1107,Computer Science.,3,35,35
-179159,1301,"Education, General.",3,12,22
-179159,1402,"Aerospace, Aeronautical, and Astronautical/Space Engineering.",3,33,35
-179159,1405,Biomedical/Medical Engineering.,3,48,30
-179159,1408,Civil Engineering.,3,14,19
-179159,1409,Computer Engineering.,3,9,9
-179159,1410,"Electrical, Electronics, and Communications Engineering.",3,9,7
-179159,1412,Engineering Physics.,3,2,4
-179159,1419,Mechanical Engineering.,3,27,36
-179159,1604,"Slavic, Baltic and Albanian Languages, Literatures, and Linguistics.",3,0,1
-179159,1605,"Germanic Languages, Literatures, and Linguistics.",3,3,0
-179159,1609,"Romance Languages, Literatures, and Linguistics.",3,21,27
-179159,1612,"Classics and Classical Languages, Literatures, and Linguistics.",3,0,0
-179159,2200,Non-Professional Legal Studies.,3,,
-179159,2301,"English Language and Literature, General.",3,18,23
-179159,2401,"Liberal Arts and Sciences, General Studies and Humanities.",2,2,0
-179159,2401,"Liberal Arts and Sciences, General Studies and Humanities.",3,12,4
-179159,2601,"Biology, General.",3,81,103
-179159,2602,"Biochemistry, Biophysics and Molecular Biology.",3,6,12
-179159,2611,"Biomathematics, Bioinformatics, and Computational Biology.",3,7,6
-179159,2615,Neurobiology and Neurosciences.,3,53,66
-179159,2701,Mathematics.,3,17,17
-179159,3013,Medieval and Renaissance Studies.,3,,1
-179159,3019,Nutrition Sciences.,3,24,15
-179159,3022,Classical and Ancient Studies.,3,0,4
-179159,3070,Data Science.,3,5,8
-179159,3105,"Sports, Kinesiology, and Physical Education/Fitness.",3,99,117
-179159,3801,Philosophy.,3,14,15
-179159,3802,Religion/Religious Studies.,3,2,4
-179159,3906,Theological and Ministerial Studies.,3,4,6
-179159,4004,Atmospheric Sciences and Meteorology.,3,3,6
-179159,4005,Chemistry.,3,14,10
-179159,4006,Geological and Earth Sciences/Geosciences.,3,7,1
-179159,4008,Physics.,3,7,2
-179159,4201,"Psychology, General.",3,58,99
-179159,4301,Criminal Justice and Corrections.,3,26,35
-179159,4303,Homeland Security.,3,8,4
-179159,4304,Security Science and Technology.,3,10,14
-179159,4402,Community Organization and Advocacy.,3,0,0
-179159,4407,Social Work.,3,22,29
-179159,4502,Anthropology.,3,8,15
-179159,4509,International Relations and National Security Studies.,3,11,12
-179159,4510,Political Science and Government.,3,41,54
-179159,4511,Sociology.,3,16,13
-179159,4901,Air Transportation.,3,33,36
-179159,5005,Drama/Theatre Arts and Stagecraft.,3,3,4
-179159,5007,Fine and Studio Arts.,3,10,12
-179159,5009,Music.,3,2,2
-179159,5010,"Arts, Entertainment, and Media Management.",3,0,0
-179159,5100,"Health Services/Allied Health/Health Sciences, General.",3,53,64
-179159,5102,Communication Disorders Sciences and Services.,3,15,19
-179159,5107,Health and Medical Administrative Services.,3,40,50
-179159,5109,"Allied Health Diagnostic, Intervention, and Treatment Professions.",3,20,36
-179159,5110,Clinical/Medical Laboratory Science/Research and Allied Professions.,3,31,29
-179159,5120,"Pharmacy, Pharmaceutical Sciences, and Administration.",3,12,6
-179159,5122,Public Health.,3,35,54
-179159,5123,Rehabilitation and Therapeutic Professions.,3,57,56
-179159,5131,Dietetics and Clinical Nutrition Services.,3,,
-179159,5132,"Health Professions Education, Ethics, and Humanities.",3,9,9
-179159,5138,"Registered Nursing, Nursing Administration, Nursing Research and Clinical Nursing.",3,189,220
-179159,5202,"Business Administration, Management and Operations.",3,15,19
-179159,5203,Accounting and Related Services.,3,31,37
-179159,5206,Business/Managerial Economics.,3,30,42
-179159,5207,Entrepreneurial and Small Business Operations.,3,14,11
-179159,5208,Finance and Financial Management Services.,3,73,89
-179159,5210,Human Resources Management and Services.,3,14,21
-179159,5211,International Business.,3,30,37
-179159,5212,Management Information Systems and Services.,3,12,6
-179159,5213,Management Sciences and Quantitative Methods.,3,17,19
-179159,5214,Marketing.,3,51,62
-179159,5401,History.,3,14,20
-183026,0301,Natural Resources Conservation and Research.,3,388,504
-183026,0907,"Radio, Television, and Digital Communication.",3,,
-183026,0909,"Public Relations, Advertising, and Applied Communication.",3,595,608
-183026,1101,"Computer and Information Sciences, General.",2,359,360
-183026,1101,"Computer and Information Sciences, General.",3,482,620
-183026,1105,Computer Systems Analysis.,3,,
-183026,1107,Computer Science.,2,50,122
-183026,1107,Computer Science.,3,437,631
-183026,1108,Computer Software and Media Applications.,3,221,308
-183026,1110,Computer/Information Technology Administration and Management.,2,2,42
-183026,1110,Computer/Information Technology Administration and Management.,3,227,336
-183026,1205,Culinary Arts and Related Services.,2,,
-183026,1205,Culinary Arts and Related Services.,3,2,1
-183026,1301,"Education, General.",3,18,26
-183026,1304,Educational Administration and Supervision.,3,,1
-183026,1310,Special Education and Teaching.,3,2,2
-183026,1312,"Teacher Education and Professional Development, Specific Levels and Methods.",3,39,35
-183026,1313,"Teacher Education and Professional Development, Specific Subject Areas.",3,12,5
-183026,1402,"Aerospace, Aeronautical, and Astronautical/Space Engineering.",3,4,12
-183026,1410,"Electrical, Electronics, and Communications Engineering.",3,4,8
-183026,1419,Mechanical Engineering.,3,16,19
-183026,1433,Construction Engineering.,3,,13
-183026,1907,"Human Development, Family Studies, and Related Services.",3,,
-183026,2301,"English Language and Literature, General.",3,176,202
-183026,2313,Rhetoric and Composition/Writing Studies.,3,532,580
-183026,2401,"Liberal Arts and Sciences, General Studies and Humanities.",2,1035,1042
-183026,2401,"Liberal Arts and Sciences, General Studies and Humanities.",3,1250,1312
-183026,2601,"Biology, General.",3,17,23
-183026,2701,Mathematics.,3,134,177
-183026,3016,Accounting and Computer Science.,3,,
-183026,3105,"Sports, Kinesiology, and Physical Education/Fitness.",3,106,109
-183026,4006,Geological and Earth Sciences/Geosciences.,3,97,91
-183026,4201,"Psychology, General.",3,2244,2993
-183026,4301,Criminal Justice and Corrections.,2,418,449
-183026,4301,Criminal Justice and Corrections.,3,779,895
-183026,4399,"Homeland Security, Law Enforcement, Firefighting and Related Protective Services, Other.",3,,
-183026,4400,"Human Services, General.",3,520,602
-183026,4404,Public Administration.,3,21,8
-183026,4501,"Social Sciences, General.",3,156,190
-183026,4502,Anthropology.,3,96,103
-183026,4506,Economics.,3,39,83
-183026,4510,Political Science and Government.,3,81,83
-183026,4901,Air Transportation.,3,10,9
-183026,5004,Design and Applied Arts.,3,521,662
-183026,5006,Film/Video and Photographic Arts.,2,91,107
-183026,5006,Film/Video and Photographic Arts.,3,118,130
-183026,5100,"Health Services/Allied Health/Health Sciences, General.",3,329,304
-183026,5107,Health and Medical Administrative Services.,2,106,107
-183026,5107,Health and Medical Administrative Services.,3,1186,1064
-183026,5115,Mental and Social Health Services and Allied Professions.,3,64,50
-183026,5122,Public Health.,3,172,193
-183026,5127,Medical Illustration and Informatics.,3,,
-183026,5138,"Registered Nursing, Nursing Administration, Nursing Research and Clinical Nursing.",3,760,623
-183026,5202,"Business Administration, Management and Operations.",2,837,917
-183026,5202,"Business Administration, Management and Operations.",3,4785,5571
-183026,5203,Accounting and Related Services.,2,307,359
-183026,5203,Accounting and Related Services.,3,680,797
-183026,5208,Finance and Financial Management Services.,3,153,179
-183026,5209,Hospitality Administration/Management.,3,11,5
-183026,5211,International Business.,3,15,1
-183026,5212,Management Information Systems and Services.,3,51,33
-183026,5213,Management Sciences and Quantitative Methods.,2,9,20
-183026,5213,Management Sciences and Quantitative Methods.,3,94,142
-183026,5214,Marketing.,2,87,116
-183026,5214,Marketing.,3,192,256
-183026,5218,"General Sales, Merchandising and Related Marketing Operations.",3,,
-183026,5219,"Specialized Sales, Merchandising and  Marketing Operations.",2,20,15
-183026,5219,"Specialized Sales, Merchandising and  Marketing Operations.",3,44,39
-183026,5299,"Business, Management, Marketing, and Related Support Services, Other.",3,21,33
-183026,5401,History.,3,272,315
-190530,0106,Applied Horticulture and Horticultural Business Services.,2,3,4
-190530,1002,Audiovisual Communications Technologies/Technicians.,2,20,13
-190530,1103,Data Processing.,2,16,24
-190530,1107,Computer Science.,2,19,27
-190530,1110,Computer/Information Technology Administration and Management.,2,25,26
-190530,1301,"Education, General.",2,,1
-190530,1315,Teaching Assistants/Aides.,2,15,20
-190530,1401,"Engineering, General.",2,16,14
-190530,1503,Electrical/Electronic Engineering Technologies/Technicians.,2,8,9
-190530,1505,Environmental Control Technologies/Technicians.,2,0,0
-190530,1508,Mechanical Engineering Related Technologies/Technicians.,2,0,0
-190530,1517,Energy Systems Technologies/Technicians.,2,0,0
-190530,2203,Legal Support Services.,2,7,8
-190530,2301,"English Language and Literature, General.",2,10,9
-190530,2401,"Liberal Arts and Sciences, General Studies and Humanities.",2,381,396
-190530,2612,Biotechnology.,2,1,4
-190530,2701,Mathematics.,2,4,6
-190530,3105,"Sports, Kinesiology, and Physical Education/Fitness.",2,17,14
-190530,4001,"Physical Sciences, General.",2,29,28
-190530,4301,Criminal Justice and Corrections.,2,147,121
-190530,4304,Security Science and Technology.,2,6,0
-190530,4400,"Human Services, General.",2,38,47
-190530,4402,Community Organization and Advocacy.,2,,
-190530,4706,Vehicle Maintenance and Repair Technologies/Technicians.,2,18,24
-190530,5001,"Visual and Performing Arts, General.",2,25,35
-190530,5100,"Health Services/Allied Health/Health Sciences, General.",2,,0
-190530,5108,Allied Health and Medical Assisting Services.,2,13,18
-190530,5109,"Allied Health Diagnostic, Intervention, and Treatment Professions.",2,39,40
-190530,5110,Clinical/Medical Laboratory Science/Research and Allied Professions.,2,30,25
-190530,5111,Health/Medical Preparatory Programs.,2,0,0
-190530,5122,Public Health.,2,22,22
-190530,5123,Rehabilitation and Therapeutic Professions.,2,6,17
-190530,5131,Dietetics and Clinical Nutrition Services.,2,83,92
-190530,5138,"Registered Nursing, Nursing Administration, Nursing Research and Clinical Nursing.",2,21,10
-190530,5202,"Business Administration, Management and Operations.",2,116,123
-190530,5203,Accounting and Related Services.,2,10,8
-190530,5204,Business Operations Support and Assistant Services.,2,2,3
-190530,5214,Marketing.,2,5,4
-190594,0301,Natural Resources Conservation and Research.,3,17,26
-190594,0501,Area Studies.,3,3,3
-190594,0502,"Ethnic, Cultural Minority, Gender, and Group Studies.",3,40,26
-190594,0901,Communication and Media Studies.,3,164,147
-190594,1101,"Computer and Information Sciences, General.",3,0,0
-190594,1107,Computer Science.,3,276,292
-190594,1310,Special Education and Teaching.,3,0,0
-190594,1312,"Teacher Education and Professional Development, Specific Levels and Methods.",3,73,66
-190594,1313,"Teacher Education and Professional Development, Specific Subject Areas.",3,37,31
-190594,1601,"Linguistic, Comparative, and Related Language Studies and Services.",3,5,3
-190594,1603,"East Asian Languages, Literatures, and Linguistics.",3,37,24
-190594,1604,"Slavic, Baltic and Albanian Languages, Literatures, and Linguistics.",3,7,6
-190594,1605,"Germanic Languages, Literatures, and Linguistics.",3,4,5
-190594,1609,"Romance Languages, Literatures, and Linguistics.",3,25,31
-190594,1611,"Middle/Near Eastern and Semitic Languages, Literatures, and Linguistics.",3,3,6
-190594,1612,"Classics and Classical Languages, Literatures, and Linguistics.",3,12,10
-190594,1905,"Foods, Nutrition, and Related Services.",3,21,18
-190594,2301,"English Language and Literature, General.",3,194,162
-190594,2401,"Liberal Arts and Sciences, General Studies and Humanities.",3,0,0
-190594,2601,"Biology, General.",3,191,194
-190594,2610,Pharmacology and Toxicology.,3,0,0
-190594,2701,Mathematics.,3,43,35
-190594,2705,Statistics.,3,25,18
-190594,3001,Biological and Physical Sciences.,3,65,67
-190594,3027,Human Biology.,3,442,401
-190594,3801,Philosophy.,3,14,18
-190594,3802,Religion/Religious Studies.,3,9,7
-190594,4005,Chemistry.,3,130,118
-190594,4006,Geological and Earth Sciences/Geosciences.,3,0,0
-190594,4008,Physics.,3,14,23
-190594,4099,"Physical Sciences, Other.",3,0,0
-190594,4201,"Psychology, General.",3,673,641
-190594,4407,Social Work.,3,43,54
-190594,4502,Anthropology.,3,35,25
-190594,4503,Archeology.,3,2,5
-190594,4506,Economics.,3,144,124
-190594,4507,Geography and Cartography.,3,7,12
-190594,4509,International Relations and National Security Studies.,3,0,0
-190594,4510,Political Science and Government.,3,113,131
-190594,4511,Sociology.,3,188,175
-190594,4512,Urban Studies/Affairs.,3,20,20
-190594,5003,Dance.,3,12,11
-190594,5005,Drama/Theatre Arts and Stagecraft.,3,29,28
-190594,5006,Film/Video and Photographic Arts.,3,52,54
-190594,5007,Fine and Studio Arts.,3,90,98
-190594,5009,Music.,3,24,19
-190594,5102,Communication Disorders Sciences and Services.,3,0,0
-190594,5110,Clinical/Medical Laboratory Science/Research and Allied Professions.,3,33,45
-190594,5122,Public Health.,3,27,39
-190594,5123,Rehabilitation and Therapeutic Professions.,3,0,0
-190594,5131,Dietetics and Clinical Nutrition Services.,3,0,2
-190594,5138,"Registered Nursing, Nursing Administration, Nursing Research and Clinical Nursing.",3,172,176
-190594,5203,Accounting and Related Services.,3,85,71
-190594,5401,History.,3,55,41
-190637,0301,Natural Resources Conservation and Research.,3,18,25
-190637,0501,Area Studies.,3,9,4
-190637,0502,"Ethnic, Cultural Minority, Gender, and Group Studies.",3,18,21
-190637,0901,Communication and Media Studies.,3,57,59
-190637,0904,Journalism.,3,15,17
-190637,1104,Information Science/Studies.,3,75,72
-190637,1107,Computer Science.,3,103,100
-190637,1312,"Teacher Education and Professional Development, Specific Levels and Methods.",3,0,1
-190637,1313,"Teacher Education and Professional Development, Specific Subject Areas.",3,9,18
-190637,1399,"Education, Other.",3,0,0
-190637,1601,"Linguistic, Comparative, and Related Language Studies and Services.",3,9,11
-190637,1604,"Slavic, Baltic and Albanian Languages, Literatures, and Linguistics.",3,0,0
-190637,1605,"Germanic Languages, Literatures, and Linguistics.",3,0,0
-190637,1609,"Romance Languages, Literatures, and Linguistics.",3,24,24
-190637,1611,"Middle/Near Eastern and Semitic Languages, Literatures, and Linguistics.",3,0,0
-190637,1612,"Classics and Classical Languages, Literatures, and Linguistics.",3,0,0
-190637,2301,"English Language and Literature, General.",3,82,74
-190637,2401,"Liberal Arts and Sciences, General Studies and Humanities.",3,3,2
-190637,2601,"Biology, General.",3,97,106
-190637,2701,Mathematics.,3,30,18
-190637,3101,"Parks, Recreation, and Leisure Studies.",3,17,11
-190637,3105,"Sports, Kinesiology, and Physical Education/Fitness.",3,79,63
-190637,3801,Philosophy.,3,27,14
-190637,3802,Religion/Religious Studies.,3,0,0
-190637,4005,Chemistry.,3,40,22
-190637,4006,Geological and Earth Sciences/Geosciences.,3,5,1
-190637,4008,Physics.,3,5,3
-190637,4201,"Psychology, General.",3,319,332
-190637,4407,Social Work.,3,133,140
-190637,4502,Anthropology.,3,85,45
-190637,4506,Economics.,3,24,18
-190637,4507,Geography and Cartography.,3,3,0
-190637,4510,Political Science and Government.,3,45,36
-190637,4511,Sociology.,3,190,158
-190637,5001,"Visual and Performing Arts, General.",3,20,0
-190637,5003,Dance.,3,0,14
-190637,5004,Design and Applied Arts.,3,10,12
-190637,5005,Drama/Theatre Arts and Stagecraft.,3,16,8
-190637,5007,Fine and Studio Arts.,3,48,44
-190637,5009,Music.,3,13,3
-190637,5102,Communication Disorders Sciences and Services.,3,137,80
-190637,5107,Health and Medical Administrative Services.,3,217,197
-190637,5122,Public Health.,3,52,57
-190637,5123,Rehabilitation and Therapeutic Professions.,3,50,35
-190637,5131,Dietetics and Clinical Nutrition Services.,3,82,74
-190637,5138,"Registered Nursing, Nursing Administration, Nursing Research and Clinical Nursing.",3,167,145
-190637,5202,"Business Administration, Management and Operations.",3,297,279
-190637,5203,Accounting and Related Services.,3,160,144
-190637,5401,History.,3,34,21
-190956,5138,"Registered Nursing, Nursing Administration, Nursing Research and Clinical Nursing.",2,58,55
-193399,0901,Communication and Media Studies.,3,16,11
-193399,1313,"Teacher Education and Professional Development, Specific Subject Areas.",3,,
-193399,1601,"Linguistic, Comparative, and Related Language Studies and Services.",3,0,0
-193399,1609,"Romance Languages, Literatures, and Linguistics.",3,7,7
-193399,2301,"English Language and Literature, General.",3,4,8
-193399,2401,"Liberal Arts and Sciences, General Studies and Humanities.",3,35,23
-193399,2601,"Biology, General.",3,25,5
-193399,2602,"Biochemistry, Biophysics and Molecular Biology.",3,0,1
-193399,2701,Mathematics.,3,5,2
-193399,3000,"Multi-/Interdisciplinary Studies, General.",3,4,5
-193399,3017,Behavioral Sciences.,3,4,4
-193399,3018,Natural Sciences.,3,0,
-193399,3099,"Multi/Interdisciplinary Studies, Other.",3,10,8
-193399,3801,Philosophy.,3,4,0
-193399,3802,Religion/Religious Studies.,3,0,0
-193399,4005,Chemistry.,3,2,1
-193399,4201,"Psychology, General.",3,299,334
-193399,4405,Public Policy Analysis.,3,2,0
-193399,4501,"Social Sciences, General.",3,1,4
-193399,4506,Economics.,3,0,
-193399,4509,International Relations and National Security Studies.,3,0,
-193399,4511,Sociology.,3,23,19
-193399,4512,Urban Studies/Affairs.,3,0,
-193399,5001,"Visual and Performing Arts, General.",3,3,4
-193399,5138,"Registered Nursing, Nursing Administration, Nursing Research and Clinical Nursing.",3,269,245
-193399,5201,"Business/Commerce, General.",3,1,0
-193399,5202,"Business Administration, Management and Operations.",3,67,69
-193399,5203,Accounting and Related Services.,3,28,19
-193399,5401,History.,3,11,6
-203775,0302,Environmental/Natural Resources Management and Policy.,3,3,0
-203775,0999,"Communication, Journalism, and Related Programs, Other.",3,7,7
-203775,1002,Audiovisual Communications Technologies/Technicians.,3,1,1
-203775,1107,Computer Science.,3,1,5
-203775,1110,Computer/Information Technology Administration and Management.,3,0,3
-203775,1301,"Education, General.",3,1,7
-203775,1310,Special Education and Teaching.,3,6,8
-203775,1312,"Teacher Education and Professional Development, Specific Levels and Methods.",3,14,12
-203775,1313,"Teacher Education and Professional Development, Specific Subject Areas.",3,9,9
-203775,2301,"English Language and Literature, General.",3,2,2
-203775,2313,Rhetoric and Composition/Writing Studies.,3,4,4
-203775,2401,"Liberal Arts and Sciences, General Studies and Humanities.",2,0,3
-203775,2401,"Liberal Arts and Sciences, General Studies and Humanities.",3,1,5
-203775,2601,"Biology, General.",3,5,5
-203775,2602,"Biochemistry, Biophysics and Molecular Biology.",3,4,0
-203775,2607,Zoology/Animal Biology.,3,13,20
-203775,2701,Mathematics.,3,2,0
-203775,3020,International/Globalization Studies.,3,2,4
-203775,3071,Data Analytics.,3,,0
-203775,3105,"Sports, Kinesiology, and Physical Education/Fitness.",3,22,22
-203775,3902,Bible/Biblical Studies.,3,1,3
-203775,3904,Religious Education.,3,1,
-203775,3905,Religious Music and Worship.,3,1,
-203775,3906,Theological and Ministerial Studies.,3,,1
-203775,3907,Pastoral Counseling and Specialized Ministries.,3,1,3
-203775,4001,"Physical Sciences, General.",3,2,0
-203775,4005,Chemistry.,3,1,1
-203775,4201,"Psychology, General.",3,14,10
-203775,4228,"Clinical, Counseling and Applied Psychology.",3,0,1
-203775,4301,Criminal Justice and Corrections.,3,10,10
-203775,4400,"Human Services, General.",3,1,1
-203775,4407,Social Work.,3,17,18
-203775,4510,Political Science and Government.,3,2,2
-203775,5001,"Visual and Performing Arts, General.",3,2,3
-203775,5002,"Crafts/Craft Design, Folk Art and Artisanry.",3,,
-203775,5004,Design and Applied Arts.,3,,
-203775,5007,Fine and Studio Arts.,3,,
-203775,5009,Music.,3,0,2
-203775,5107,Health and Medical Administrative Services.,3,,
-203775,5110,Clinical/Medical Laboratory Science/Research and Allied Professions.,3,0,0
-203775,5122,Public Health.,3,,
-203775,5138,"Registered Nursing, Nursing Administration, Nursing Research and Clinical Nursing.",3,22,21
-203775,5202,"Business Administration, Management and Operations.",3,51,41
-203775,5203,Accounting and Related Services.,3,6,2
-203775,5208,Finance and Financial Management Services.,3,14,2
-203775,5209,Hospitality Administration/Management.,3,,0
-203775,5214,Marketing.,3,16,10
-203775,5401,History.,3,3,2
-203960,2401,"Liberal Arts and Sciences, General Studies and Humanities.",2,,
-203960,2601,"Biology, General.",3,1,4
-203960,5100,"Health Services/Allied Health/Health Sciences, General.",2,2,1
-203960,5100,"Health Services/Allied Health/Health Sciences, General.",3,40,45
-203960,5107,Health and Medical Administrative Services.,2,4,2
-203960,5107,Health and Medical Administrative Services.,3,18,21
-203960,5109,"Allied Health Diagnostic, Intervention, and Treatment Professions.",2,21,26
-203960,5138,"Registered Nursing, Nursing Administration, Nursing Research and Clinical Nursing.",2,148,137
-203960,5138,"Registered Nursing, Nursing Administration, Nursing Research and Clinical Nursing.",3,89,113
-207971,0301,Natural Resources Conservation and Research.,3,2,4
-207971,0501,Area Studies.,3,2,
-207971,0502,"Ethnic, Cultural Minority, Gender, and Group Studies.",3,2,2
-207971,0901,Communication and Media Studies.,3,10,16
-207971,1101,"Computer and Information Sciences, General.",3,2,0
-207971,1107,Computer Science.,3,59,51
-207971,1108,Computer Software and Media Applications.,3,8,9
-207971,1110,Computer/Information Technology Administration and Management.,3,0,3
-207971,1301,"Education, General.",3,6,7
-207971,1310,Special Education and Teaching.,3,1,
-207971,1312,"Teacher Education and Professional Development, Specific Levels and Methods.",3,7,3
-207971,1313,"Teacher Education and Professional Development, Specific Subject Areas.",3,4,5
-207971,1407,Chemical Engineering.,3,23,28
-207971,1409,Computer Engineering.,3,5,7
-207971,1410,"Electrical, Electronics, and Communications Engineering.",3,16,15
-207971,1412,Engineering Physics.,3,1,8
-207971,1419,Mechanical Engineering.,3,60,46
-207971,1425,Petroleum Engineering.,3,25,20
-207971,1517,Energy Systems Technologies/Technicians.,3,16,10
-207971,1603,"East Asian Languages, Literatures, and Linguistics.",3,3,1
-207971,1605,"Germanic Languages, Literatures, and Linguistics.",3,1,1
-207971,1609,"Romance Languages, Literatures, and Linguistics.",3,9,14
-207971,2301,"English Language and Literature, General.",3,11,17
-207971,2313,Rhetoric and Composition/Writing Studies.,3,5,6
-207971,2401,"Liberal Arts and Sciences, General Studies and Humanities.",3,0,2
-207971,2601,"Biology, General.",3,29,52
-207971,2602,"Biochemistry, Biophysics and Molecular Biology.",3,20,16
-207971,2701,Mathematics.,3,24,13
-207971,2703,Applied Mathematics.,3,9,7
-207971,3017,Behavioral Sciences.,3,,39
-207971,3099,"Multi/Interdisciplinary Studies, Other.",3,1,1
-207971,3105,"Sports, Kinesiology, and Physical Education/Fitness.",3,33,49
-207971,3800,"Philosophy and Religious Studies, General.",3,,0
-207971,3801,Philosophy.,3,2,2
-207971,3802,Religion/Religious Studies.,3,0,2
-207971,4005,Chemistry.,3,5,7
-207971,4006,Geological and Earth Sciences/Geosciences.,3,4,2
-207971,4008,Physics.,3,5,4
-207971,4201,"Psychology, General.",3,41,0
-207971,4502,Anthropology.,3,10,9
-207971,4506,Economics.,3,15,6
-207971,4510,Political Science and Government.,3,18,20
-207971,4511,Sociology.,3,8,9
-207971,5005,Drama/Theatre Arts and Stagecraft.,3,1,1
-207971,5006,Film/Video and Photographic Arts.,3,8,4
-207971,5007,Fine and Studio Arts.,3,22,16
-207971,5009,Music.,3,12,11
-207971,5010,"Arts, Entertainment, and Media Management.",3,8,9
-207971,5102,Communication Disorders Sciences and Services.,3,17,11
-207971,5109,"Allied Health Diagnostic, Intervention, and Treatment Professions.",3,0,0
-207971,5138,"Registered Nursing, Nursing Administration, Nursing Research and Clinical Nursing.",3,22,39
-207971,5199,"Health Professions and Related Clinical Sciences, Other.",3,0,0
-207971,5201,"Business/Commerce, General.",3,3,3
-207971,5202,"Business Administration, Management and Operations.",3,34,32
-207971,5203,Accounting and Related Services.,3,36,30
-207971,5208,Finance and Financial Management Services.,3,41,30
-207971,5210,Human Resources Management and Services.,3,14,14
-207971,5211,International Business.,3,4,5
-207971,5212,Management Information Systems and Services.,3,21,31
-207971,5214,Marketing.,3,16,8
-207971,5401,History.,3,12,8
-223898,1101,"Computer and Information Sciences, General.",2,0,0
-223898,1204,Cosmetology and Related Personal Grooming Services.,2,0,0
-223898,1301,"Education, General.",2,0,0
-223898,1312,"Teacher Education and Professional Development, Specific Levels and Methods.",2,0,0
-223898,1907,"Human Development, Family Studies, and Related Services.",2,12,2
-223898,2401,"Liberal Arts and Sciences, General Studies and Humanities.",2,315,313
-223898,4301,Criminal Justice and Corrections.,2,10,5
-223898,4302,Fire Protection.,2,2,4
-223898,4604,"Building/Construction Finishing, Management, and Inspection.",2,1,2
-223898,4702,"Heating, Air Conditioning, Ventilation and Refrigeration Maintenance Technology/Technician (HAC, HACR, HVAC, HVACR).",2,0,0
-223898,4706,Vehicle Maintenance and Repair Technologies/Technicians.,2,2,2
-223898,4805,Precision Metal Working.,2,0,0
-223898,5108,Allied Health and Medical Assisting Services.,2,4,0
-223898,5109,"Allied Health Diagnostic, Intervention, and Treatment Professions.",2,8,22
-223898,5138,"Registered Nursing, Nursing Administration, Nursing Research and Clinical Nursing.",2,47,51
-223898,5201,"Business/Commerce, General.",2,0,0
-223898,5202,"Business Administration, Management and Operations.",2,4,5
-223898,5204,Business Operations Support and Assistant Services.,2,0,0
-227757,0301,Natural Resources Conservation and Research.,3,7,7
-227757,0402,Architecture.,3,16,18
-227757,0408,"Architectural History, Criticism, and Conservation.",3,2,1
-227757,0409,Architectural Sciences and Technology.,3,20,17
-227757,0501,Area Studies.,3,13,7
-227757,0502,"Ethnic, Cultural Minority, Gender, and Group Studies.",3,3,5
-227757,1101,"Computer and Information Sciences, General.",3,121,164
-227757,1405,Biomedical/Medical Engineering.,3,34,29
-227757,1407,Chemical Engineering.,3,25,29
-227757,1408,Civil Engineering.,3,23,15
-227757,1410,"Electrical, Electronics, and Communications Engineering.",3,49,15
-227757,1419,Mechanical Engineering.,3,60,65
-227757,1437,Operations Research.,3,1,2
-227757,1447,Electrical and Computer Engineering.,3,,22
-227757,1516,Nanotechnology.,3,6,3
-227757,1601,"Linguistic, Comparative, and Related Language Studies and Services.",3,12,11
-227757,1605,"Germanic Languages, Literatures, and Linguistics.",3,3,1
-227757,1609,"Romance Languages, Literatures, and Linguistics.",3,16,13
-227757,1612,"Classics and Classical Languages, Literatures, and Linguistics.",3,4,6
-227757,2301,"English Language and Literature, General.",3,31,30
-227757,2601,"Biology, General.",3,57,70
-227757,2602,"Biochemistry, Biophysics and Molecular Biology.",3,38,18
-227757,2609,"Physiology, Pathology and Related Sciences.",3,2,57
-227757,2613,"Ecology, Evolution, Systematics, and Population Biology.",3,13,2
-227757,2615,Neurobiology and Neurosciences.,3,29,45
-227757,2701,Mathematics.,3,32,47
-227757,2703,Applied Mathematics.,3,13,11
-227757,2705,Statistics.,3,33,45
-227757,3013,Medieval and Renaissance Studies.,3,0,1
-227757,3022,Classical and Ancient Studies.,3,4,1
-227757,3025,Cognitive Science.,3,48,44
-227757,3071,Data Analytics.,3,,0
-227757,3099,"Multi/Interdisciplinary Studies, Other.",3,0,2
-227757,3105,"Sports, Kinesiology, and Physical Education/Fitness.",3,104,53
-227757,3801,Philosophy.,3,12,11
-227757,3802,Religion/Religious Studies.,3,4,5
-227757,4002,Astronomy and Astrophysics.,3,2,3
-227757,4005,Chemistry.,3,27,18
-227757,4006,Geological and Earth Sciences/Geosciences.,3,1,6
-227757,4008,Physics.,3,9,10
-227757,4201,"Psychology, General.",3,77,66
-227757,4405,Public Policy Analysis.,3,33,31
-227757,4501,"Social Sciences, General.",3,,3
-227757,4502,Anthropology.,3,11,5
-227757,4506,Economics.,3,75,88
-227757,4510,Political Science and Government.,3,37,28
-227757,4511,Sociology.,3,25,14
-227757,5001,"Visual and Performing Arts, General.",3,24,19
-227757,5007,Fine and Studio Arts.,3,8,6
-227757,5009,Music.,3,17,22
-227757,5100,"Health Services/Allied Health/Health Sciences, General.",3,9,18
-227757,5201,"Business/Commerce, General.",3,0,
-227757,5202,"Business Administration, Management and Operations.",3,22,16
-227757,5213,Management Sciences and Quantitative Methods.,3,0,1
-227757,5401,History.,3,23,17
-232885,5109,"Allied Health Diagnostic, Intervention, and Treatment Professions.",2,23,35
-232885,5138,"Registered Nursing, Nursing Administration, Nursing Research and Clinical Nursing.",3,95,91
-238722,0101,Agricultural Business and Management.,2,12,9
-238722,0102,Agricultural Mechanization.,2,12,6
-238722,0103,Agricultural Production Operations.,2,19,14
-238722,0111,Plant Sciences.,2,8,7
-238722,0183,Veterinary/Animal Health Technologies/Technicians.,2,10,12
-238722,0301,Natural Resources Conservation and Research.,2,26,21
-238722,1003,Graphic Communications.,2,,
-238722,1102,Computer Programming.,2,33,36
-238722,1109,Computer Systems Networking and Telecommunications.,2,24,24
-238722,1110,Computer/Information Technology Administration and Management.,2,51,55
-238722,1205,Culinary Arts and Related Services.,2,9,14
-238722,1312,"Teacher Education and Professional Development, Specific Levels and Methods.",2,31,26
-238722,1313,"Teacher Education and Professional Development, Specific Subject Areas.",2,0,1
-238722,1315,Teaching Assistants/Aides.,2,0,7
-238722,1503,Electrical/Electronic Engineering Technologies/Technicians.,2,14,12
-238722,1504,Electromechanical Technologies/Technicians.,2,39,29
-238722,1506,Industrial Production Technologies/Technicians.,2,9,7
-238722,1507,Quality Control and Safety Technologies/Technicians.,2,3,7
-238722,1513,Drafting/Design Engineering Technologies/Technicians.,2,20,15
-238722,1517,Energy Systems Technologies/Technicians.,2,,
-238722,2203,Legal Support Services.,2,12,10
-238722,2313,Rhetoric and Composition/Writing Studies.,2,5,9
-238722,3000,"Multi-/Interdisciplinary Studies, General.",2,,
-238722,3070,Data Science.,2,0,1
-238722,3099,"Multi/Interdisciplinary Studies, Other.",2,14,10
-238722,4101,Biology/Biotechnology Technologies/Technicians.,2,4,8
-238722,4301,Criminal Justice and Corrections.,2,69,73
-238722,4302,Fire Protection.,2,22,29
-238722,4303,Homeland Security.,2,3,0
-238722,4304,Security Science and Technology.,2,16,34
-238722,4604,"Building/Construction Finishing, Management, and Inspection.",2,11,16
-238722,4706,Vehicle Maintenance and Repair Technologies/Technicians.,2,38,39
-238722,4805,Precision Metal Working.,2,28,16
-238722,4901,Air Transportation.,2,7,13
-238722,5004,Design and Applied Arts.,2,41,35
-238722,5106,Dental Support Services and Allied Professions.,2,13,11
-238722,5107,Health and Medical Administrative Services.,2,17,14
-238722,5108,Allied Health and Medical Assisting Services.,2,20,17
-238722,5109,"Allied Health Diagnostic, Intervention, and Treatment Professions.",2,9,6
-238722,5110,Clinical/Medical Laboratory Science/Research and Allied Professions.,2,9,8
-238722,5115,Mental and Social Health Services and Allied Professions.,2,18,9
-238722,5138,"Registered Nursing, Nursing Administration, Nursing Research and Clinical Nursing.",2,95,90
-238722,5202,"Business Administration, Management and Operations.",2,90,87
-238722,5203,Accounting and Related Services.,2,42,48
-238722,5204,Business Operations Support and Assistant Services.,2,10,10
-238722,5207,Entrepreneurial and Small Business Operations.,2,5,6
-238722,5208,Finance and Financial Management Services.,2,7,10
-238722,5209,Hospitality Administration/Management.,2,15,8
-238722,5210,Human Resources Management and Services.,2,39,26
-238722,5212,Management Information Systems and Services.,2,4,10
-238722,5214,Marketing.,2,26,19
-449135,0101,Agricultural Business and Management.,2,5,6
-449135,1312,"Teacher Education and Professional Development, Specific Levels and Methods.",2,3,2
-449135,5107,Health and Medical Administrative Services.,2,5,5
-449135,5108,Allied Health and Medical Assisting Services.,2,7,0
-449135,5138,"Registered Nursing, Nursing Administration, Nursing Research and Clinical Nursing.",2,4,8
-449135,5138,"Registered Nursing, Nursing Administration, Nursing Research and Clinical Nursing.",3,3,7
-469416,0101,Agricultural Business and Management.,2,,5
-469416,1312,"Teacher Education and Professional Development, Specific Levels and Methods.",2,3,0
-469416,1312,"Teacher Education and Professional Development, Specific Levels and Methods.",3,8,8
-469416,5107,Health and Medical Administrative Services.,2,1,10
-469416,5108,Allied Health and Medical Assisting Services.,2,13,1
-469416,5109,"Allied Health Diagnostic, Intervention, and Treatment Professions.",2,5,1
-469416,5138,"Registered Nursing, Nursing Administration, Nursing Research and Clinical Nursing.",2,23,11
-469416,5138,"Registered Nursing, Nursing Administration, Nursing Research and Clinical Nursing.",3,21,22
+UNITID,CIPCODE,CIPDESC,CREDLEV,IPEDSCOUNT1,IPEDSCOUNT2,EARN_MDN_1YR
+106883,1312,"Teacher Education and Professional Development, Specific Levels and Methods.",2,10,10,
+106883,1506,Industrial Production Technologies/Technicians.,2,0,0,
+106883,1907,"Human Development, Family Studies, and Related Services.",2,4,2,
+106883,2401,"Liberal Arts and Sciences, General Studies and Humanities.",2,57,31,23903
+106883,3099,"Multi/Interdisciplinary Studies, Other.",2,1,3,
+106883,4301,Criminal Justice and Corrections.,2,11,11,
+106883,5108,Allied Health and Medical Assisting Services.,2,0,0,
+106883,5109,"Allied Health Diagnostic, Intervention, and Treatment Professions.",2,6,11,
+106883,5138,"Registered Nursing, Nursing Administration, Nursing Research and Clinical Nursing.",2,17,10,64932
+106883,5201,"Business/Commerce, General.",2,11,8,
+106883,5202,"Business Administration, Management and Operations.",2,3,2,
+106883,5204,Business Operations Support and Assistant Services.,2,0,1,
+110538,0100,"Agriculture, General.",3,48,52,
+110538,0101,Agricultural Business and Management.,3,77,69,47937
+110538,0109,Animal Sciences.,3,67,98,33387
+110538,0111,Plant Sciences.,3,15,22,43944
+110538,0301,Natural Resources Conservation and Research.,3,25,29,33758
+110538,0501,Area Studies.,3,23,17,23149
+110538,0502,"Ethnic, Cultural Minority, Gender, and Group Studies.",3,16,17,
+110538,0901,Communication and Media Studies.,3,114,94,38421
+110538,0904,Journalism.,3,44,21,35668
+110538,0907,"Radio, Television, and Digital Communication.",3,18,20,
+110538,1101,"Computer and Information Sciences, General.",3,77,78,49967
+110538,1107,Computer Science.,3,81,66,81021
+110538,1108,Computer Software and Media Applications.,3,0,0,
+110538,1305,Educational/Instructional Media Design.,3,0,0,
+110538,1312,"Teacher Education and Professional Development, Specific Levels and Methods.",3,90,55,
+110538,1313,"Teacher Education and Professional Development, Specific Subject Areas.",3,0,0,24427
+110538,1408,Civil Engineering.,3,88,58,72350
+110538,1409,Computer Engineering.,3,12,8,
+110538,1410,"Electrical, Electronics, and Communications Engineering.",3,28,29,
+110538,1419,Mechanical Engineering.,3,72,88,73297
+110538,1499,"Engineering, Other.",3,34,30,74204
+110538,1503,Electrical/Electronic Engineering Technologies/Technicians.,3,,,77965
+110538,1506,Industrial Production Technologies/Technicians.,3,1,1,
+110538,1510,Construction Engineering Technology/Technician.,3,95,116,88648
+110538,1515,Engineering-Related Fields.,3,30,15,69042
+110538,1601,"Linguistic, Comparative, and Related Language Studies and Services.",3,0,0,
+110538,1605,"Germanic Languages, Literatures, and Linguistics.",3,3,3,
+110538,1609,"Romance Languages, Literatures, and Linguistics.",3,23,13,22917
+110538,1905,"Foods, Nutrition, and Related Services.",3,,,31673
+110538,1907,"Human Development, Family Studies, and Related Services.",3,,,30441
+110538,2301,"English Language and Literature, General.",3,75,56,27045
+110538,2313,Rhetoric and Composition/Writing Studies.,3,0,0,
+110538,2401,"Liberal Arts and Sciences, General Studies and Humanities.",3,216,184,27196
+110538,2601,"Biology, General.",3,87,89,37120
+110538,2602,"Biochemistry, Biophysics and Molecular Biology.",3,25,11,42886
+110538,2603,Botany/Plant Biology.,3,,,
+110538,2605,Microbiological Sciences and Immunology.,3,19,16,49068
+110538,2609,"Physiology, Pathology and Related Sciences.",3,,,25952
+110538,2613,"Ecology, Evolution, Systematics, and Population Biology.",3,,,
+110538,2701,Mathematics.,3,37,36,38212
+110538,2705,Statistics.,3,,,
+110538,3001,Biological and Physical Sciences.,3,0,0,
+110538,3008,Mathematics and Computer Science.,3,,,
+110538,3018,Natural Sciences.,3,6,8,
+110538,3019,Nutrition Sciences.,3,52,34,25490
+110538,3023,Intercultural/Multicultural and Diversity Studies.,3,,,25525
+110538,3099,"Multi/Interdisciplinary Studies, Other.",3,0,0,
+110538,3101,"Parks, Recreation, and Leisure Studies.",3,101,49,33920
+110538,3105,"Sports, Kinesiology, and Physical Education/Fitness.",3,196,180,28236
+110538,3601,Leisure and Recreational Activities.,3,,,
+110538,3801,Philosophy.,3,10,8,
+110538,3802,Religion/Religious Studies.,3,12,14,
+110538,4005,Chemistry.,3,9,4,
+110538,4006,Geological and Earth Sciences/Geosciences.,3,8,7,
+110538,4008,Physics.,3,4,11,
+110538,4201,"Psychology, General.",3,346,313,31827
+110538,4301,Criminal Justice and Corrections.,3,139,152,36045
+110538,4404,Public Administration.,3,12,6,
+110538,4407,Social Work.,3,66,63,36840
+110538,4501,"Social Sciences, General.",3,58,52,36382
+110538,4502,Anthropology.,3,42,45,27856
+110538,4506,Economics.,3,33,27,37432
+110538,4507,Geography and Cartography.,3,19,17,40380
+110538,4509,International Relations and National Security Studies.,3,14,10,39060
+110538,4510,Political Science and Government.,3,76,67,41893
+110538,4511,Sociology.,3,162,158,36992
+110538,5004,Design and Applied Arts.,3,102,85,27573
+110538,5005,Drama/Theatre Arts and Stagecraft.,3,17,20,
+110538,5007,Fine and Studio Arts.,3,58,54,22628
+110538,5009,Music.,3,61,44,25339
+110538,5100,"Health Services/Allied Health/Health Sciences, General.",3,31,6,40057
+110538,5102,Communication Disorders Sciences and Services.,3,58,54,29297
+110538,5122,Public Health.,3,120,122,45339
+110538,5131,Dietetics and Clinical Nutrition Services.,3,0,0,
+110538,5138,"Registered Nursing, Nursing Administration, Nursing Research and Clinical Nursing.",3,127,113,113181
+110538,5199,"Health Professions and Related Clinical Sciences, Other.",3,0,0,
+110538,5202,"Business Administration, Management and Operations.",3,585,503,46145
+110538,5203,Accounting and Related Services.,3,,,60606
+110538,5212,Management Information Systems and Services.,3,,,
+110538,5220,Construction Management.,3,,,89075
+110538,5401,History.,3,53,47,30697
+119137,0103,Agricultural Production Operations.,2,33,32,
+119137,0301,Natural Resources Conservation and Research.,2,5,16,
+119137,0502,"Ethnic, Cultural Minority, Gender, and Group Studies.",2,2,2,
+119137,0901,Communication and Media Studies.,2,65,49,
+119137,0904,Journalism.,2,17,9,
+119137,0907,"Radio, Television, and Digital Communication.",2,36,44,
+119137,1002,Audiovisual Communications Technologies/Technicians.,2,0,0,
+119137,1003,Graphic Communications.,2,2,5,
+119137,1101,"Computer and Information Sciences, General.",2,0,0,
+119137,1107,Computer Science.,2,28,42,
+119137,1109,Computer Systems Networking and Telecommunications.,2,13,7,
+119137,1110,Computer/Information Technology Administration and Management.,2,8,10,
+119137,1310,Special Education and Teaching.,2,65,35,
+119137,1401,"Engineering, General.",2,16,15,
+119137,1504,Electromechanical Technologies/Technicians.,2,2,6,
+119137,1505,Environmental Control Technologies/Technicians.,2,0,0,
+119137,1609,"Romance Languages, Literatures, and Linguistics.",2,3,1,
+119137,1905,"Foods, Nutrition, and Related Services.",2,4,7,
+119137,1907,"Human Development, Family Studies, and Related Services.",2,73,28,
+119137,2200,Non-Professional Legal Studies.,2,5,6,
+119137,2301,"English Language and Literature, General.",2,28,18,
+119137,2401,"Liberal Arts and Sciences, General Studies and Humanities.",2,1302,1288,
+119137,2601,"Biology, General.",2,59,49,
+119137,2701,Mathematics.,2,55,55,
+119137,3001,Biological and Physical Sciences.,2,346,363,
+119137,3017,Behavioral Sciences.,2,0,0,
+119137,3105,"Sports, Kinesiology, and Physical Education/Fitness.",2,52,46,
+119137,3801,Philosophy.,2,8,6,
+119137,4002,Astronomy and Astrophysics.,2,0,0,
+119137,4005,Chemistry.,2,28,28,
+119137,4006,Geological and Earth Sciences/Geosciences.,2,4,1,
+119137,4008,Physics.,2,50,43,
+119137,4201,"Psychology, General.",2,188,170,
+119137,4299,"Psychology, Other.",2,0,0,
+119137,4301,Criminal Justice and Corrections.,2,73,63,
+119137,4501,"Social Sciences, General.",2,0,0,
+119137,4502,Anthropology.,2,31,31,
+119137,4503,Archeology.,2,0,5,
+119137,4506,Economics.,2,157,162,
+119137,4507,Geography and Cartography.,2,1,0,
+119137,4509,International Relations and National Security Studies.,2,0,0,
+119137,4510,Political Science and Government.,2,28,23,
+119137,4511,Sociology.,2,68,47,
+119137,5001,"Visual and Performing Arts, General.",2,10,12,
+119137,5003,Dance.,2,1,2,
+119137,5004,Design and Applied Arts.,2,23,17,
+119137,5005,Drama/Theatre Arts and Stagecraft.,2,18,29,
+119137,5006,Film/Video and Photographic Arts.,2,4,1,
+119137,5007,Fine and Studio Arts.,2,27,33,
+119137,5009,Music.,2,13,9,
+119137,5100,"Health Services/Allied Health/Health Sciences, General.",2,2,5,
+119137,5109,"Allied Health Diagnostic, Intervention, and Treatment Professions.",2,20,15,
+119137,5118,Ophthalmic and Optometric Support Services and Allied Professions.,2,0,0,
+119137,5138,"Registered Nursing, Nursing Administration, Nursing Research and Clinical Nursing.",2,67,51,105599
+119137,5201,"Business/Commerce, General.",2,50,42,
+119137,5202,"Business Administration, Management and Operations.",2,254,160,
+119137,5203,Accounting and Related Services.,2,0,0,
+119137,5204,Business Operations Support and Assistant Services.,2,0,0,
+119137,5209,Hospitality Administration/Management.,2,4,7,
+119137,5218,"General Sales, Merchandising and Related Marketing Operations.",2,0,0,
+119137,5401,History.,2,31,28,
+138187,0106,Applied Horticulture and Horticultural Business Services.,2,19,19,
+138187,0904,Journalism.,2,0,0,
+138187,0909,"Public Relations, Advertising, and Applied Communication.",2,2,13,
+138187,1101,"Computer and Information Sciences, General.",2,57,59,31754
+138187,1101,"Computer and Information Sciences, General.",3,46,73,
+138187,1102,Computer Programming.,2,57,60,36601
+138187,1108,Computer Software and Media Applications.,2,70,76,32099
+138187,1110,Computer/Information Technology Administration and Management.,2,49,55,45819
+138187,1205,Culinary Arts and Related Services.,2,83,72,25227
+138187,1500,"Engineering Technologies/Technicians, General.",2,1,2,
+138187,1502,Civil Engineering Technologies/Technicians.,2,1,0,
+138187,1503,Electrical/Electronic Engineering Technologies/Technicians.,2,19,20,40388
+138187,1503,Electrical/Electronic Engineering Technologies/Technicians.,3,22,11,64538
+138187,1510,Construction Engineering Technology/Technician.,2,25,19,
+138187,1512,Computer Engineering Technologies/Technicians.,2,0,0,
+138187,1513,Drafting/Design Engineering Technologies/Technicians.,2,11,7,45701
+138187,1517,Energy Systems Technologies/Technicians.,2,8,10,
+138187,2203,Legal Support Services.,2,39,52,32210
+138187,2401,"Liberal Arts and Sciences, General Studies and Humanities.",2,7147,6534,25001
+138187,4101,Biology/Biotechnology Technologies/Technicians.,2,17,18,
+138187,4103,Physical Science Technologies/Technicians.,2,,2,
+138187,4301,Criminal Justice and Corrections.,2,89,51,33246
+138187,4302,Fire Protection.,2,63,56,45657
+138187,5005,Drama/Theatre Arts and Stagecraft.,2,11,11,
+138187,5006,Film/Video and Photographic Arts.,2,45,49,16635
+138187,5009,Music.,2,36,32,22985
+138187,5106,Dental Support Services and Allied Professions.,2,23,42,57535
+138187,5107,Health and Medical Administrative Services.,2,41,42,
+138187,5109,"Allied Health Diagnostic, Intervention, and Treatment Professions.",2,87,85,56945
+138187,5109,"Allied Health Diagnostic, Intervention, and Treatment Professions.",3,66,41,68564
+138187,5138,"Registered Nursing, Nursing Administration, Nursing Research and Clinical Nursing.",2,228,437,70422
+138187,5138,"Registered Nursing, Nursing Administration, Nursing Research and Clinical Nursing.",3,137,140,93751
+138187,5202,"Business Administration, Management and Operations.",2,225,209,31120
+138187,5202,"Business Administration, Management and Operations.",3,490,466,39073
+138187,5203,Accounting and Related Services.,2,38,42,37209
+138187,5204,Business Operations Support and Assistant Services.,2,,,
+138187,5209,Hospitality Administration/Management.,2,98,67,31588
+138187,5214,Marketing.,2,0,0,
+138187,5215,Real Estate.,2,11,10,
+146205,0101,Agricultural Business and Management.,2,,1,
+146205,0901,Communication and Media Studies.,2,,,
+146205,1101,"Computer and Information Sciences, General.",2,6,2,
+146205,1110,Computer/Information Technology Administration and Management.,2,22,10,
+146205,1204,Cosmetology and Related Personal Grooming Services.,2,2,4,
+146205,1312,"Teacher Education and Professional Development, Specific Levels and Methods.",2,,,
+146205,1313,"Teacher Education and Professional Development, Specific Subject Areas.",2,0,0,
+146205,1401,"Engineering, General.",2,5,4,
+146205,1503,Electrical/Electronic Engineering Technologies/Technicians.,2,4,3,
+146205,1504,Electromechanical Technologies/Technicians.,2,1,7,
+146205,1505,Environmental Control Technologies/Technicians.,2,0,0,
+146205,1506,Industrial Production Technologies/Technicians.,2,1,1,
+146205,1616,American Sign Language.,2,3,1,
+146205,1907,"Human Development, Family Studies, and Related Services.",2,4,6,
+146205,2200,Non-Professional Legal Studies.,2,,,
+146205,2401,"Liberal Arts and Sciences, General Studies and Humanities.",2,210,210,23892
+146205,3001,Biological and Physical Sciences.,2,45,55,
+146205,4201,"Psychology, General.",2,,,
+146205,4301,Criminal Justice and Corrections.,2,8,5,
+146205,4407,Social Work.,2,,,
+146205,4511,Sociology.,2,,,
+146205,4600,"Construction Trades, General.",2,0,0,
+146205,4603,Electrical and Power Transmission Installers.,2,0,0,
+146205,4701,Electrical/Electronics Maintenance and Repair Technologies/Technicians.,2,4,5,
+146205,4702,"Heating, Air Conditioning, Ventilation and Refrigeration Maintenance Technology/Technician (HAC, HACR, HVAC, HVACR).",2,12,14,
+146205,4703,Heavy/Industrial Equipment Maintenance Technologies/Technicians.,2,2,2,
+146205,4706,Vehicle Maintenance and Repair Technologies/Technicians.,2,5,6,
+146205,4805,Precision Metal Working.,2,6,3,
+146205,5004,Design and Applied Arts.,2,4,3,
+146205,5007,Fine and Studio Arts.,2,1,1,
+146205,5009,Music.,2,0,0,
+146205,5106,Dental Support Services and Allied Professions.,2,,,
+146205,5107,Health and Medical Administrative Services.,2,0,1,
+146205,5108,Allied Health and Medical Assisting Services.,2,8,5,
+146205,5109,"Allied Health Diagnostic, Intervention, and Treatment Professions.",2,8,4,
+146205,5110,Clinical/Medical Laboratory Science/Research and Allied Professions.,2,6,4,
+146205,5138,"Registered Nursing, Nursing Administration, Nursing Research and Clinical Nursing.",2,49,65,67691
+146205,5139,"Practical Nursing, Vocational Nursing and Nursing Assistants.",2,,,
+146205,5202,"Business Administration, Management and Operations.",2,7,0,
+146205,5203,Accounting and Related Services.,2,2,3,
+146205,5204,Business Operations Support and Assistant Services.,2,2,6,
+146205,5220,Construction Management.,2,10,10,
+146205,5401,History.,2,,,
+153834,0301,Natural Resources Conservation and Research.,3,14,13,19239
+153834,0901,Communication and Media Studies.,3,16,10,42012
+153834,1104,Information Science/Studies.,3,14,21,
+153834,1107,Computer Science.,3,13,17,63760
+153834,1312,"Teacher Education and Professional Development, Specific Levels and Methods.",3,22,13,45691
+153834,1605,"Germanic Languages, Literatures, and Linguistics.",3,11,6,
+153834,1609,"Romance Languages, Literatures, and Linguistics.",3,10,7,
+153834,1612,"Classics and Classical Languages, Literatures, and Linguistics.",3,2,,
+153834,2200,Non-Professional Legal Studies.,3,0,0,
+153834,2301,"English Language and Literature, General.",3,24,22,38490
+153834,2401,"Liberal Arts and Sciences, General Studies and Humanities.",3,,,42926
+153834,2601,"Biology, General.",3,36,37,29359
+153834,2615,Neurobiology and Neurosciences.,3,7,8,
+153834,2701,Mathematics.,3,5,8,
+153834,2705,Statistics.,3,2,6,
+153834,3020,International/Globalization Studies.,3,6,6,
+153834,3026,Cultural Studies/Critical Theory and Analysis.,3,2,0,
+153834,3099,"Multi/Interdisciplinary Studies, Other.",3,4,3,
+153834,3105,"Sports, Kinesiology, and Physical Education/Fitness.",3,7,5,
+153834,3801,Philosophy.,3,3,6,
+153834,3802,Religion/Religious Studies.,3,3,1,
+153834,4005,Chemistry.,3,14,8,
+153834,4008,Physics.,3,2,5,
+153834,4201,"Psychology, General.",3,,,30302
+153834,4227,Research and Experimental Psychology.,3,30,23,
+153834,4407,Social Work.,3,15,14,30372
+153834,4502,Anthropology.,3,5,7,
+153834,4506,Economics.,3,10,8,
+153834,4510,Political Science and Government.,3,18,18,21358
+153834,4511,Sociology.,3,8,9,
+153834,5003,Dance.,3,1,,
+153834,5004,Design and Applied Arts.,3,17,15,
+153834,5005,Drama/Theatre Arts and Stagecraft.,3,9,6,
+153834,5007,Fine and Studio Arts.,3,10,7,
+153834,5009,Music.,3,37,33,45367
+153834,5100,"Health Services/Allied Health/Health Sciences, General.",3,13,11,
+153834,5109,"Allied Health Diagnostic, Intervention, and Treatment Professions.",3,2,,
+153834,5122,Public Health.,3,2,5,
+153834,5138,"Registered Nursing, Nursing Administration, Nursing Research and Clinical Nursing.",3,40,31,75533
+153834,5202,"Business Administration, Management and Operations.",3,30,31,49491
+153834,5203,Accounting and Related Services.,3,23,11,60068
+153834,5212,Management Information Systems and Services.,3,0,,
+153834,5401,History.,3,12,11,
+155308,1312,"Teacher Education and Professional Development, Specific Levels and Methods.",3,1,0,
+155308,2401,"Liberal Arts and Sciences, General Studies and Humanities.",2,1,0,
+155308,3000,"Multi-/Interdisciplinary Studies, General.",2,,2,
+155308,3000,"Multi-/Interdisciplinary Studies, General.",3,,0,
+155308,3105,"Sports, Kinesiology, and Physical Education/Fitness.",2,0,0,
+155308,3105,"Sports, Kinesiology, and Physical Education/Fitness.",3,0,0,
+155308,3902,Bible/Biblical Studies.,2,0,0,
+155308,3902,Bible/Biblical Studies.,3,2,0,
+155308,3903,Missions/Missionary Studies and Missiology.,2,0,0,
+155308,3903,Missions/Missionary Studies and Missiology.,3,0,0,
+155308,3905,Religious Music and Worship.,2,0,0,
+155308,3907,Pastoral Counseling and Specialized Ministries.,2,1,0,
+155308,3907,Pastoral Counseling and Specialized Ministries.,3,1,0,
+155308,4201,"Psychology, General.",2,0,0,
+155308,4201,"Psychology, General.",3,1,2,
+155308,5202,"Business Administration, Management and Operations.",2,8,1,
+155308,5202,"Business Administration, Management and Operations.",3,10,11,
+157535,0901,Communication and Media Studies.,3,13,8,
+157535,1101,"Computer and Information Sciences, General.",3,5,2,
+157535,1110,Computer/Information Technology Administration and Management.,3,0,0,
+157535,1301,"Education, General.",3,2,4,
+157535,1312,"Teacher Education and Professional Development, Specific Levels and Methods.",3,11,16,37784
+157535,1313,"Teacher Education and Professional Development, Specific Subject Areas.",3,1,4,
+157535,2301,"English Language and Literature, General.",3,3,2,
+157535,2601,"Biology, General.",3,35,30,28699
+157535,2701,Mathematics.,3,0,1,
+157535,3099,"Multi/Interdisciplinary Studies, Other.",3,0,2,
+157535,3105,"Sports, Kinesiology, and Physical Education/Fitness.",3,0,0,
+157535,3802,Religion/Religious Studies.,3,0,2,
+157535,4005,Chemistry.,3,1,0,
+157535,4201,"Psychology, General.",3,17,24,
+157535,4301,Criminal Justice and Corrections.,2,0,0,
+157535,4301,Criminal Justice and Corrections.,3,24,22,27025
+157535,4407,Social Work.,3,7,12,
+157535,4511,Sociology.,3,7,10,
+157535,5001,"Visual and Performing Arts, General.",3,0,0,
+157535,5006,Film/Video and Photographic Arts.,3,8,3,
+157535,5007,Fine and Studio Arts.,3,1,0,
+157535,5010,"Arts, Entertainment, and Media Management.",3,,,
+157535,5138,"Registered Nursing, Nursing Administration, Nursing Research and Clinical Nursing.",2,41,40,76570
+157535,5138,"Registered Nursing, Nursing Administration, Nursing Research and Clinical Nursing.",3,14,10,82878
+157535,5202,"Business Administration, Management and Operations.",2,1,0,
+157535,5202,"Business Administration, Management and Operations.",3,41,49,36213
+157535,5401,History.,3,7,6,
+166027,0301,Natural Resources Conservation and Research.,3,15,13,
+166027,0501,Area Studies.,3,11,25,
+166027,0502,"Ethnic, Cultural Minority, Gender, and Group Studies.",3,29,34,
+166027,1107,Computer Science.,3,173,183,152251
+166027,1110,Computer/Information Technology Administration and Management.,3,0,0,
+166027,1301,"Education, General.",3,0,0,
+166027,1405,Biomedical/Medical Engineering.,3,8,16,
+166027,1410,"Electrical, Electronics, and Communications Engineering.",3,7,8,
+166027,1413,Engineering Science.,3,45,43,
+166027,1419,Mechanical Engineering.,3,18,20,
+166027,1601,"Linguistic, Comparative, and Related Language Studies and Services.",3,20,22,
+166027,1602,"African Languages, Literatures, and Linguistics.",3,0,0,
+166027,1603,"East Asian Languages, Literatures, and Linguistics.",3,0,0,
+166027,1604,"Slavic, Baltic and Albanian Languages, Literatures, and Linguistics.",3,1,3,
+166027,1605,"Germanic Languages, Literatures, and Linguistics.",3,2,0,
+166027,1607,"South Asian Languages, Literatures, and Linguistics.",3,0,0,
+166027,1609,"Romance Languages, Literatures, and Linguistics.",3,6,5,
+166027,1611,"Middle/Near Eastern and Semitic Languages, Literatures, and Linguistics.",3,0,0,
+166027,1612,"Classics and Classical Languages, Literatures, and Linguistics.",3,15,14,
+166027,1613,"Celtic Languages, Literatures, and Linguistics.",3,0,0,
+166027,1614,"Southeast Asian and Australasian/Pacific Languages, Literatures, and Linguistics.",3,0,0,
+166027,1615,"Turkic, Uralic-Altaic, Caucasian, and Central Asian Languages, Literatures, and Linguistics.",3,0,0,
+166027,2301,"English Language and Literature, General.",3,34,38,30838
+166027,2401,"Liberal Arts and Sciences, General Studies and Humanities.",2,0,1,40995
+166027,2401,"Liberal Arts and Sciences, General Studies and Humanities.",3,31,25,
+166027,2601,"Biology, General.",3,0,0,
+166027,2602,"Biochemistry, Biophysics and Molecular Biology.",3,0,0,
+166027,2604,Cell/Cellular Biology and Anatomical Sciences.,3,75,75,51569
+166027,2605,Microbiological Sciences and Immunology.,3,0,0,
+166027,2613,"Ecology, Evolution, Systematics, and Population Biology.",3,73,60,31999
+166027,2615,Neurobiology and Neurosciences.,3,86,100,46993
+166027,2701,Mathematics.,3,77,61,
+166027,2703,Applied Mathematics.,3,80,120,114279
+166027,2705,Statistics.,3,61,52,141116
+166027,2902,"Intelligence, Command Control and Information Operations.",3,0,0,
+166027,3013,Medieval and Renaissance Studies.,3,0,0,
+166027,3017,Behavioral Sciences.,3,0,0,
+166027,3018,Natural Sciences.,3,35,29,69242
+166027,3026,Cultural Studies/Critical Theory and Analysis.,3,0,0,
+166027,3033,Sustainability Studies.,3,0,0,
+166027,3601,Leisure and Recreational Activities.,3,,,
+166027,3801,Philosophy.,3,34,32,
+166027,3802,Religion/Religious Studies.,3,7,8,
+166027,3906,Theological and Ministerial Studies.,3,0,0,
+166027,4002,Astronomy and Astrophysics.,3,5,18,
+166027,4005,Chemistry.,3,42,76,
+166027,4006,Geological and Earth Sciences/Geosciences.,3,0,0,
+166027,4008,Physics.,3,41,51,
+166027,4201,"Psychology, General.",3,0,0,
+166027,4227,Research and Experimental Psychology.,3,66,101,41501
+166027,4501,"Social Sciences, General.",3,195,189,56540
+166027,4502,Anthropology.,3,13,25,
+166027,4503,Archeology.,3,0,0,
+166027,4506,Economics.,3,186,258,103993
+166027,4510,Political Science and Government.,3,121,164,61543
+166027,4511,Sociology.,3,42,33,
+166027,5001,"Visual and Performing Arts, General.",3,31,26,
+166027,5005,Drama/Theatre Arts and Stagecraft.,3,0,0,
+166027,5006,Film/Video and Photographic Arts.,3,0,0,
+166027,5007,Fine and Studio Arts.,3,23,19,
+166027,5009,Music.,3,18,10,
+166027,5122,Public Health.,3,0,0,
+166027,5202,"Business Administration, Management and Operations.",3,0,0,
+166027,5205,Business/Corporate Communications.,3,0,0,
+166027,5210,Human Resources Management and Services.,3,0,0,
+166027,5214,Marketing.,3,0,0,
+166027,5401,History.,3,139,161,53468
+167905,0106,Applied Horticulture and Horticultural Business Services.,2,3,2,
+167905,0409,Architectural Sciences and Technology.,2,14,16,
+167905,1002,Audiovisual Communications Technologies/Technicians.,2,8,3,
+167905,1003,Graphic Communications.,2,8,6,
+167905,1102,Computer Programming.,2,10,8,
+167905,1107,Computer Science.,2,12,13,
+167905,1108,Computer Software and Media Applications.,2,0,0,
+167905,1110,Computer/Information Technology Administration and Management.,2,30,26,25478
+167905,1312,"Teacher Education and Professional Development, Specific Levels and Methods.",2,25,17,28769
+167905,1401,"Engineering, General.",2,11,13,
+167905,1502,Civil Engineering Technologies/Technicians.,2,1,1,
+167905,1503,Electrical/Electronic Engineering Technologies/Technicians.,2,7,5,
+167905,1504,Electromechanical Technologies/Technicians.,2,13,15,52666
+167905,1508,Mechanical Engineering Related Technologies/Technicians.,2,24,21,54793
+167905,1512,Computer Engineering Technologies/Technicians.,2,12,8,
+167905,2401,"Liberal Arts and Sciences, General Studies and Humanities.",2,150,120,30413
+167905,2601,"Biology, General.",2,13,13,
+167905,2612,Biotechnology.,2,,2,
+167905,2701,Mathematics.,2,0,3,
+167905,4005,Chemistry.,2,0,1,
+167905,4008,Physics.,2,0,0,
+167905,4301,Criminal Justice and Corrections.,2,45,28,37044
+167905,4302,Fire Protection.,2,15,12,
+167905,4604,"Building/Construction Finishing, Management, and Inspection.",2,0,0,
+167905,4702,"Heating, Air Conditioning, Ventilation and Refrigeration Maintenance Technology/Technician (HAC, HACR, HVAC, HVACR).",2,6,5,
+167905,4706,Vehicle Maintenance and Repair Technologies/Technicians.,2,2,0,
+167905,5004,Design and Applied Arts.,2,5,8,
+167905,5007,Fine and Studio Arts.,2,12,3,
+167905,5100,"Health Services/Allied Health/Health Sciences, General.",2,15,15,
+167905,5106,Dental Support Services and Allied Professions.,2,20,16,56883
+167905,5107,Health and Medical Administrative Services.,2,12,15,40062
+167905,5108,Allied Health and Medical Assisting Services.,2,45,25,38844
+167905,5109,"Allied Health Diagnostic, Intervention, and Treatment Professions.",2,52,45,64346
+167905,5110,Clinical/Medical Laboratory Science/Research and Allied Professions.,2,13,8,66182
+167905,5111,Health/Medical Preparatory Programs.,2,,,
+167905,5138,"Registered Nursing, Nursing Administration, Nursing Research and Clinical Nursing.",2,66,57,75769
+167905,5201,"Business/Commerce, General.",2,59,58,19969
+167905,5202,"Business Administration, Management and Operations.",2,1,2,
+167905,5203,Accounting and Related Services.,2,2,0,
+167905,5204,Business Operations Support and Assistant Services.,2,7,8,
+167905,5207,Entrepreneurial and Small Business Operations.,2,1,0,
+167905,5214,Marketing.,2,,1,
+171304,0101,Agricultural Business and Management.,2,4,4,
+171304,0104,Agricultural and Food Products Processing.,2,,1,
+171304,0901,Communication and Media Studies.,2,,0,
+171304,0907,"Radio, Television, and Digital Communication.",2,0,2,
+171304,1002,Audiovisual Communications Technologies/Technicians.,2,1,3,
+171304,1102,Computer Programming.,2,0,4,
+171304,1106,Data Entry/Microcomputer Applications.,2,0,0,
+171304,1108,Computer Software and Media Applications.,2,3,1,
+171304,1109,Computer Systems Networking and Telecommunications.,2,9,11,
+171304,1110,Computer/Information Technology Administration and Management.,2,1,1,
+171304,1312,"Teacher Education and Professional Development, Specific Levels and Methods.",2,7,12,
+171304,1315,Teaching Assistants/Aides.,2,0,1,
+171304,1401,"Engineering, General.",2,2,4,
+171304,1419,Mechanical Engineering.,2,,0,
+171304,1500,"Engineering Technologies/Technicians, General.",2,4,3,
+171304,1503,Electrical/Electronic Engineering Technologies/Technicians.,2,5,8,
+171304,1504,Electromechanical Technologies/Technicians.,2,1,0,
+171304,1506,Industrial Production Technologies/Technicians.,2,4,3,
+171304,1513,Drafting/Design Engineering Technologies/Technicians.,2,2,5,
+171304,1907,"Human Development, Family Studies, and Related Services.",2,,0,
+171304,2401,"Liberal Arts and Sciences, General Studies and Humanities.",2,321,289,27362
+171304,2601,"Biology, General.",2,,0,
+171304,3105,"Sports, Kinesiology, and Physical Education/Fitness.",2,,1,
+171304,4201,"Psychology, General.",2,,0,
+171304,4301,Criminal Justice and Corrections.,2,7,8,
+171304,4706,Vehicle Maintenance and Repair Technologies/Technicians.,2,4,1,
+171304,4805,Precision Metal Working.,2,10,3,
+171304,5004,Design and Applied Arts.,2,4,18,
+171304,5007,Fine and Studio Arts.,2,,1,
+171304,5009,Music.,2,0,0,
+171304,5100,"Health Services/Allied Health/Health Sciences, General.",2,8,7,
+171304,5107,Health and Medical Administrative Services.,2,3,4,
+171304,5108,Allied Health and Medical Assisting Services.,2,19,24,58377
+171304,5109,"Allied Health Diagnostic, Intervention, and Treatment Professions.",2,,0,
+171304,5122,Public Health.,2,,0,
+171304,5138,"Registered Nursing, Nursing Administration, Nursing Research and Clinical Nursing.",2,64,69,65793
+171304,5201,"Business/Commerce, General.",2,5,11,
+171304,5202,"Business Administration, Management and Operations.",2,10,9,
+171304,5203,Accounting and Related Services.,2,2,4,
+171304,5204,Business Operations Support and Assistant Services.,2,1,4,
+171304,5214,Marketing.,2,4,4,
+176178,0101,Agricultural Business and Management.,2,1,12,
+176178,0102,Agricultural Mechanization.,2,16,14,49040
+176178,0103,Agricultural Production Operations.,2,0,4,
+176178,0108,Agricultural Public Services.,2,,,
+176178,0109,Animal Sciences.,2,,1,
+176178,0113,Agriculture/Veterinary Preparatory Programs.,2,,,
+176178,0183,Veterinary/Animal Health Technologies/Technicians.,2,,,
+176178,1102,Computer Programming.,2,2,7,
+176178,1104,Information Science/Studies.,2,,9,
+176178,1107,Computer Science.,2,,10,
+176178,1109,Computer Systems Networking and Telecommunications.,2,9,10,
+176178,1203,Funeral Service and Mortuary Science.,2,8,9,
+176178,1312,"Teacher Education and Professional Development, Specific Levels and Methods.",2,,28,18490
+176178,1313,"Teacher Education and Professional Development, Specific Subject Areas.",2,,2,
+176178,1401,"Engineering, General.",2,,2,
+176178,1502,Civil Engineering Technologies/Technicians.,2,7,6,
+176178,1907,"Human Development, Family Studies, and Related Services.",2,7,13,
+176178,2203,Legal Support Services.,2,4,9,
+176178,2401,"Liberal Arts and Sciences, General Studies and Humanities.",2,705,465,21515
+176178,2601,"Biology, General.",2,,6,
+176178,3105,"Sports, Kinesiology, and Physical Education/Fitness.",2,,6,
+176178,4005,Chemistry.,2,,1,
+176178,4201,"Psychology, General.",2,,7,
+176178,4301,Criminal Justice and Corrections.,2,,12,
+176178,4407,Social Work.,2,,18,
+176178,4701,Electrical/Electronics Maintenance and Repair Technologies/Technicians.,2,13,17,
+176178,4702,"Heating, Air Conditioning, Ventilation and Refrigeration Maintenance Technology/Technician (HAC, HACR, HVAC, HVACR).",2,9,13,
+176178,4706,Vehicle Maintenance and Repair Technologies/Technicians.,2,13,27,
+176178,4805,Precision Metal Working.,2,12,9,
+176178,5004,Design and Applied Arts.,2,21,22,
+176178,5005,Drama/Theatre Arts and Stagecraft.,2,,3,
+176178,5007,Fine and Studio Arts.,2,,9,
+176178,5009,Music.,2,,2,
+176178,5010,"Arts, Entertainment, and Media Management.",2,,3,
+176178,5102,Communication Disorders Sciences and Services.,2,,10,
+176178,5106,Dental Support Services and Allied Professions.,2,,5,
+176178,5107,Health and Medical Administrative Services.,2,14,26,
+176178,5109,"Allied Health Diagnostic, Intervention, and Treatment Professions.",2,36,50,45024
+176178,5110,Clinical/Medical Laboratory Science/Research and Allied Professions.,2,,1,
+176178,5111,Health/Medical Preparatory Programs.,2,,10,
+176178,5123,Rehabilitation and Therapeutic Professions.,2,,,
+176178,5138,"Registered Nursing, Nursing Administration, Nursing Research and Clinical Nursing.",2,106,120,70472
+176178,5202,"Business Administration, Management and Operations.",2,25,72,29997
+176178,5203,Accounting and Related Services.,2,,25,28725
+176178,5204,Business Operations Support and Assistant Services.,2,5,5,
+176178,5209,Hospitality Administration/Management.,2,2,5,
+176178,5214,Marketing.,2,13,14,
+179159,0301,Natural Resources Conservation and Research.,3,9,16,
+179159,0501,Area Studies.,3,4,4,
+179159,0502,"Ethnic, Cultural Minority, Gender, and Group Studies.",3,7,4,
+179159,0901,Communication and Media Studies.,3,46,39,30047
+179159,1101,"Computer and Information Sciences, General.",3,7,14,64436
+179159,1107,Computer Science.,3,35,35,69849
+179159,1301,"Education, General.",3,12,22,36244
+179159,1402,"Aerospace, Aeronautical, and Astronautical/Space Engineering.",3,33,35,75122
+179159,1405,Biomedical/Medical Engineering.,3,48,30,56932
+179159,1408,Civil Engineering.,3,14,19,
+179159,1409,Computer Engineering.,3,9,9,
+179159,1410,"Electrical, Electronics, and Communications Engineering.",3,9,7,
+179159,1412,Engineering Physics.,3,2,4,
+179159,1419,Mechanical Engineering.,3,27,36,74209
+179159,1604,"Slavic, Baltic and Albanian Languages, Literatures, and Linguistics.",3,0,1,
+179159,1605,"Germanic Languages, Literatures, and Linguistics.",3,3,0,
+179159,1609,"Romance Languages, Literatures, and Linguistics.",3,21,27,
+179159,1612,"Classics and Classical Languages, Literatures, and Linguistics.",3,0,0,
+179159,2200,Non-Professional Legal Studies.,3,,,
+179159,2301,"English Language and Literature, General.",3,18,23,33893
+179159,2401,"Liberal Arts and Sciences, General Studies and Humanities.",2,2,0,
+179159,2401,"Liberal Arts and Sciences, General Studies and Humanities.",3,12,4,48829
+179159,2601,"Biology, General.",3,81,103,34620
+179159,2602,"Biochemistry, Biophysics and Molecular Biology.",3,6,12,
+179159,2611,"Biomathematics, Bioinformatics, and Computational Biology.",3,7,6,
+179159,2615,Neurobiology and Neurosciences.,3,53,66,22459
+179159,2701,Mathematics.,3,17,17,
+179159,3013,Medieval and Renaissance Studies.,3,,1,
+179159,3019,Nutrition Sciences.,3,24,15,
+179159,3022,Classical and Ancient Studies.,3,0,4,
+179159,3070,Data Science.,3,5,8,
+179159,3105,"Sports, Kinesiology, and Physical Education/Fitness.",3,99,117,
+179159,3801,Philosophy.,3,14,15,
+179159,3802,Religion/Religious Studies.,3,2,4,
+179159,3906,Theological and Ministerial Studies.,3,4,6,
+179159,4004,Atmospheric Sciences and Meteorology.,3,3,6,
+179159,4005,Chemistry.,3,14,10,
+179159,4006,Geological and Earth Sciences/Geosciences.,3,7,1,
+179159,4008,Physics.,3,7,2,
+179159,4201,"Psychology, General.",3,58,99,34295
+179159,4301,Criminal Justice and Corrections.,3,26,35,45709
+179159,4303,Homeland Security.,3,8,4,
+179159,4304,Security Science and Technology.,3,10,14,
+179159,4402,Community Organization and Advocacy.,3,0,0,
+179159,4407,Social Work.,3,22,29,
+179159,4502,Anthropology.,3,8,15,
+179159,4509,International Relations and National Security Studies.,3,11,12,
+179159,4510,Political Science and Government.,3,41,54,30502
+179159,4511,Sociology.,3,16,13,
+179159,4901,Air Transportation.,3,33,36,44459
+179159,5005,Drama/Theatre Arts and Stagecraft.,3,3,4,
+179159,5007,Fine and Studio Arts.,3,10,12,
+179159,5009,Music.,3,2,2,
+179159,5010,"Arts, Entertainment, and Media Management.",3,0,0,
+179159,5100,"Health Services/Allied Health/Health Sciences, General.",3,53,64,29092
+179159,5102,Communication Disorders Sciences and Services.,3,15,19,
+179159,5107,Health and Medical Administrative Services.,3,40,50,48436
+179159,5109,"Allied Health Diagnostic, Intervention, and Treatment Professions.",3,20,36,62107
+179159,5110,Clinical/Medical Laboratory Science/Research and Allied Professions.,3,31,29,40156
+179159,5120,"Pharmacy, Pharmaceutical Sciences, and Administration.",3,12,6,
+179159,5122,Public Health.,3,35,54,33863
+179159,5123,Rehabilitation and Therapeutic Professions.,3,57,56,
+179159,5131,Dietetics and Clinical Nutrition Services.,3,,,
+179159,5132,"Health Professions Education, Ethics, and Humanities.",3,9,9,
+179159,5138,"Registered Nursing, Nursing Administration, Nursing Research and Clinical Nursing.",3,189,220,70226
+179159,5202,"Business Administration, Management and Operations.",3,15,19,48371
+179159,5203,Accounting and Related Services.,3,31,37,63153
+179159,5206,Business/Managerial Economics.,3,30,42,49314
+179159,5207,Entrepreneurial and Small Business Operations.,3,14,11,57411
+179159,5208,Finance and Financial Management Services.,3,73,89,60055
+179159,5210,Human Resources Management and Services.,3,14,21,52377
+179159,5211,International Business.,3,30,37,52670
+179159,5212,Management Information Systems and Services.,3,12,6,59754
+179159,5213,Management Sciences and Quantitative Methods.,3,17,19,
+179159,5214,Marketing.,3,51,62,42729
+179159,5401,History.,3,14,20,
+183026,0301,Natural Resources Conservation and Research.,3,388,504,43868
+183026,0907,"Radio, Television, and Digital Communication.",3,,,
+183026,0909,"Public Relations, Advertising, and Applied Communication.",3,595,608,46520
+183026,1101,"Computer and Information Sciences, General.",2,359,360,50111
+183026,1101,"Computer and Information Sciences, General.",3,482,620,61322
+183026,1105,Computer Systems Analysis.,3,,,
+183026,1107,Computer Science.,2,50,122,
+183026,1107,Computer Science.,3,437,631,71764
+183026,1108,Computer Software and Media Applications.,3,221,308,40882
+183026,1110,Computer/Information Technology Administration and Management.,2,2,42,
+183026,1110,Computer/Information Technology Administration and Management.,3,227,336,
+183026,1205,Culinary Arts and Related Services.,2,,,
+183026,1205,Culinary Arts and Related Services.,3,2,1,35959
+183026,1301,"Education, General.",3,18,26,
+183026,1304,Educational Administration and Supervision.,3,,1,
+183026,1310,Special Education and Teaching.,3,2,2,
+183026,1312,"Teacher Education and Professional Development, Specific Levels and Methods.",3,39,35,41015
+183026,1313,"Teacher Education and Professional Development, Specific Subject Areas.",3,12,5,44738
+183026,1402,"Aerospace, Aeronautical, and Astronautical/Space Engineering.",3,4,12,
+183026,1410,"Electrical, Electronics, and Communications Engineering.",3,4,8,
+183026,1419,Mechanical Engineering.,3,16,19,
+183026,1433,Construction Engineering.,3,,13,
+183026,1907,"Human Development, Family Studies, and Related Services.",3,,,
+183026,2301,"English Language and Literature, General.",3,176,202,30733
+183026,2313,Rhetoric and Composition/Writing Studies.,3,532,580,30077
+183026,2401,"Liberal Arts and Sciences, General Studies and Humanities.",2,1035,1042,43806
+183026,2401,"Liberal Arts and Sciences, General Studies and Humanities.",3,1250,1312,55339
+183026,2601,"Biology, General.",3,17,23,
+183026,2701,Mathematics.,3,134,177,51396
+183026,3016,Accounting and Computer Science.,3,,,
+183026,3105,"Sports, Kinesiology, and Physical Education/Fitness.",3,106,109,39092
+183026,4006,Geological and Earth Sciences/Geosciences.,3,97,91,45727
+183026,4201,"Psychology, General.",3,2244,2993,38600
+183026,4301,Criminal Justice and Corrections.,2,418,449,42957
+183026,4301,Criminal Justice and Corrections.,3,779,895,45836
+183026,4399,"Homeland Security, Law Enforcement, Firefighting and Related Protective Services, Other.",3,,,
+183026,4400,"Human Services, General.",3,520,602,38461
+183026,4404,Public Administration.,3,21,8,73129
+183026,4501,"Social Sciences, General.",3,156,190,42932
+183026,4502,Anthropology.,3,96,103,41986
+183026,4506,Economics.,3,39,83,69807
+183026,4510,Political Science and Government.,3,81,83,41530
+183026,4901,Air Transportation.,3,10,9,
+183026,5004,Design and Applied Arts.,3,521,662,35878
+183026,5006,Film/Video and Photographic Arts.,2,91,107,27990
+183026,5006,Film/Video and Photographic Arts.,3,118,130,33578
+183026,5100,"Health Services/Allied Health/Health Sciences, General.",3,329,304,66407
+183026,5107,Health and Medical Administrative Services.,2,106,107,52549
+183026,5107,Health and Medical Administrative Services.,3,1186,1064,50619
+183026,5115,Mental and Social Health Services and Allied Professions.,3,64,50,43886
+183026,5122,Public Health.,3,172,193,45910
+183026,5127,Medical Illustration and Informatics.,3,,,
+183026,5138,"Registered Nursing, Nursing Administration, Nursing Research and Clinical Nursing.",3,760,623,85600
+183026,5202,"Business Administration, Management and Operations.",2,837,917,46051
+183026,5202,"Business Administration, Management and Operations.",3,4785,5571,60136
+183026,5203,Accounting and Related Services.,2,307,359,37986
+183026,5203,Accounting and Related Services.,3,680,797,54898
+183026,5208,Finance and Financial Management Services.,3,153,179,63703
+183026,5209,Hospitality Administration/Management.,3,11,5,37829
+183026,5211,International Business.,3,15,1,56320
+183026,5212,Management Information Systems and Services.,3,51,33,86882
+183026,5213,Management Sciences and Quantitative Methods.,2,9,20,
+183026,5213,Management Sciences and Quantitative Methods.,3,94,142,76718
+183026,5214,Marketing.,2,87,116,45084
+183026,5214,Marketing.,3,192,256,45472
+183026,5218,"General Sales, Merchandising and Related Marketing Operations.",3,,,
+183026,5219,"Specialized Sales, Merchandising and  Marketing Operations.",2,20,15,
+183026,5219,"Specialized Sales, Merchandising and  Marketing Operations.",3,44,39,41181
+183026,5299,"Business, Management, Marketing, and Related Support Services, Other.",3,21,33,80842
+183026,5401,History.,3,272,315,37734
+190530,0106,Applied Horticulture and Horticultural Business Services.,2,3,4,
+190530,1002,Audiovisual Communications Technologies/Technicians.,2,20,13,
+190530,1103,Data Processing.,2,16,24,
+190530,1107,Computer Science.,2,19,27,
+190530,1110,Computer/Information Technology Administration and Management.,2,25,26,
+190530,1301,"Education, General.",2,,1,
+190530,1315,Teaching Assistants/Aides.,2,15,20,31364
+190530,1401,"Engineering, General.",2,16,14,
+190530,1503,Electrical/Electronic Engineering Technologies/Technicians.,2,8,9,31273
+190530,1505,Environmental Control Technologies/Technicians.,2,0,0,
+190530,1508,Mechanical Engineering Related Technologies/Technicians.,2,0,0,
+190530,1517,Energy Systems Technologies/Technicians.,2,0,0,
+190530,2203,Legal Support Services.,2,7,8,
+190530,2301,"English Language and Literature, General.",2,10,9,
+190530,2401,"Liberal Arts and Sciences, General Studies and Humanities.",2,381,396,26251
+190530,2612,Biotechnology.,2,1,4,
+190530,2701,Mathematics.,2,4,6,
+190530,3105,"Sports, Kinesiology, and Physical Education/Fitness.",2,17,14,
+190530,4001,"Physical Sciences, General.",2,29,28,
+190530,4301,Criminal Justice and Corrections.,2,147,121,28940
+190530,4304,Security Science and Technology.,2,6,0,
+190530,4400,"Human Services, General.",2,38,47,36338
+190530,4402,Community Organization and Advocacy.,2,,,39102
+190530,4706,Vehicle Maintenance and Repair Technologies/Technicians.,2,18,24,29047
+190530,5001,"Visual and Performing Arts, General.",2,25,35,18700
+190530,5100,"Health Services/Allied Health/Health Sciences, General.",2,,0,
+190530,5108,Allied Health and Medical Assisting Services.,2,13,18,23987
+190530,5109,"Allied Health Diagnostic, Intervention, and Treatment Professions.",2,39,40,83382
+190530,5110,Clinical/Medical Laboratory Science/Research and Allied Professions.,2,30,25,
+190530,5111,Health/Medical Preparatory Programs.,2,0,0,
+190530,5122,Public Health.,2,22,22,
+190530,5123,Rehabilitation and Therapeutic Professions.,2,6,17,27790
+190530,5131,Dietetics and Clinical Nutrition Services.,2,83,92,25498
+190530,5138,"Registered Nursing, Nursing Administration, Nursing Research and Clinical Nursing.",2,21,10,73415
+190530,5202,"Business Administration, Management and Operations.",2,116,123,25659
+190530,5203,Accounting and Related Services.,2,10,8,
+190530,5204,Business Operations Support and Assistant Services.,2,2,3,
+190530,5214,Marketing.,2,5,4,
+190594,0301,Natural Resources Conservation and Research.,3,17,26,
+190594,0501,Area Studies.,3,3,3,
+190594,0502,"Ethnic, Cultural Minority, Gender, and Group Studies.",3,40,26,34007
+190594,0901,Communication and Media Studies.,3,164,147,29054
+190594,1101,"Computer and Information Sciences, General.",3,0,0,
+190594,1107,Computer Science.,3,276,292,76747
+190594,1310,Special Education and Teaching.,3,0,0,
+190594,1312,"Teacher Education and Professional Development, Specific Levels and Methods.",3,73,66,36410
+190594,1313,"Teacher Education and Professional Development, Specific Subject Areas.",3,37,31,49245
+190594,1601,"Linguistic, Comparative, and Related Language Studies and Services.",3,5,3,
+190594,1603,"East Asian Languages, Literatures, and Linguistics.",3,37,24,26571
+190594,1604,"Slavic, Baltic and Albanian Languages, Literatures, and Linguistics.",3,7,6,
+190594,1605,"Germanic Languages, Literatures, and Linguistics.",3,4,5,
+190594,1609,"Romance Languages, Literatures, and Linguistics.",3,25,31,30534
+190594,1611,"Middle/Near Eastern and Semitic Languages, Literatures, and Linguistics.",3,3,6,
+190594,1612,"Classics and Classical Languages, Literatures, and Linguistics.",3,12,10,
+190594,1905,"Foods, Nutrition, and Related Services.",3,21,18,
+190594,2301,"English Language and Literature, General.",3,194,162,27958
+190594,2401,"Liberal Arts and Sciences, General Studies and Humanities.",3,0,0,
+190594,2601,"Biology, General.",3,191,194,30257
+190594,2610,Pharmacology and Toxicology.,3,0,0,
+190594,2701,Mathematics.,3,43,35,48918
+190594,2705,Statistics.,3,25,18,
+190594,3001,Biological and Physical Sciences.,3,65,67,36362
+190594,3027,Human Biology.,3,442,401,31891
+190594,3801,Philosophy.,3,14,18,10363
+190594,3802,Religion/Religious Studies.,3,9,7,
+190594,4005,Chemistry.,3,130,118,29340
+190594,4006,Geological and Earth Sciences/Geosciences.,3,0,0,
+190594,4008,Physics.,3,14,23,
+190594,4099,"Physical Sciences, Other.",3,0,0,
+190594,4201,"Psychology, General.",3,673,641,31706
+190594,4407,Social Work.,3,43,54,42227
+190594,4502,Anthropology.,3,35,25,26680
+190594,4503,Archeology.,3,2,5,
+190594,4506,Economics.,3,144,124,34580
+190594,4507,Geography and Cartography.,3,7,12,
+190594,4509,International Relations and National Security Studies.,3,0,0,
+190594,4510,Political Science and Government.,3,113,131,35154
+190594,4511,Sociology.,3,188,175,30246
+190594,4512,Urban Studies/Affairs.,3,20,20,
+190594,5003,Dance.,3,12,11,
+190594,5005,Drama/Theatre Arts and Stagecraft.,3,29,28,25059
+190594,5006,Film/Video and Photographic Arts.,3,52,54,24869
+190594,5007,Fine and Studio Arts.,3,90,98,22788
+190594,5009,Music.,3,24,19,33384
+190594,5102,Communication Disorders Sciences and Services.,3,0,0,
+190594,5110,Clinical/Medical Laboratory Science/Research and Allied Professions.,3,33,45,86173
+190594,5122,Public Health.,3,27,39,47444
+190594,5123,Rehabilitation and Therapeutic Professions.,3,0,0,
+190594,5131,Dietetics and Clinical Nutrition Services.,3,0,2,
+190594,5138,"Registered Nursing, Nursing Administration, Nursing Research and Clinical Nursing.",3,172,176,103692
+190594,5203,Accounting and Related Services.,3,85,71,54617
+190594,5401,History.,3,55,41,28790
+190637,0301,Natural Resources Conservation and Research.,3,18,25,
+190637,0501,Area Studies.,3,9,4,
+190637,0502,"Ethnic, Cultural Minority, Gender, and Group Studies.",3,18,21,36292
+190637,0901,Communication and Media Studies.,3,57,59,32484
+190637,0904,Journalism.,3,15,17,26319
+190637,1104,Information Science/Studies.,3,75,72,50133
+190637,1107,Computer Science.,3,103,100,59516
+190637,1312,"Teacher Education and Professional Development, Specific Levels and Methods.",3,0,1,
+190637,1313,"Teacher Education and Professional Development, Specific Subject Areas.",3,9,18,
+190637,1399,"Education, Other.",3,0,0,
+190637,1601,"Linguistic, Comparative, and Related Language Studies and Services.",3,9,11,
+190637,1604,"Slavic, Baltic and Albanian Languages, Literatures, and Linguistics.",3,0,0,
+190637,1605,"Germanic Languages, Literatures, and Linguistics.",3,0,0,
+190637,1609,"Romance Languages, Literatures, and Linguistics.",3,24,24,35941
+190637,1611,"Middle/Near Eastern and Semitic Languages, Literatures, and Linguistics.",3,0,0,
+190637,1612,"Classics and Classical Languages, Literatures, and Linguistics.",3,0,0,
+190637,2301,"English Language and Literature, General.",3,82,74,34337
+190637,2401,"Liberal Arts and Sciences, General Studies and Humanities.",3,3,2,
+190637,2601,"Biology, General.",3,97,106,33641
+190637,2701,Mathematics.,3,30,18,40886
+190637,3101,"Parks, Recreation, and Leisure Studies.",3,17,11,41484
+190637,3105,"Sports, Kinesiology, and Physical Education/Fitness.",3,79,63,29538
+190637,3801,Philosophy.,3,27,14,43311
+190637,3802,Religion/Religious Studies.,3,0,0,
+190637,4005,Chemistry.,3,40,22,31815
+190637,4006,Geological and Earth Sciences/Geosciences.,3,5,1,
+190637,4008,Physics.,3,5,3,
+190637,4201,"Psychology, General.",3,319,332,36913
+190637,4407,Social Work.,3,133,140,42300
+190637,4502,Anthropology.,3,85,45,38879
+190637,4506,Economics.,3,24,18,44258
+190637,4507,Geography and Cartography.,3,3,0,
+190637,4510,Political Science and Government.,3,45,36,43059
+190637,4511,Sociology.,3,190,158,42710
+190637,5001,"Visual and Performing Arts, General.",3,20,0,
+190637,5003,Dance.,3,0,14,27843
+190637,5004,Design and Applied Arts.,3,10,12,
+190637,5005,Drama/Theatre Arts and Stagecraft.,3,16,8,
+190637,5007,Fine and Studio Arts.,3,48,44,27582
+190637,5009,Music.,3,13,3,
+190637,5102,Communication Disorders Sciences and Services.,3,137,80,36241
+190637,5107,Health and Medical Administrative Services.,3,217,197,42389
+190637,5122,Public Health.,3,52,57,41255
+190637,5123,Rehabilitation and Therapeutic Professions.,3,50,35,36811
+190637,5131,Dietetics and Clinical Nutrition Services.,3,82,74,34988
+190637,5138,"Registered Nursing, Nursing Administration, Nursing Research and Clinical Nursing.",3,167,145,101531
+190637,5202,"Business Administration, Management and Operations.",3,297,279,42890
+190637,5203,Accounting and Related Services.,3,160,144,43728
+190637,5401,History.,3,34,21,43874
+190956,5138,"Registered Nursing, Nursing Administration, Nursing Research and Clinical Nursing.",2,58,55,
+193399,0901,Communication and Media Studies.,3,16,11,28842
+193399,1313,"Teacher Education and Professional Development, Specific Subject Areas.",3,,,
+193399,1601,"Linguistic, Comparative, and Related Language Studies and Services.",3,0,0,
+193399,1609,"Romance Languages, Literatures, and Linguistics.",3,7,7,
+193399,2301,"English Language and Literature, General.",3,4,8,
+193399,2401,"Liberal Arts and Sciences, General Studies and Humanities.",3,35,23,
+193399,2601,"Biology, General.",3,25,5,35431
+193399,2602,"Biochemistry, Biophysics and Molecular Biology.",3,0,1,
+193399,2701,Mathematics.,3,5,2,
+193399,3000,"Multi-/Interdisciplinary Studies, General.",3,4,5,
+193399,3017,Behavioral Sciences.,3,4,4,
+193399,3018,Natural Sciences.,3,0,,
+193399,3099,"Multi/Interdisciplinary Studies, Other.",3,10,8,
+193399,3801,Philosophy.,3,4,0,
+193399,3802,Religion/Religious Studies.,3,0,0,
+193399,4005,Chemistry.,3,2,1,
+193399,4201,"Psychology, General.",3,299,334,30956
+193399,4405,Public Policy Analysis.,3,2,0,
+193399,4501,"Social Sciences, General.",3,1,4,
+193399,4506,Economics.,3,0,,
+193399,4509,International Relations and National Security Studies.,3,0,,
+193399,4511,Sociology.,3,23,19,31763
+193399,4512,Urban Studies/Affairs.,3,0,,
+193399,5001,"Visual and Performing Arts, General.",3,3,4,
+193399,5138,"Registered Nursing, Nursing Administration, Nursing Research and Clinical Nursing.",3,269,245,105134
+193399,5201,"Business/Commerce, General.",3,1,0,
+193399,5202,"Business Administration, Management and Operations.",3,67,69,31305
+193399,5203,Accounting and Related Services.,3,28,19,
+193399,5401,History.,3,11,6,
+203775,0302,Environmental/Natural Resources Management and Policy.,3,3,0,
+203775,0999,"Communication, Journalism, and Related Programs, Other.",3,7,7,26204
+203775,1002,Audiovisual Communications Technologies/Technicians.,3,1,1,
+203775,1107,Computer Science.,3,1,5,
+203775,1110,Computer/Information Technology Administration and Management.,3,0,3,
+203775,1301,"Education, General.",3,1,7,
+203775,1310,Special Education and Teaching.,3,6,8,
+203775,1312,"Teacher Education and Professional Development, Specific Levels and Methods.",3,14,12,37284
+203775,1313,"Teacher Education and Professional Development, Specific Subject Areas.",3,9,9,
+203775,2301,"English Language and Literature, General.",3,2,2,
+203775,2313,Rhetoric and Composition/Writing Studies.,3,4,4,
+203775,2401,"Liberal Arts and Sciences, General Studies and Humanities.",2,0,3,
+203775,2401,"Liberal Arts and Sciences, General Studies and Humanities.",3,1,5,
+203775,2601,"Biology, General.",3,5,5,22005
+203775,2602,"Biochemistry, Biophysics and Molecular Biology.",3,4,0,
+203775,2607,Zoology/Animal Biology.,3,13,20,
+203775,2701,Mathematics.,3,2,0,
+203775,3020,International/Globalization Studies.,3,2,4,
+203775,3071,Data Analytics.,3,,0,
+203775,3105,"Sports, Kinesiology, and Physical Education/Fitness.",3,22,22,31005
+203775,3902,Bible/Biblical Studies.,3,1,3,
+203775,3904,Religious Education.,3,1,,
+203775,3905,Religious Music and Worship.,3,1,,
+203775,3906,Theological and Ministerial Studies.,3,,1,
+203775,3907,Pastoral Counseling and Specialized Ministries.,3,1,3,
+203775,4001,"Physical Sciences, General.",3,2,0,
+203775,4005,Chemistry.,3,1,1,
+203775,4201,"Psychology, General.",3,14,10,
+203775,4228,"Clinical, Counseling and Applied Psychology.",3,0,1,
+203775,4301,Criminal Justice and Corrections.,3,10,10,
+203775,4400,"Human Services, General.",3,1,1,
+203775,4407,Social Work.,3,17,18,
+203775,4510,Political Science and Government.,3,2,2,
+203775,5001,"Visual and Performing Arts, General.",3,2,3,
+203775,5002,"Crafts/Craft Design, Folk Art and Artisanry.",3,,,
+203775,5004,Design and Applied Arts.,3,,,
+203775,5007,Fine and Studio Arts.,3,,,
+203775,5009,Music.,3,0,2,
+203775,5107,Health and Medical Administrative Services.,3,,,
+203775,5110,Clinical/Medical Laboratory Science/Research and Allied Professions.,3,0,0,
+203775,5122,Public Health.,3,,,
+203775,5138,"Registered Nursing, Nursing Administration, Nursing Research and Clinical Nursing.",3,22,21,67144
+203775,5202,"Business Administration, Management and Operations.",3,51,41,52431
+203775,5203,Accounting and Related Services.,3,6,2,
+203775,5208,Finance and Financial Management Services.,3,14,2,
+203775,5209,Hospitality Administration/Management.,3,,0,
+203775,5214,Marketing.,3,16,10,40893
+203775,5401,History.,3,3,2,
+203960,2401,"Liberal Arts and Sciences, General Studies and Humanities.",2,,,
+203960,2601,"Biology, General.",3,1,4,
+203960,5100,"Health Services/Allied Health/Health Sciences, General.",2,2,1,66917
+203960,5100,"Health Services/Allied Health/Health Sciences, General.",3,40,45,65046
+203960,5107,Health and Medical Administrative Services.,2,4,2,
+203960,5107,Health and Medical Administrative Services.,3,18,21,53429
+203960,5109,"Allied Health Diagnostic, Intervention, and Treatment Professions.",2,21,26,53844
+203960,5138,"Registered Nursing, Nursing Administration, Nursing Research and Clinical Nursing.",2,148,137,69485
+203960,5138,"Registered Nursing, Nursing Administration, Nursing Research and Clinical Nursing.",3,89,113,73010
+207971,0301,Natural Resources Conservation and Research.,3,2,4,
+207971,0501,Area Studies.,3,2,,
+207971,0502,"Ethnic, Cultural Minority, Gender, and Group Studies.",3,2,2,
+207971,0901,Communication and Media Studies.,3,10,16,27612
+207971,1101,"Computer and Information Sciences, General.",3,2,0,
+207971,1107,Computer Science.,3,59,51,73787
+207971,1108,Computer Software and Media Applications.,3,8,9,
+207971,1110,Computer/Information Technology Administration and Management.,3,0,3,
+207971,1301,"Education, General.",3,6,7,
+207971,1310,Special Education and Teaching.,3,1,,
+207971,1312,"Teacher Education and Professional Development, Specific Levels and Methods.",3,7,3,
+207971,1313,"Teacher Education and Professional Development, Specific Subject Areas.",3,4,5,
+207971,1407,Chemical Engineering.,3,23,28,47705
+207971,1409,Computer Engineering.,3,5,7,
+207971,1410,"Electrical, Electronics, and Communications Engineering.",3,16,15,74770
+207971,1412,Engineering Physics.,3,1,8,
+207971,1419,Mechanical Engineering.,3,60,46,70220
+207971,1425,Petroleum Engineering.,3,25,20,
+207971,1517,Energy Systems Technologies/Technicians.,3,16,10,
+207971,1603,"East Asian Languages, Literatures, and Linguistics.",3,3,1,
+207971,1605,"Germanic Languages, Literatures, and Linguistics.",3,1,1,
+207971,1609,"Romance Languages, Literatures, and Linguistics.",3,9,14,
+207971,2301,"English Language and Literature, General.",3,11,17,
+207971,2313,Rhetoric and Composition/Writing Studies.,3,5,6,
+207971,2401,"Liberal Arts and Sciences, General Studies and Humanities.",3,0,2,
+207971,2601,"Biology, General.",3,29,52,
+207971,2602,"Biochemistry, Biophysics and Molecular Biology.",3,20,16,
+207971,2701,Mathematics.,3,24,13,
+207971,2703,Applied Mathematics.,3,9,7,
+207971,3017,Behavioral Sciences.,3,,39,
+207971,3099,"Multi/Interdisciplinary Studies, Other.",3,1,1,
+207971,3105,"Sports, Kinesiology, and Physical Education/Fitness.",3,33,49,
+207971,3800,"Philosophy and Religious Studies, General.",3,,0,
+207971,3801,Philosophy.,3,2,2,
+207971,3802,Religion/Religious Studies.,3,0,2,
+207971,4005,Chemistry.,3,5,7,
+207971,4006,Geological and Earth Sciences/Geosciences.,3,4,2,
+207971,4008,Physics.,3,5,4,
+207971,4201,"Psychology, General.",3,41,0,34699
+207971,4502,Anthropology.,3,10,9,
+207971,4506,Economics.,3,15,6,
+207971,4510,Political Science and Government.,3,18,20,
+207971,4511,Sociology.,3,8,9,
+207971,5005,Drama/Theatre Arts and Stagecraft.,3,1,1,
+207971,5006,Film/Video and Photographic Arts.,3,8,4,
+207971,5007,Fine and Studio Arts.,3,22,16,
+207971,5009,Music.,3,12,11,32253
+207971,5010,"Arts, Entertainment, and Media Management.",3,8,9,
+207971,5102,Communication Disorders Sciences and Services.,3,17,11,
+207971,5109,"Allied Health Diagnostic, Intervention, and Treatment Professions.",3,0,0,
+207971,5138,"Registered Nursing, Nursing Administration, Nursing Research and Clinical Nursing.",3,22,39,74029
+207971,5199,"Health Professions and Related Clinical Sciences, Other.",3,0,0,
+207971,5201,"Business/Commerce, General.",3,3,3,
+207971,5202,"Business Administration, Management and Operations.",3,34,32,45038
+207971,5203,Accounting and Related Services.,3,36,30,
+207971,5208,Finance and Financial Management Services.,3,41,30,65012
+207971,5210,Human Resources Management and Services.,3,14,14,
+207971,5211,International Business.,3,4,5,
+207971,5212,Management Information Systems and Services.,3,21,31,73106
+207971,5214,Marketing.,3,16,8,
+207971,5401,History.,3,12,8,
+223898,1101,"Computer and Information Sciences, General.",2,0,0,
+223898,1204,Cosmetology and Related Personal Grooming Services.,2,0,0,
+223898,1301,"Education, General.",2,0,0,
+223898,1312,"Teacher Education and Professional Development, Specific Levels and Methods.",2,0,0,
+223898,1907,"Human Development, Family Studies, and Related Services.",2,12,2,
+223898,2401,"Liberal Arts and Sciences, General Studies and Humanities.",2,315,313,17820
+223898,4301,Criminal Justice and Corrections.,2,10,5,
+223898,4302,Fire Protection.,2,2,4,
+223898,4604,"Building/Construction Finishing, Management, and Inspection.",2,1,2,
+223898,4702,"Heating, Air Conditioning, Ventilation and Refrigeration Maintenance Technology/Technician (HAC, HACR, HVAC, HVACR).",2,0,0,
+223898,4706,Vehicle Maintenance and Repair Technologies/Technicians.,2,2,2,
+223898,4805,Precision Metal Working.,2,0,0,
+223898,5108,Allied Health and Medical Assisting Services.,2,4,0,
+223898,5109,"Allied Health Diagnostic, Intervention, and Treatment Professions.",2,8,22,
+223898,5138,"Registered Nursing, Nursing Administration, Nursing Research and Clinical Nursing.",2,47,51,
+223898,5201,"Business/Commerce, General.",2,0,0,
+223898,5202,"Business Administration, Management and Operations.",2,4,5,
+223898,5204,Business Operations Support and Assistant Services.,2,0,0,
+227757,0301,Natural Resources Conservation and Research.,3,7,7,
+227757,0402,Architecture.,3,16,18,
+227757,0408,"Architectural History, Criticism, and Conservation.",3,2,1,
+227757,0409,Architectural Sciences and Technology.,3,20,17,
+227757,0501,Area Studies.,3,13,7,
+227757,0502,"Ethnic, Cultural Minority, Gender, and Group Studies.",3,3,5,
+227757,1101,"Computer and Information Sciences, General.",3,121,164,131154
+227757,1405,Biomedical/Medical Engineering.,3,34,29,88307
+227757,1407,Chemical Engineering.,3,25,29,87830
+227757,1408,Civil Engineering.,3,23,15,
+227757,1410,"Electrical, Electronics, and Communications Engineering.",3,49,15,96751
+227757,1419,Mechanical Engineering.,3,60,65,82899
+227757,1437,Operations Research.,3,1,2,
+227757,1447,Electrical and Computer Engineering.,3,,22,
+227757,1516,Nanotechnology.,3,6,3,
+227757,1601,"Linguistic, Comparative, and Related Language Studies and Services.",3,12,11,
+227757,1605,"Germanic Languages, Literatures, and Linguistics.",3,3,1,
+227757,1609,"Romance Languages, Literatures, and Linguistics.",3,16,13,
+227757,1612,"Classics and Classical Languages, Literatures, and Linguistics.",3,4,6,
+227757,2301,"English Language and Literature, General.",3,31,30,
+227757,2601,"Biology, General.",3,57,70,
+227757,2602,"Biochemistry, Biophysics and Molecular Biology.",3,38,18,
+227757,2609,"Physiology, Pathology and Related Sciences.",3,2,57,
+227757,2613,"Ecology, Evolution, Systematics, and Population Biology.",3,13,2,
+227757,2615,Neurobiology and Neurosciences.,3,29,45,
+227757,2701,Mathematics.,3,32,47,50286
+227757,2703,Applied Mathematics.,3,13,11,
+227757,2705,Statistics.,3,33,45,
+227757,3013,Medieval and Renaissance Studies.,3,0,1,
+227757,3022,Classical and Ancient Studies.,3,4,1,
+227757,3025,Cognitive Science.,3,48,44,47459
+227757,3071,Data Analytics.,3,,0,
+227757,3099,"Multi/Interdisciplinary Studies, Other.",3,0,2,
+227757,3105,"Sports, Kinesiology, and Physical Education/Fitness.",3,104,53,51110
+227757,3801,Philosophy.,3,12,11,
+227757,3802,Religion/Religious Studies.,3,4,5,
+227757,4002,Astronomy and Astrophysics.,3,2,3,
+227757,4005,Chemistry.,3,27,18,
+227757,4006,Geological and Earth Sciences/Geosciences.,3,1,6,
+227757,4008,Physics.,3,9,10,
+227757,4201,"Psychology, General.",3,77,66,41299
+227757,4405,Public Policy Analysis.,3,33,31,
+227757,4501,"Social Sciences, General.",3,,3,
+227757,4502,Anthropology.,3,11,5,
+227757,4506,Economics.,3,75,88,78814
+227757,4510,Political Science and Government.,3,37,28,54728
+227757,4511,Sociology.,3,25,14,
+227757,5001,"Visual and Performing Arts, General.",3,24,19,
+227757,5007,Fine and Studio Arts.,3,8,6,
+227757,5009,Music.,3,17,22,
+227757,5100,"Health Services/Allied Health/Health Sciences, General.",3,9,18,
+227757,5201,"Business/Commerce, General.",3,0,,
+227757,5202,"Business Administration, Management and Operations.",3,22,16,
+227757,5213,Management Sciences and Quantitative Methods.,3,0,1,
+227757,5401,History.,3,23,17,
+232885,5109,"Allied Health Diagnostic, Intervention, and Treatment Professions.",2,23,35,63585
+232885,5138,"Registered Nursing, Nursing Administration, Nursing Research and Clinical Nursing.",3,95,91,76356
+238722,0101,Agricultural Business and Management.,2,12,9,
+238722,0102,Agricultural Mechanization.,2,12,6,
+238722,0103,Agricultural Production Operations.,2,19,14,
+238722,0111,Plant Sciences.,2,8,7,
+238722,0183,Veterinary/Animal Health Technologies/Technicians.,2,10,12,
+238722,0301,Natural Resources Conservation and Research.,2,26,21,32996
+238722,1003,Graphic Communications.,2,,,
+238722,1102,Computer Programming.,2,33,36,54652
+238722,1109,Computer Systems Networking and Telecommunications.,2,24,24,37984
+238722,1110,Computer/Information Technology Administration and Management.,2,51,55,43909
+238722,1205,Culinary Arts and Related Services.,2,9,14,34736
+238722,1312,"Teacher Education and Professional Development, Specific Levels and Methods.",2,31,26,27548
+238722,1313,"Teacher Education and Professional Development, Specific Subject Areas.",2,0,1,
+238722,1315,Teaching Assistants/Aides.,2,0,7,
+238722,1503,Electrical/Electronic Engineering Technologies/Technicians.,2,14,12,
+238722,1504,Electromechanical Technologies/Technicians.,2,39,29,58623
+238722,1506,Industrial Production Technologies/Technicians.,2,9,7,
+238722,1507,Quality Control and Safety Technologies/Technicians.,2,3,7,
+238722,1513,Drafting/Design Engineering Technologies/Technicians.,2,20,15,44782
+238722,1517,Energy Systems Technologies/Technicians.,2,,,
+238722,2203,Legal Support Services.,2,12,10,
+238722,2313,Rhetoric and Composition/Writing Studies.,2,5,9,
+238722,3000,"Multi-/Interdisciplinary Studies, General.",2,,,
+238722,3070,Data Science.,2,0,1,
+238722,3099,"Multi/Interdisciplinary Studies, Other.",2,14,10,
+238722,4101,Biology/Biotechnology Technologies/Technicians.,2,4,8,
+238722,4301,Criminal Justice and Corrections.,2,69,73,39571
+238722,4302,Fire Protection.,2,22,29,
+238722,4303,Homeland Security.,2,3,0,
+238722,4304,Security Science and Technology.,2,16,34,35887
+238722,4604,"Building/Construction Finishing, Management, and Inspection.",2,11,16,
+238722,4706,Vehicle Maintenance and Repair Technologies/Technicians.,2,38,39,47998
+238722,4805,Precision Metal Working.,2,28,16,52449
+238722,4901,Air Transportation.,2,7,13,
+238722,5004,Design and Applied Arts.,2,41,35,32673
+238722,5106,Dental Support Services and Allied Professions.,2,13,11,58211
+238722,5107,Health and Medical Administrative Services.,2,17,14,38881
+238722,5108,Allied Health and Medical Assisting Services.,2,20,17,32357
+238722,5109,"Allied Health Diagnostic, Intervention, and Treatment Professions.",2,9,6,
+238722,5110,Clinical/Medical Laboratory Science/Research and Allied Professions.,2,9,8,
+238722,5115,Mental and Social Health Services and Allied Professions.,2,18,9,43548
+238722,5138,"Registered Nursing, Nursing Administration, Nursing Research and Clinical Nursing.",2,95,90,63050
+238722,5202,"Business Administration, Management and Operations.",2,90,87,39337
+238722,5203,Accounting and Related Services.,2,42,48,41261
+238722,5204,Business Operations Support and Assistant Services.,2,10,10,
+238722,5207,Entrepreneurial and Small Business Operations.,2,5,6,
+238722,5208,Finance and Financial Management Services.,2,7,10,
+238722,5209,Hospitality Administration/Management.,2,15,8,
+238722,5210,Human Resources Management and Services.,2,39,26,40006
+238722,5212,Management Information Systems and Services.,2,4,10,
+238722,5214,Marketing.,2,26,19,
+449135,0101,Agricultural Business and Management.,2,5,6,
+449135,1312,"Teacher Education and Professional Development, Specific Levels and Methods.",2,3,2,
+449135,5107,Health and Medical Administrative Services.,2,5,5,16262
+449135,5108,Allied Health and Medical Assisting Services.,2,7,0,11681
+449135,5138,"Registered Nursing, Nursing Administration, Nursing Research and Clinical Nursing.",2,4,8,13912
+449135,5138,"Registered Nursing, Nursing Administration, Nursing Research and Clinical Nursing.",3,3,7,21237
+469416,0101,Agricultural Business and Management.,2,,5,
+469416,1312,"Teacher Education and Professional Development, Specific Levels and Methods.",2,3,0,
+469416,1312,"Teacher Education and Professional Development, Specific Levels and Methods.",3,8,8,19303
+469416,5107,Health and Medical Administrative Services.,2,1,10,16262
+469416,5108,Allied Health and Medical Assisting Services.,2,13,1,11681
+469416,5109,"Allied Health Diagnostic, Intervention, and Treatment Professions.",2,5,1,
+469416,5138,"Registered Nursing, Nursing Administration, Nursing Research and Clinical Nursing.",2,23,11,13912
+469416,5138,"Registered Nursing, Nursing Administration, Nursing Research and Clinical Nursing.",3,21,22,21237

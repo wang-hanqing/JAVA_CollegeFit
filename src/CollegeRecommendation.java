@@ -11,6 +11,7 @@ public class CollegeRecommendation {
     public final int programsAwarded;
     /** Degrees awarded in 2022-23 in her chosen programs (or in all programs if none chosen), at her pathway levels. */
     public final int recentDegrees;
+    static final int FIELD_EARNINGS_SHOWN = 3; // for a whole field, show the 3 largest programs with reported earnings
     /** Which levels have awards in her programs: used for "associate", "bachelor's" or both. */
     public final boolean associateAwarded, bachelorAwarded;
     /** A nursing bachelor's program may be RN-to-BSN only, so the card shows a license check. */
@@ -52,6 +53,7 @@ public class CollegeRecommendation {
             String nm = p.isFamily() ? CipFamilies.name(p.cipCode) : p.shortName(); // "Agriculture", not "Agriculture (all)"
             List<String> parts = new ArrayList<>();
             boolean bachelorAwarded = false;
+            List<Integer> awardedLevels = new ArrayList<>();
             for (int level : RecommendationEngine.levels(s.getPathway())) {
                 College.ProgramEvidence e = c.evidence(p.cipCode, level);
                 if (e == College.ProgramEvidence.AWARDED) {
@@ -64,6 +66,7 @@ public class CollegeRecommendation {
                         parts.add(Messages.get("prog.part.awarded", levelName, Messages.number(graduates)));
                     }
                     if (level == 2) anyAssociate = true; else { anyBachelor = true; bachelorAwarded = true; }
+                    awardedLevels.add(level);
                     // a program inside a chosen field is already counted by the field
                     if (p.isFamily() || !families.contains(p.cipCode.substring(0, 2))) degrees += graduates;
                 }
@@ -74,7 +77,23 @@ public class CollegeRecommendation {
             String note = isAwarded ? "" : Messages.get("prog.note." + best.name());
             // With many programs, list the awarded ones in detail and summarize the rest
             if (s.getPrograms().size() <= MAX_LISTED || (isAwarded && awardedNames.size() < MAX_LISTED))
+            {
                 facts.add(new Fact(nm, value, note, isAwarded));
+                // Program-level earnings when reported. For a whole field, the largest programs with reported earnings.
+                // Skipped when many programs are chosen, so the details stay short.
+                if (s.getPrograms().size() <= MAX_LISTED) for (int level : awardedLevels) {
+                    String lv = Messages.get("prog.level." + level).toLowerCase();
+                    if (!p.isFamily()) {
+                        Integer pay = c.programEarnings(p.cipCode, level);
+                        if (pay != null) facts.add(new Fact(Messages.get("prog.earnings", nm, lv), Messages.money(pay), Messages.get("prog.earnings.note"), null));
+                    } else {
+                        List<String[]> rows = c.fieldEarnings(p.cipCode, level, FIELD_EARNINGS_SHOWN);
+                        for (int i = 0; i < rows.size(); i++)
+                            facts.add(new Fact(Messages.get("prog.earnings", Program.nameOf(rows.get(i)[0]), lv),
+                                Messages.money(Integer.valueOf(rows.get(i)[1])), i == rows.size() - 1 ? Messages.get("prog.earnings.note") : "", null));
+                    }
+                }
+            }
             if (isAwarded) {
                 awarded++;
                 awardedNames.add(nm);

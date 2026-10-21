@@ -19,6 +19,11 @@ public class Program implements Comparable<Program> {
 
     public boolean isNotSure() { return cipCode == null; }
 
+    /** Names of every 4-digit program in the data, filled when the program list is loaded. */
+    private static final java.util.Map<String, String> NAMES = new java.util.HashMap<>();
+    static void register(Program p) { if (!p.isNotSure() && !p.isFamily()) NAMES.put(p.cipCode, p.fullName); }
+    static String nameOf(String cip) { return NAMES.getOrDefault(cip, cip); }
+
     /** A 2-digit family covers every 4-digit program that starts with it. */
     public boolean isFamily() { return cipCode != null && cipCode.length() == 2; }
 

@@ -149,8 +149,7 @@ public class Comparison {
             if (g.size() < 2) continue;
             g.sort(Comparator.comparingInt((CollegeRecommendation r) -> r.recentDegrees).reversed());
             int hi = g.get(0).recentDegrees, lo = g.get(g.size() - 1).recentDegrees;
-            if (lo > 0 && hi >= lo * STUDY_RATIO) {
-                markers.get(g.get(0)).put(Row.STUDY, Messages.get("cmp.mark.moreGraduates"));
+            if (lo > 0 && hi >= lo * STUDY_RATIO) { // mentioned as program size only; no marker, no "better"
                 return Messages.get("cmp.study.more", shortName(g.get(0)), shortName(g.get(g.size() - 1)), Messages.number(hi), Messages.number(lo));
             }
         }

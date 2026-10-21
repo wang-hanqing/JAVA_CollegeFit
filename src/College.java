@@ -24,6 +24,10 @@ public class College {
     public final Double latitude, longitude;   // kept for a future distance feature
     public final Double completionRate;        // C150_4 (4-year, within 6 years) or C150_L4 (2-year, within 3 years)
     public final int completionYears;          // 6 or 3; 0 if no rate
+    public final Double transferRate;          // TRANS_4 (within 6 years) or TRANS_L4 (within 3 years): first-time, full-time students who transferred out
+    public final int transferYears;            // 6 or 3; 0 if no rate
+    public final Integer studentFacultyRatio;  // STUFACR: undergraduates per instructional faculty member
+    private final Map<String, Integer> programEarnings; // "CIP:level" -> EARN_MDN_1YR
     private final Map<String, Integer[]> programCounts; // "CIP:level" -> {IPEDSCOUNT1, IPEDSCOUNT2}, null = missing
 
     public College(String unitId, String name, String city, String state, String schoolUrl, String npcUrl,
@@ -33,7 +37,8 @@ public class College {
                    Map<StudentProfile.IncomeBracket, Integer> netPrices,
                    StudentProfile.CampusSetting setting, Integer undergraduates,
                    Double latitude, Double longitude, Double completionRate, int completionYears,
-                   Map<String, Integer[]> programCounts) {
+                   Double transferRate, int transferYears, Integer studentFacultyRatio,
+                   Map<String, Integer[]> programCounts, Map<String, Integer> programEarnings) {
         this.unitId = unitId; this.name = name; this.city = city; this.state = state;
         this.schoolUrl = schoolUrl; this.netPriceCalculatorUrl = npcUrl;
         this.control = control; this.openAdmission = openAdmission;
@@ -45,6 +50,8 @@ public class College {
         this.setting = setting; this.undergraduates = undergraduates;
         this.latitude = latitude; this.longitude = longitude;
         this.completionRate = completionRate; this.completionYears = completionYears;
+        this.transferRate = transferRate; this.transferYears = transferYears; this.studentFacultyRatio = studentFacultyRatio;
+        this.programEarnings = Collections.unmodifiableMap(new HashMap<>(programEarnings));
         this.programCounts = Collections.unmodifiableMap(new HashMap<>(programCounts));
     }
 
@@ -119,6 +126,28 @@ public class College {
         for (String key : programCounts.keySet())
             if (key.startsWith(twoDigit) && key.endsWith(":" + level) && evidence(key.substring(0, 4), level) == ProgramEvidence.AWARDED) n++;
         return n;
+    }
+
+    /**
+     * Median earnings 1 year after completing this program at this level (graduates who received federal aid,
+     * working and not enrolled). Null when not reported, which is common for small programs.
+     */
+    public Integer programEarnings(String cipCode, int level) { return programEarnings.get(cipCode + ":" + level); }
+
+    /**
+     * For a 2-digit field: programs at this level that have recent awards and reported earnings,
+     * largest programs first, as {cip, earnings}.
+     */
+    public List<String[]> fieldEarnings(String twoDigit, int level, int limit) {
+        List<String> cips = new ArrayList<>();
+        for (String key : programEarnings.keySet())
+            if (key.startsWith(twoDigit) && key.endsWith(":" + level) && evidence(key.substring(0, 4), level) == ProgramEvidence.AWARDED)
+                cips.add(key.substring(0, 4));
+        cips.sort(Comparator.comparingInt((String c) -> recentDegrees(c, level)).reversed());
+        List<String[]> out = new ArrayList<>();
+        for (String c : cips.subList(0, Math.min(limit, cips.size())))
+            out.add(new String[]{c, String.valueOf(programEarnings.get(c + ":" + level))});
+        return out;
     }
 
     /** {2021-22 count, 2022-23 count}, or null if there is no record. */
