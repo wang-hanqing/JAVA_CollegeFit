@@ -264,12 +264,13 @@ class DetailsPanel extends JPanel {
     }
 
     private void open(String url) {
+        if (CollegeFitSwingApp.WEB) { CollegeFitSwingApp.showLink(this, url); return; } // browser tab: copy the link
         try {
             URI uri = URI.create(url.trim());
             if (!"https".equalsIgnoreCase(uri.getScheme()) && !"http".equalsIgnoreCase(uri.getScheme())) throw new IllegalArgumentException();
             Desktop.getDesktop().browse(uri);
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, Messages.get("details.openFailed") + "\n" + url);
+            CollegeFitSwingApp.showLink(this, url);
         }
     }
 

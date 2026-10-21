@@ -1,5 +1,12 @@
 # CollegeFit Java changes
 
+## Update 15: browser preview with CheerpJ (v0.4.5)
+
+- New folder web_browser/: index.html runs CollegeFit.jar in the browser with CheerpJ (Java 11), plus setup notes.
+- The jar is now built with --release 11 (works on the desktop as before).
+- --web mode: export goes to the browser's virtual file system and a "Download my list" button saves it;
+  the export is deleted at start and on Start over; college links open a copy box.
+
 ## Update 14: "Private college" wording (v0.4.4)
 
 - Screen text says "Private college" everywhere instead of "Private nonprofit". Help states that for-profit colleges are not included.

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>CollegeFit (browser preview)</title>
+  <!-- CheerpJ runs the existing Java Swing app (CollegeFit.jar) inside the browser. -->
+  <script src="https://cjrtnc.leaningtech.com/4.3/loader.js"></script>
+  <style>
+    html, body { margin: 0; height: 100%; font-family: -apple-system, "Helvetica Neue", Arial, sans-serif; background: #f6f7f9; color: #1e2638; }
+    header { height: 48px; display: flex; align-items: center; justify-content: space-between; padding: 0 20px;
+             background: #fff; border-bottom: 1px solid #d7dce4; box-sizing: border-box; font-size: 13px; }
+    header b { font-family: Georgia, serif; font-size: 18px; }
+    header span { color: #687085; }
+    button { font: inherit; font-weight: 600; padding: 7px 14px; border-radius: 8px; border: 1px solid #3b5bcc;
+             background: #3b5bcc; color: #fff; cursor: pointer; }
+    #app { width: 100vw; height: calc(100vh - 48px); }
+    #loading { position: absolute; top: 45%; width: 100%; text-align: center; color: #687085; font-size: 15px; }
+  </style>
+</head>
+<body>
+  <header>
+    <div><b>CollegeFit</b> &nbsp; <span>Browser preview. Everything runs in this tab; your answers are not sent anywhere.</span></div>
+    <button id="download">Download my list</button>
+  </header>
+  <div id="loading">Loading CollegeFit... The first visit can take a minute.</div>
+  <div id="app"></div>
+  <script type="module">
+    // Java 11: CheerpJ runs Java 8 unless a version is given, and CollegeFit.jar is built with --release 11.
+    await cheerpjInit({ version: 11, clipboardMode: "system" });
+    cheerpjCreateDisplay(-1, -1, document.getElementById("app"));
+    // "/app/" is the root of this web server. Build the path from this page's folder,
+    // so it works locally and on GitHub Pages (where the site lives under /JAVA_CollegeFit/).
+    const folder = location.pathname.replace(/[^/]*$/, "");
+    document.getElementById("loading").remove();
+    await cheerpjRunJar("/app" + folder + "CollegeFit.jar", "--web");
+  </script>
+  <script>
+    // The app writes the export to the browser's virtual file system; this saves it to the device.
+    document.getElementById("download").addEventListener("click", async () => {
+      try {
+        const blob = await cjFileBlob("/files/CollegeFit_my_list.csv");
+        const link = document.createElement("a");
+        link.href = URL.createObjectURL(blob);
+        link.download = "CollegeFit_my_list.csv";
+        link.click();
+        URL.revokeObjectURL(link.href);
+      } catch (e) {
+        alert('First export your list in the app: Next steps, then "Export all kept colleges".');
+      }
+    });
+  </script>
+</body>
+</html>

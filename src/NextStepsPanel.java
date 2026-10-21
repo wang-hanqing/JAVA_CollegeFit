@@ -95,6 +95,15 @@ class NextStepsPanel extends JPanel {
         int ok = JOptionPane.showConfirmDialog(this, Ui.wrap(Messages.get("list.privacy.confirm"), 360, 13f, Ui.INK),
             Messages.get("mine.exportAll"), JOptionPane.OK_CANCEL_OPTION);
         if (ok != JOptionPane.OK_OPTION) return;
+        if (CollegeFitSwingApp.WEB) { // browser: the page's "Download my list" button saves this file to her device
+            try {
+                app.shortlist.exportCsv(java.nio.file.Paths.get(CollegeFitSwingApp.WEB_EXPORT), app.profile, app.engine, app.keepReasons);
+                JOptionPane.showMessageDialog(this, Ui.wrap(Messages.get("web.exported"), 380, 13f, Ui.INK));
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(this, Messages.get("list.exportFailed") + "\n" + ex.getMessage());
+            }
+            return;
+        }
         JFileChooser chooser = new JFileChooser();
         chooser.setSelectedFile(new File(System.getProperty("user.home"), "CollegeFit_my_list_" + LocalDate.now() + ".csv"));
         if (chooser.showSaveDialog(this) != JFileChooser.APPROVE_OPTION) return;

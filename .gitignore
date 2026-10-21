@@ -13,3 +13,4 @@ data/raw/
 out/
 bin/
 *.jar
+!web_browser/CollegeFit.jar

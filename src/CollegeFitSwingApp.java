@@ -19,6 +19,31 @@ public class CollegeFitSwingApp extends JFrame {
     /** The four ways to begin, from the first page. */
     public enum Start { SUBJECT, PLACE, PATHWAY, NOT_SURE }
 
+    /**
+     * True when running in a web browser through CheerpJ (started with --web).
+     * Then the export is written to the browser's virtual file system for the page to download,
+     * and links are shown to copy instead of opening a desktop browser.
+     */
+    static boolean WEB = false;
+    static final String WEB_EXPORT = "/files/CollegeFit_my_list.csv";
+
+    /** Removes a previous export from the browser's storage, so no answers stay behind. */
+    static void clearWebExport() {
+        if (WEB) try { Files.deleteIfExists(Paths.get(WEB_EXPORT)); } catch (Exception ignored) { }
+    }
+
+    /** Shows a link in a box the student can select and copy (used when a browser cannot be opened). */
+    static void showLink(Component parent, String url) {
+        JTextField field = new JTextField(url, 40);
+        field.setEditable(false);
+        field.selectAll();
+        JPanel p = Ui.column(0);
+        p.add(Ui.left(Ui.wrap(Messages.get("web.link"), 420, 13f, Ui.INK)));
+        p.add(Box.createVerticalStrut(8));
+        p.add(Ui.left(field));
+        JOptionPane.showMessageDialog(parent, p, Messages.get("web.link.title"), JOptionPane.PLAIN_MESSAGE);
+    }
+
     // Shared state for every page
     final List<College> colleges;
     final List<Program> programs;
@@ -201,6 +226,7 @@ public class CollegeFitSwingApp extends JFrame {
         directionPanel.reset();
         unsurePanel.reset();
         listChanged();
+        clearWebExport();
         showStart();
     }
 
@@ -283,7 +309,12 @@ public class CollegeFitSwingApp extends JFrame {
     }
 
     public static void main(String[] args) {
-        String suffix = args.length > 0 && args[0].equals("--sample") ? "_sample" : "";
+        String suffix = "";
+        for (String a : args) {
+            if (a.equals("--sample")) suffix = "_sample";
+            if (a.equals("--web")) WEB = true;
+        }
+        clearWebExport();
         Path dir = Paths.get("data", "processed");
         Path collegesFile = dir.resolve("colleges" + suffix + ".csv");
         boolean onDisk = Files.exists(collegesFile);
