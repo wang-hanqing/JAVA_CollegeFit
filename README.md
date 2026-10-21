@@ -47,9 +47,10 @@ Raw files are not included because of their size. To rebuild the processed data:
 
 ## Design notes
 
-- Five-step journey: start from what you know, get a small set of starting options grouped by college type,
-  understand each college through Academic, Financial and Social facts, then compare up to 3 and act.
-- Results are never ranked by an overall score. Default order inside each group: recent degrees awarded in
-  the chosen fields. Students can also order by easier admission, lowest reference cost, or name.
-- Every explanation comes from the data. Unsupported claims (program quality, campus life, aid generosity) are not shown.
-- All screen text is in `src/messages_en.properties`, so other languages can be added later.
+- Six-step journey: start from what you know, choose up to three priorities, explore a small set of colleges grouped by type,
+  keep or set aside colleges with reasons, compare kept colleges and their trade-offs, then take next steps.
+- No overall score. Inside each group, colleges follow the student's priorities in order; close values count as ties,
+  and missing or not-comparable values never get an advantage.
+- Comparisons mark differences only when they are large and measured the same way. Associate and bachelor's
+  programs are shown as different paths.
+- Every explanation comes from the data. All screen text is in `src/messages_en.properties`.

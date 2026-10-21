@@ -7,8 +7,9 @@ import java.util.*;
 import java.util.List;
 
 /**
- * CollegeFit v0.3: a five-step journey.
- * 1 Get started -> 2 Your direction -> 3 See options -> 4 Explore details -> 5 Next steps.
+ * CollegeFit v0.4: guided college decision-making in six steps.
+ * 1 Get started -> 2 Your direction -> 3 Priorities -> 4 Explore -> 5 Compare and decide -> 6 Next steps.
+ * College details open from Explore or Compare and return there.
  *
  *   java -cp out CollegeFitSwingApp            all 2,989 colleges (run from the CollegeFit root folder)
  *   java -cp out CollegeFitSwingApp --sample   30-college test sample
@@ -23,23 +24,29 @@ public class CollegeFitSwingApp extends JFrame {
     final List<Program> programs;
     final List<String> states;
     final RecommendationEngine engine = new RecommendationEngine();
-    final Shortlist shortlist = new Shortlist();
-    final Set<College> compare = new LinkedHashSet<>(); // up to 3 saved colleges picked for "My 3 colleges"
+    final Shortlist shortlist = new Shortlist();                 // Kept colleges
+    final Set<College> compare = new LinkedHashSet<>();          // up to 3 kept colleges shown side by side
+    final Map<College, String> notForMe = new LinkedHashMap<>(); // college -> reason key ("" if none); can be undone
+    final Map<College, Set<String>> keepReasons = new HashMap<>(); // the student's own reasons for keeping a college
+    final Set<String> dismissedTips = new HashSet<>();           // suggestion banners she said "Not now" to
     StudentProfile profile = new StudentProfile();
     Start start = Start.SUBJECT;
 
     private final CardLayout cards = new CardLayout();
     private final JPanel pages = new JPanel(cards);
     private final Ui.Stepper stepper = new Ui.Stepper(Messages.get("step.1"), Messages.get("step.2"),
-        Messages.get("step.3"), Messages.get("step.4"), Messages.get("step.5"));
+        Messages.get("step.3"), Messages.get("step.4"), Messages.get("step.5"), Messages.get("step.6"));
     private final Ui.Button myColleges = new Ui.Button("", false);
 
     private final StartPanel startPanel;
     private final DirectionPanel directionPanel;
     private final UnsurePanel unsurePanel;
+    private final PrioritiesPanel prioritiesPanel;
     private final OptionsPanel optionsPanel;
     private final DetailsPanel detailsPanel;
-    private final MyCollegesPanel myCollegesPanel;
+    private final ComparePanel comparePanel;
+    private final NextStepsPanel nextStepsPanel;
+    private int detailsFrom = 3; // step that opened the details page
 
     public CollegeFitSwingApp(List<College> colleges, List<Program> programs) {
         super(Messages.get("app.title"));
@@ -69,15 +76,19 @@ public class CollegeFitSwingApp extends JFrame {
         startPanel = new StartPanel(this);
         directionPanel = new DirectionPanel(this);
         unsurePanel = new UnsurePanel(this);
+        prioritiesPanel = new PrioritiesPanel(this);
         optionsPanel = new OptionsPanel(this);
         detailsPanel = new DetailsPanel(this);
-        myCollegesPanel = new MyCollegesPanel(this);
+        comparePanel = new ComparePanel(this);
+        nextStepsPanel = new NextStepsPanel(this);
         pages.add(startPanel, "start");
         pages.add(directionPanel, "direction");
         pages.add(unsurePanel, "unsure");
+        pages.add(prioritiesPanel, "priorities");
         pages.add(optionsPanel, "options");
         pages.add(detailsPanel, "details");
-        pages.add(myCollegesPanel, "mine");
+        pages.add(comparePanel, "compare");
+        pages.add(nextStepsPanel, "next");
 
         listChanged();
         showStart();
@@ -102,7 +113,7 @@ public class CollegeFitSwingApp extends JFrame {
         home.setToolTipText(Messages.get("nav.home.tip"));
         home.addActionListener(e -> showStart());
         myColleges.setIcon(Ui.icon("heart", Ui.INK, 16));
-        myColleges.addActionListener(e -> showMyColleges());
+        myColleges.addActionListener(e -> showCompare());
         Ui.Button help = new Ui.Button(Messages.get("nav.help"), false);
         help.setIcon(Ui.icon("help", Ui.INK, 16));
         help.addActionListener(e -> JOptionPane.showMessageDialog(this,
@@ -126,25 +137,55 @@ public class CollegeFitSwingApp extends JFrame {
     /** Back to the direction page the student used last. */
     void changeDirection() { showDirection(start); }
 
-    void showOptions(StudentProfile p) {
+    /** Step 3: priorities, after the direction page. */
+    void showPriorities(StudentProfile p) {
+        if (!p.hasPriorities()) p.setPriorities(profile.getPriorities()); // keep earlier choices when coming back
         profile = p;
         stepper.setActive(2);
+        prioritiesPanel.load(p);
+        cards.show(pages, "priorities");
+    }
+
+    /** Step 4: explore, ordered by the profile's priorities. */
+    void showOptions(StudentProfile p) {
+        profile = p;
+        stepper.setActive(3);
         optionsPanel.show(p);
         cards.show(pages, "options");
     }
 
-    void backToOptions() { stepper.setActive(2); optionsPanel.refreshSaved(); cards.show(pages, "options"); }
+    /** Back to Explore without recomputing the direction. */
+    void backToOptions() { stepper.setActive(3); optionsPanel.refresh(); cards.show(pages, "options"); }
 
-    void showDetails(College c) {
-        stepper.setActive(3);
+    /** Changes priorities from a suggestion and re-orders Explore. */
+    void reorder(List<StudentProfile.Priority> priorities) {
+        StudentProfile p = profile.withPrograms(profile.getPrograms());
+        p.setPriorities(priorities);
+        showOptions(p);
+    }
+
+    /** Details are a helper page: opened from Explore (4) or Compare (5), and Back returns there. */
+    void showDetails(College c, int fromStep) {
+        detailsFrom = fromStep;
+        stepper.setActive(fromStep);
         detailsPanel.show(c);
         cards.show(pages, "details");
     }
 
-    void showMyColleges() {
+    boolean detailsFromCompare() { return detailsFrom == 4; }
+
+    void closeDetails() { if (detailsFrom == 4) showCompare(); else backToOptions(); }
+
+    void showCompare() {
         stepper.setActive(4);
-        myCollegesPanel.refresh();
-        cards.show(pages, "mine");
+        comparePanel.refresh();
+        cards.show(pages, "compare");
+    }
+
+    void showNextSteps() {
+        stepper.setActive(5);
+        nextStepsPanel.refresh();
+        cards.show(pages, "next");
     }
 
     /** Home keeps answers and saved colleges; Start over clears them. */
@@ -153,6 +194,9 @@ public class CollegeFitSwingApp extends JFrame {
         if (ok != JOptionPane.OK_OPTION) return;
         shortlist.clear();
         compare.clear();
+        notForMe.clear();
+        keepReasons.clear();
+        dismissedTips.clear();
         profile = new StudentProfile();
         directionPanel.reset();
         unsurePanel.reset();
@@ -160,15 +204,39 @@ public class CollegeFitSwingApp extends JFrame {
         showStart();
     }
 
-    // ---------- saved colleges ----------
-    void toggleSaved(College c) {
-        if (shortlist.contains(c)) { shortlist.remove(c); compare.remove(c); }
-        else { shortlist.add(c); if (compare.size() < 3) compare.add(c); }
+    // ---------- Keep and Not for me ----------
+    boolean isKept(College c) { return shortlist.contains(c); }
+
+    void keep(College c) {
+        notForMe.remove(c);
+        if (!shortlist.contains(c)) { shortlist.add(c); if (compare.size() < 3) compare.add(c); }
         listChanged();
     }
 
+    void unkeep(College c) {
+        shortlist.remove(c);
+        compare.remove(c);
+        keepReasons.remove(c);
+        listChanged();
+    }
+
+    /** Marks a college "Not for me" with an optional reason. It is not deleted and can be undone. */
+    void notForMe(College c, String reason) {
+        unkeep(c);
+        notForMe.put(c, reason == null ? "" : reason);
+    }
+
+    void undoNotForMe(College c) { notForMe.remove(c); }
+
+    /** How many colleges were set aside for each reason. */
+    Map<String, Integer> reasonCounts() {
+        Map<String, Integer> out = new HashMap<>();
+        for (String r : notForMe.values()) if (!r.isEmpty()) out.merge(r, 1, Integer::sum);
+        return out;
+    }
+
     void addToCompare(College c) {
-        if (!shortlist.contains(c)) shortlist.add(c);
+        keep(c);
         if (!compare.contains(c)) {
             if (compare.size() == 3) {
                 JOptionPane.showMessageDialog(this, Messages.get("compare.full"));

@@ -28,8 +28,8 @@ class DetailsPanel extends JPanel {
         StudentProfile s = app.profile;
         JPanel content = Ui.column(0);
 
-        JButton back = Ui.link("\u2190 " + Messages.get("details.back"));
-        back.addActionListener(e -> app.backToOptions());
+        JButton back = Ui.link("\u2190 " + Messages.get(app.detailsFromCompare() ? "details.backCompare" : "details.back"));
+        back.addActionListener(e -> app.closeDetails());
         content.add(Ui.left(back));
         JPanel head = new JPanel(new BorderLayout());
         head.setOpaque(false);
@@ -38,13 +38,18 @@ class DetailsPanel extends JPanel {
         names.add(Ui.left(Ui.text(college.city + ", " + college.state + ". " + Messages.get("details.kind." + college.type().name()),
             14f, Font.PLAIN, Ui.MUTED)));
         head.add(names, BorderLayout.CENTER);
-        boolean saved = app.shortlist.contains(college);
-        Ui.Button save = new Ui.Button(Messages.get(saved ? "list.saved" : "list.save"), false);
-        save.setIcon(Ui.icon(saved ? "heartFull" : "heart", saved ? Ui.RED : Ui.INK, 15));
-        save.addActionListener(e -> { app.toggleSaved(college); render(); });
-        Ui.Button compare = new Ui.Button(Messages.get(app.compare.contains(college) ? "details.inCompare" : "details.compare"), true);
-        compare.addActionListener(e -> { app.addToCompare(college); render(); });
-        head.add(Ui.row(10, save, compare), BorderLayout.EAST);
+        boolean kept = app.isKept(college);
+        Ui.Button keep = new Ui.Button(kept ? "\u2713 " + Messages.get("keep.kept") : Messages.get("keep.keep"), !kept);
+        if (kept) keep.accent(Ui.GREEN);
+        keep.addActionListener(e -> { if (app.isKept(college)) app.unkeep(college); else app.keep(college); render(); });
+        boolean aside = app.notForMe.containsKey(college);
+        Ui.Button no = new Ui.Button(Messages.get(aside ? "not.undo" : "keep.not"), false);
+        no.addActionListener(e -> {
+            if (app.notForMe.containsKey(college)) app.undoNotForMe(college);
+            else { String reason = OptionCard.askReason(this, college.name, ""); if (reason != null) app.notForMe(college, reason); }
+            render();
+        });
+        head.add(Ui.row(10, no, keep), BorderLayout.EAST);
         content.add(Ui.left(head));
         content.add(Box.createVerticalStrut(10));
         content.add(Ui.left(tabs()));
@@ -71,6 +76,7 @@ class DetailsPanel extends JPanel {
                     factBox("dollar", Ui.FINANCIAL, Ui.GREEN_SOFT, Messages.get("lens.financial"), r.financial, npcButton()),
                     factBox("people", Ui.SOCIAL, Ui.ORANGE_SOFT, Messages.get("lens.social"), r.social, null))));
                 content.add(Box.createVerticalStrut(12));
+                if (r.nursingBachelor) { content.add(Ui.left(Ui.note(Messages.get("prog.next.license"), Ui.AMBER_SOFT, Ui.AMBER_TEXT, 900, 12.5f))); content.add(Box.createVerticalStrut(10)); }
                 content.add(Ui.left(whyVerify(r, s, true)));
         }
 

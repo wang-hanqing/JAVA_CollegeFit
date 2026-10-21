@@ -158,14 +158,35 @@ public class ScenarioTests {
         StudentProfile econ = new StudentProfile();
         for (Program p : programs) if ("4506".equals(p.cipCode)) econ.setPrograms(List.of(p));
         econ.setLocationScope(StudentProfile.LocationScope.ANY_STATE);
+        econ.setPriorities(List.of(StudentProfile.Priority.ADMISSION));
         List<CollegeRecommendation> eco = engine.recommend(econ, sample);
-        eco.sort(RecommendationEngine.comparator(RecommendationEngine.Order.EASIER_ADMISSION, econ));
-        boolean ordered = true;
-        for (int i = 1; i < eco.size(); i++)
-            if (eco.get(i).programPriority == eco.get(i - 1).programPriority
-                && RecommendationEngine.admissionAccess(eco.get(i).college) > RecommendationEngine.admissionAccess(eco.get(i - 1).college))
-                ordered = false;
-        check("Easier admission: open admission and higher rates first", ordered);
+        check("Priority admission: open admission and higher rates first", ordered(eco, StudentProfile.Priority.ADMISSION, econ));
+
+        // ---------- v0.4: priorities, comparability, trade-offs ----------
+        StudentProfile cost = StudentProfile.amina();
+        cost.setPriorities(List.of(StudentProfile.Priority.COSTS, StudentProfile.Priority.GRADUATION));
+        List<CollegeRecommendation> byCost = engine.recommend(cost, sample);
+        boolean groupsOrdered = true;
+        for (List<CollegeRecommendation> g : RecommendationEngine.groups(byCost, cost.getPathway()).values())
+            if (!ordered(g, StudentProfile.Priority.COSTS, cost)) groupsOrdered = false;
+        check("Priority cost: lower cost after grants first in each group, missing last", groupsOrdered);
+        boolean tooMany = false;
+        try { cost.setPriorities(List.of(StudentProfile.Priority.values())); } catch (IllegalArgumentException e) { tooMany = true; }
+        check("At most 3 priorities", tooMany);
+        StudentProfile njHome = StudentProfile.amina();
+        njHome.setHomeState("NJ");
+        check("Out-of-state public cost is not comparable", RecommendationEngine.comparableCost(njHome, college("CUNY Hunter College")) == null);
+        check("Private two-year completion is not compared with four-year", sample.stream()
+            .filter(x -> !x.isPublic() && x.isTwoYear()).allMatch(x -> RecommendationEngine.comparableCompletion(x) == null));
+
+        Comparison cmp = new Comparison(cost, engine.recommendAll(cost, List.of(bronx, college("CUNY Hunter College"), lehman)));
+        check("Compare: associate and bachelor's are flagged as different paths", cmp.differentDegrees()
+            && cmp.summary().get(0).contains("different degrees"));
+        String all = String.join(" ", cmp.summary());
+        check("Compare: completion compared only on the same measure", all.contains("Hunter reports a higher six-year completion rate than Lehman")
+            && all.contains("measured differently") && !all.contains("Bronx CC reports a higher"));
+        check("Compare: never says 'better'", !all.toLowerCase().contains("better"));
+        check("Compare: closing reminder", cmp.summary().get(cmp.summary().size() - 1).contains("net price calculator"));
 
         // ---------- Shortlist ----------
         Shortlist list = new Shortlist();
@@ -176,7 +197,7 @@ public class ScenarioTests {
         List<String> lines = Files.readAllLines(tmp);
         check("Export: header, 2 colleges and a note", lines.size() == 4);
         check("Export keeps commas inside quotes", CollegeDataLoader.readCsvRecord(
-            new java.io.BufferedReader(new java.io.StringReader(lines.get(1)))).size() == 10);
+            new java.io.BufferedReader(new java.io.StringReader(lines.get(1)))).size() == 11);
         Files.delete(tmp);
         list.clear();
         check("Start over clears the list", list.colleges().isEmpty());
@@ -221,6 +242,17 @@ public class ScenarioTests {
     private static boolean hasFact(EvaluationResult r, String label) {
         for (Fact f : r.facts) if (f.label.equals(label)) return true;
         return false;
+    }
+
+    /** True if the list follows one priority's sort key (ties allowed, missing values last). */
+    private static boolean ordered(List<CollegeRecommendation> list, StudentProfile.Priority p, StudentProfile s) {
+        for (int i = 1; i < list.size(); i++) {
+            if (list.get(i).programPriority != list.get(i - 1).programPriority) continue;
+            Integer a = RecommendationEngine.sortKey(p, s, list.get(i - 1)), b = RecommendationEngine.sortKey(p, s, list.get(i));
+            if (a == null && b != null) return false;
+            if (a != null && b != null && b < a) return false;
+        }
+        return true;
     }
 
     private static College college(String name) {

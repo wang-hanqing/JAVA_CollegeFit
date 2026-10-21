@@ -22,23 +22,34 @@ public class Shortlist {
         return engine.recommendAll(s, colleges());
     }
 
-    /** Writes one row per saved college. Opens in Excel or Google Sheets. */
     public void exportCsv(Path file, StudentProfile s, RecommendationEngine engine) throws IOException {
+        exportCsv(file, s, engine, Map.of());
+    }
+
+    /** Writes one row per kept college, with her own reasons. Opens in Excel or Google Sheets. */
+    public void exportCsv(Path file, StudentProfile s, RecommendationEngine engine, Map<College, Set<String>> reasons) throws IOException {
         NextStepGenerator steps = new NextStepGenerator();
         try (BufferedWriter out = Files.newBufferedWriter(file, StandardCharsets.UTF_8)) {
             out.write('\ufeff'); // byte order mark so Excel reads the file as UTF-8
             writeRow(out, Messages.get("export.college"), Messages.get("export.city"), Messages.get("export.state"),
                 Messages.get("lens.program"), Messages.get("lens.academic"), Messages.get("lens.financial"),
-                Messages.get("lens.social"), Messages.get("export.steps"),
+                Messages.get("lens.social"), Messages.get("export.reasons"), Messages.get("export.steps"),
                 Messages.get("details.website"), Messages.get("details.npc"));
             for (CollegeRecommendation r : evaluate(s, engine)) {
                 writeRow(out, r.college.name, r.college.city, r.college.state,
-                    r.program.label, r.academic.label, r.financial.label, r.social.label,
+                    r.program.label, r.academic.label, r.financial.label, r.social.label, reasonText(reasons.get(r.college)),
                     String.join("; ", steps.collegeSteps(s, r)),
                     r.college.schoolUrl, r.college.netPriceCalculatorUrl);
             }
             writeRow(out, Messages.get("export.note"));
         }
+    }
+
+    private static String reasonText(Set<String> keys) {
+        if (keys == null || keys.isEmpty()) return "";
+        List<String> out = new ArrayList<>();
+        for (String k : keys) out.add(Messages.get("keepReason." + k));
+        return String.join("; ", out);
     }
 
     private static void writeRow(Writer out, String... values) throws IOException {

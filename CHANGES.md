@@ -1,5 +1,24 @@
 # CollegeFit Java changes
 
+## Update 10: guided decision-making (v0.4)
+
+Six steps: Get started, Your direction, Priorities, Explore, Compare and decide, Next steps.
+College details open from Explore or Compare and return there.
+
+- Priorities (new page): up to 3 of College costs and financial aid, Graduation outcomes,
+  Admission accessibility, My area of study, Campus environment; "?" explains the data behind each; can be skipped.
+- Priority-based ordering inside each college group: #1, then #2, then #3, then name. No weights, no overall score.
+  Close values count as ties ($1,000 cost steps, 5-point completion steps, 10-point admission steps).
+  Missing or not-comparable values go last: out-of-state public costs, and private two-year completion rates.
+- Explore cards show only the program and the top two priorities, with Keep and Not for me.
+  Not for me asks for an optional reason, moves the college to a folded list, and can be undone or edited.
+  When the same reason is used twice, a suggestion appears; nothing changes until the student accepts.
+- Compare and decide: rows follow the priorities; "Different degree path" and a banner when associate and bachelor's
+  colleges are compared; markers only when differences are large and measured the same way
+  ("Not directly comparable" otherwise); the student records her own reasons; a trade-off summary in priority order.
+- Next steps: colleges with her reasons, to-do list, questions; export includes her reasons.
+- New classes: PrioritiesPanel, Comparison, ComparePanel, NextStepsPanel. Removed: MyCollegesPanel. Tests: 64.
+
 ## Update 9: user-flow review fixes (v0.3.1)
 
 Bugs

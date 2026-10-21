@@ -100,7 +100,7 @@ class DirectionPanel extends JPanel {
         next.setIcon(Ui.icon("arrow", Ui.WHITE, 16));
         next.setHorizontalTextPosition(SwingConstants.LEFT);
         next.addActionListener(e -> {
-            try { app.showOptions(buildProfile()); } catch (IllegalArgumentException ex) { app.error(ex); }
+            try { app.showPriorities(buildProfile()); } catch (IllegalArgumentException ex) { app.error(ex); }
         });
         add(CollegeFitSwingApp.page(content, CollegeFitSwingApp.privacyNote("dir.privacy"), back, next));
         reset();

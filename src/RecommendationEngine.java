@@ -10,26 +10,59 @@ public class RecommendationEngine {
     private final List<LensEvaluator> lenses = List.of(
         new AcademicEvaluator(), new FinancialEvaluator(), new SocialEvaluator());
 
-    /** How colleges are ordered inside each group. Program evidence always comes first. */
-    public enum Order { RECENT_DEGREES, EASIER_ADMISSION, LOWEST_COST, NAME;
-        @Override public String toString() { return Messages.get("Order." + name()); } }
+    /**
+     * Priority-based ordering inside each college group. No weights and no overall score:
+     * program evidence first, then the student's #1 priority, then #2 and #3, then name.
+     * Values that are close count as a tie (so the next priority decides), and missing or
+     * not-comparable values go after comparable ones instead of getting a false advantage.
+     * Without priorities: campus matches, then more recent graduates in her fields.
+     */
+    public static Comparator<CollegeRecommendation> comparator(StudentProfile s) {
+        Comparator<CollegeRecommendation> c = Comparator.comparingInt(r -> r.programPriority);
+        List<StudentProfile.Priority> order = s.hasPriorities() ? s.getPriorities()
+            : List.of(StudentProfile.Priority.CAMPUS, StudentProfile.Priority.STUDY);
+        for (StudentProfile.Priority p : order) c = c.thenComparing(r -> sortKey(p, s, r), Comparator.nullsLast(Comparator.naturalOrder()));
+        return c.thenComparing(r -> r.college.name, String.CASE_INSENSITIVE_ORDER);
+    }
 
-    public static Comparator<CollegeRecommendation> comparator(Order order, StudentProfile s) {
-        Comparator<CollegeRecommendation> byName = Comparator.comparing(r -> r.college.name, String.CASE_INSENSITIVE_ORDER);
-        Comparator<CollegeRecommendation> base = Comparator.<CollegeRecommendation>comparingInt(r -> r.programPriority)
-            .thenComparing(r -> r.social.matched, Comparator.reverseOrder()); // stated preferences shape the order
-        switch (order) {
-            case NAME:
-                return byName;
-            case LOWEST_COST:
-                return base.thenComparing((CollegeRecommendation r) -> referenceCost(s, r.college),
-                    Comparator.nullsLast(Comparator.naturalOrder())).thenComparing(byName);
-            case EASIER_ADMISSION:
-                return base.thenComparing((CollegeRecommendation r) -> admissionAccess(r.college), Comparator.reverseOrder())
-                    .thenComparing(byName);
-            default: // RECENT_DEGREES: larger recent programs in her fields first
-                return base.thenComparing(r -> r.recentDegrees, Comparator.reverseOrder()).thenComparing(byName);
+    /** Smaller key = earlier. Close values share a key so the next priority can decide. */
+    static Integer sortKey(StudentProfile.Priority p, StudentProfile s, CollegeRecommendation r) {
+        College c = r.college;
+        switch (p) {
+            case COSTS: {
+                Integer cost = comparableCost(s, c);
+                return cost == null ? null : Math.floorDiv(cost, COST_STEP);          // $1,000 steps
+            }
+            case GRADUATION: {
+                Double rate = comparableCompletion(c);
+                return rate == null ? null : -(int) Math.floor(rate * 100 / RATE_STEP); // 5-point steps, higher first
+            }
+            case ADMISSION: {
+                double a = admissionAccess(c);
+                return a < 0 ? null : -(int) Math.floor(a * 100 / ADMIT_STEP);         // open admission first, then 10-point steps
+            }
+            case STUDY:
+                return -r.recentDegrees;                                               // more recent graduates first
+            default:
+                return -r.social.matched;                                              // more campus matches first
         }
+    }
+
+    static final int COST_STEP = 1000, RATE_STEP = 5, ADMIT_STEP = 10;
+
+    /**
+     * Average cost after grants that can be compared across colleges: her income range if given, otherwise all incomes.
+     * Public colleges outside her home state are not comparable (their averages use in-state rates), so null.
+     */
+    static Integer comparableCost(StudentProfile s, College c) {
+        if (c.isPublic() && s.hasHomeState() && !s.getHomeState().equals(c.state)) return null;
+        return s.getIncomeBracket().isKnown() ? c.netPrice(s.getIncomeBracket()) : c.netPriceAll;
+    }
+
+    /** Completion rate for ordering. Private two-year rates use a different measure than the four-year colleges they are grouped with. */
+    static Double comparableCompletion(College c) {
+        if (!c.isPublic() && c.isTwoYear()) return null;
+        return c.completionRate;
     }
 
     /** Institution-level access only: open admission first, then higher admission rate; unknown last. */
@@ -49,7 +82,7 @@ public class RecommendationEngine {
             if (s.hasPrograms() && !r.hasProgramEvidence()) continue;
             result.add(r);
         }
-        result.sort(comparator(Order.RECENT_DEGREES, s));
+        result.sort(comparator(s));
         return result;
     }
 

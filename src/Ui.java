@@ -365,12 +365,12 @@ final class Ui {
     static class Stepper extends JComponent {
         private final String[] labels;
         private int active;
-        Stepper(String... labels) { this.labels = labels; setPreferredSize(new Dimension(780, 54)); }
+        Stepper(String... labels) { this.labels = labels; setPreferredSize(new Dimension(labels.length * 142, 54)); }
         void setActive(int i) { active = i; repaint(); }
         @Override protected void paintComponent(Graphics g0) {
             Graphics2D g = (Graphics2D) g0.create();
             antialias(g);
-            int n = labels.length, w = 155, x0 = (getWidth() - w * n) / 2 + w / 2;
+            int n = labels.length, w = n > 5 ? 140 : 155, x0 = (getWidth() - w * n) / 2 + w / 2;
             for (int i = 0; i < n - 1; i++) {
                 g.setColor(i < active ? new Color(143, 163, 230) : new Color(227, 231, 238));
                 g.fillRect(x0 + i * w + 14, 13, w - 28, 2);

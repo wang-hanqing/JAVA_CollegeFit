@@ -36,6 +36,11 @@ public class StudentProfile {
         public boolean isKnown() { return this != NOT_SURE && this != PREFER_NOT_TO_SAY; }
         @Override public String toString() { return Messages.get("IncomeBracket." + name()); } }
 
+    /** What matters most to the student; up to 3, in order. They change the order of results, never which colleges appear. */
+    public enum Priority { COSTS, GRADUATION, ADMISSION, STUDY, CAMPUS;
+        @Override public String toString() { return Messages.get("Priority." + name()); } }
+    public static final int MAX_PRIORITIES = 3;
+
     /** "Can you apply for federal financial aid (FAFSA)?" Never asks about immigration status. */
     public enum AidEligibility { NOT_SURE, YES, NO, PREFER_NOT_TO_SAY;
         @Override public String toString() { return Messages.get("AidEligibility." + name()); } }
@@ -53,6 +58,7 @@ public class StudentProfile {
     private Integer annualBudget;                                      // nonnegative USD if KNOWN
     private IncomeBracket incomeBracket = IncomeBracket.NOT_SURE;
     private AidEligibility aidEligibility = AidEligibility.NOT_SURE;
+    private final List<Priority> priorities = new ArrayList<>(); // empty = skipped
 
     public Pathway getPathway() { return pathway; }
     public void setPathway(Pathway value) { pathway = Objects.requireNonNull(value); }
@@ -133,6 +139,16 @@ public class StudentProfile {
     public AidEligibility getAidEligibility() { return aidEligibility; }
     public void setAidEligibility(AidEligibility value) { aidEligibility = Objects.requireNonNull(value); }
 
+    public List<Priority> getPriorities() { return Collections.unmodifiableList(priorities); }
+    public boolean hasPriorities() { return !priorities.isEmpty(); }
+    public void setPriorities(List<Priority> values) {
+        List<Priority> clean = new ArrayList<>();
+        for (Priority p : values) if (!clean.contains(p)) clean.add(p);
+        if (clean.size() > MAX_PRIORITIES) throw new IllegalArgumentException(Messages.get("error.priorities"));
+        priorities.clear();
+        priorities.addAll(clean);
+    }
+
     private static String checkState(String stateCode) {
         if (stateCode == null || !stateCode.trim().matches("[A-Za-z]{2}"))
             throw new IllegalArgumentException(Messages.get("error.state"));
@@ -150,6 +166,7 @@ public class StudentProfile {
         c.settings.addAll(settings); c.sizes.addAll(sizes);
         c.budgetStatus = budgetStatus; c.annualBudget = annualBudget;
         c.incomeBracket = incomeBracket; c.aidEligibility = aidEligibility;
+        c.priorities.addAll(priorities);
         return c;
     }
 
