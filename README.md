@@ -14,7 +14,7 @@ Requires Java 11 or newer. From this folder:
 ```bash
 javac --release 11 -d out src/*.java
 cp src/*.properties out/
-java -cp out CollegeFitSwingApp            # all 2,989 colleges and 383 programs
+java -cp out CollegeFitSwingApp            
 java -cp out CollegeFitSwingApp --sample   # 30-college test sample
 java -cp out ScenarioTests                 # scenario tests on the sample
 ```
