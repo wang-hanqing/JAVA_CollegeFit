@@ -7,7 +7,7 @@ import java.util.*;
 import java.util.List;
 
 /**
- * CollegeFit v0.4: guided college decision-making in six steps.
+ * CollegeFit v0.5: guided college decision-making in six steps.
  * 1 Get started -> 2 Your direction -> 3 Priorities -> 4 Explore -> 5 Compare and decide -> 6 Next steps.
  * College details open from Explore or Compare and return there.
  *
@@ -47,6 +47,7 @@ public class CollegeFitSwingApp extends JFrame {
     // Shared state for every page
     final List<College> colleges;
     final List<Program> programs;
+    final InterestLinks interestLinks;                           // interest -> career -> field links ("not sure" path)
     final List<String> states;
     final RecommendationEngine engine = new RecommendationEngine();
     final Shortlist shortlist = new Shortlist();                 // Kept colleges
@@ -73,10 +74,11 @@ public class CollegeFitSwingApp extends JFrame {
     private final NextStepsPanel nextStepsPanel;
     private int detailsFrom = 3; // step that opened the details page
 
-    public CollegeFitSwingApp(List<College> colleges, List<Program> programs) {
+    public CollegeFitSwingApp(List<College> colleges, List<Program> programs, InterestLinks interestLinks) {
         super(Messages.get("app.title"));
         this.colleges = colleges;
         this.programs = programs;
+        this.interestLinks = interestLinks;
         Set<String> st = new TreeSet<>();
         for (College c : colleges) st.add(c.state);
         this.states = new ArrayList<>(st);
@@ -308,6 +310,23 @@ public class CollegeFitSwingApp extends JFrame {
         return l;
     }
 
+    /**
+     * Interest links are optional: without the file, "I'm not sure yet" falls back to the eight common fields.
+     * The same file is used with --sample (it describes careers and programs, not colleges).
+     */
+    static InterestLinks loadInterestLinks(Path dir, boolean onDisk) {
+        Path f = dir.resolve("interest_links.csv");
+        try {
+            InterestLinks links = onDisk && Files.exists(f) ? InterestLinks.load(CollegeDataLoader.file(f))
+                : InterestLinks.load(CollegeDataLoader.resource("/data/processed/interest_links.csv"));
+            System.out.println("Loaded interest links");
+            return links;
+        } catch (Exception ex) {
+            System.err.println("Interest links not loaded (" + ex.getMessage() + "); showing common fields instead.");
+            return InterestLinks.empty();
+        }
+    }
+
     public static void main(String[] args) {
         String suffix = "";
         for (String a : args) {
@@ -326,9 +345,10 @@ public class CollegeFitSwingApp extends JFrame {
         try {
             List<College> list = CollegeDataLoader.load(colleges, programs);
             List<Program> programList = CollegeDataLoader.loadProgramList(programs, list);
+            InterestLinks links = loadInterestLinks(dir, onDisk);
             System.out.println("Loaded " + list.size() + " colleges and " + programList.size() + " programs and fields"
                 + (onDisk ? " from " + dir.toAbsolutePath() : " from the app"));
-            SwingUtilities.invokeLater(() -> new CollegeFitSwingApp(list, programList).setVisible(true));
+            SwingUtilities.invokeLater(() -> new CollegeFitSwingApp(list, programList, links).setVisible(true));
         } catch (java.io.IOException ex) {
             String msg = "Could not load data: " + ex.getMessage();
             System.err.println(msg);

@@ -9,10 +9,10 @@ It does not predict admission, promise aid, or ask about immigration status.
 
 ## Run the app
 
-Requires Java 17 or newer. From this folder:
+Requires Java 11 or newer. From this folder:
 
 ```bash
-javac --release 17 -d out src/*.java
+javac --release 11 -d out src/*.java
 cp src/*.properties out/
 java -cp out CollegeFitSwingApp            # all 2,989 colleges and 383 programs
 java -cp out CollegeFitSwingApp --sample   # 30-college test sample
@@ -36,14 +36,19 @@ notebooks/        Data exploration and export (Python)
 
 ## Data
 
-Source: U.S. Department of Education, College Scorecard
-(Most Recent Institution-Level and Field-of-Study data, released June 10, 2026).
+Sources:
+- U.S. Department of Education, College Scorecard (Most Recent Institution-Level and Field-of-Study data, released June 10, 2026).
+- U.S. Department of Labor, O*NET 31.0 database (career interest types and Job Zones), CC BY 4.0.
+- NCES and BLS, CIP 2020 to SOC 2018 crosswalk (which programs prepare for which careers).
 
 Raw files are not included because of their size. To rebuild the processed data:
 
 1. Download the data from https://collegescorecard.ed.gov/data/
 2. Put `Most-Recent-Cohorts-Institution.csv` and `Most-Recent-Cohorts-Field-of-Study.csv` in `data/raw/`
 3. Run the notebooks in order: `01`, `02`, `03`
+4. For the "not sure" path: download the O*NET database (Excel) from https://www.onetcenter.org/database.html and unzip it to
+   `data/raw/db_31_0_excel/`; download `CIP2020_SOC2018_Crosswalk.xlsx` from https://nces.ed.gov/ipeds/cipcode/resources.aspx?y=56
+   to `data/raw/`; then run `04_interests.ipynb`
 
 ## Design notes
 
@@ -53,6 +58,8 @@ Raw files are not included because of their size. To rebuild the processed data:
   and missing or not-comparable values never get an advantage.
 - Comparisons mark differences only when they are large and measured the same way. Associate and bachelor's
   programs are shown as different paths.
+- Students who are not sure start from what they enjoy doing: six O*NET interest types lead to linked careers and fields.
+  This is not a test and gives no result type; it only suggests fields to explore.
 - Every explanation comes from the data. All screen text is in `src/messages_en.properties`.
 
 ## Data limitations and future enrichment
@@ -64,6 +71,7 @@ CollegeFit describes colleges; it does not measure academic quality.
 - Program earnings are medians for graduates who received federal aid and were working; many small programs are not reported.
 - Completion and transfer rates describe past first-time, full-time students, not a student's own outcome.
 - Program accreditation (for example, for nursing) is not in the data and must be checked with the college.
+- The CIP-SOC crosswalk is descriptive, not based on where graduates actually work: a link means a program prepares for a career.
 
 Possible future enrichment: retention and other College Scorecard outcome fields, IPEDS institutional indicators,
 and information from college and program websites. Rankings, if ever used, would stay outside the core logic.

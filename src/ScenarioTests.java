@@ -264,6 +264,47 @@ public class ScenarioTests {
         CollegeRecommendation hv = engine.evaluate(engField, college("Harvard University"));
         check("Whole field: program earnings listed when reported", !college("Harvard University").fieldEarnings("14", 3, 3).isEmpty() == hv.program.summary().contains("Median earnings 1 year after"));
 
+        // ---------- "Not sure" path: interests -> careers -> fields (O*NET + CIP-SOC crosswalk) ----------
+        InterestLinks interestLinks = InterestLinks.load(CollegeDataLoader.file(data.resolve("interest_links.csv")));
+        check("Interest links are read from the data", !interestLinks.isEmpty());
+        boolean everyType = true;
+        for (InterestLinks.Interest t : InterestLinks.Interest.values())
+            if (interestLinks.fields(EnumSet.of(t), sample, Set.of()).isEmpty()) everyType = false;
+        check("Each of the six interests reaches at least one field", everyType);
+        boolean zonesOk = true, noPostsecondary = true;
+        for (InterestLinks.CareerLink k : interestLinks.allCareers()) {
+            if (k.jobZone < 3 || k.jobZone > 5) zonesOk = false;
+            if (k.soc.startsWith("25-1")) noPostsecondary = false;
+        }
+        check("Careers need training, a degree or graduate school (Job Zones 3-5)", zonesOk);
+        check("Postsecondary teachers are left out (they link to almost every field)", noPostsecondary);
+        boolean noLiberal = true;
+        for (InterestLinks.Interest t : InterestLinks.Interest.values()) if (interestLinks.links(t, "24")) noLiberal = false;
+        check("Liberal Arts has no career links, so it is shown separately", noLiberal);
+
+        List<InterestLinks.FieldMatch> socialFields = interestLinks.fields(EnumSet.of(InterestLinks.Interest.S), sample, Set.of());
+        InterestLinks.FieldMatch healthField = null;
+        for (InterestLinks.FieldMatch f : socialFields) if (f.family.equals("51")) healthField = f;
+        check("Helping people: Health Professions, Registered Nurses first", healthField != null
+            && healthField.careers.get(0).title.equals("Registered Nurses") && healthField.careers.get(0).jobZone == 4);
+        boolean sortedOk = true, countsMatch = true, programsOk = true;
+        for (int i = 0; i < socialFields.size(); i++) {
+            InterestLinks.FieldMatch f = socialFields.get(i);
+            if (i > 0 && f.linkedCareers > socialFields.get(i - 1).linkedCareers) sortedOk = false;
+            if (f.colleges != RecommendationEngine.fieldCount(sample, Set.of(), f.family)) countsMatch = false;
+            if (f.careers.size() > 3 || f.programs.size() > 3) programsOk = false;
+            for (int j = 1; j < f.programs.size(); j++)
+                if (Integer.parseInt(f.programs.get(j)[1]) > Integer.parseInt(f.programs.get(j - 1)[1])) programsOk = false;
+        }
+        check("Fields: more linked careers first", sortedOk);
+        check("Field counts match the college counts used elsewhere", countsMatch);
+        check("At most 3 careers and 3 programs per field, most colleges first", programsOk);
+        int businessE = 0, businessSE = 0;
+        for (InterestLinks.FieldMatch f : interestLinks.fields(EnumSet.of(InterestLinks.Interest.E), sample, Set.of())) if (f.family.equals("52")) businessE = f.linkedCareers;
+        for (InterestLinks.FieldMatch f : interestLinks.fields(EnumSet.of(InterestLinks.Interest.S, InterestLinks.Interest.E), sample, Set.of())) if (f.family.equals("52")) businessSE = f.linkedCareers;
+        check("Two interests combine their careers", businessE > 0 && businessSE >= businessE);
+        check("A state with no colleges in scope shows no fields", interestLinks.fields(EnumSet.of(InterestLinks.Interest.S), sample, Set.of("ZZ")).isEmpty());
+
         System.out.println("\n" + passed + " passed, " + failed + " failed");
         if (failed > 0) System.exit(1);
     }

@@ -1,5 +1,26 @@
 # CollegeFit Java changes
 
+## Update 16: "What do you enjoy doing?" for students who are not sure (v0.5)
+
+- "I'm not sure yet" now has three short screens inside Step 2 (the six steps are unchanged):
+  1. What do you enjoy doing? Six cards, one per O*NET career interest type (RIASEC); pick up to 2, or "I'm not sure yet".
+     Card titles use O*NET's own keywords; the two examples on each card are O*NET illustrative activities.
+  2. Fields linked to what you enjoy: field cards with linked careers (and the education each usually needs),
+     linked programs, and college counts for the student's state. 4 fields first, then "Show all N fields".
+     Liberal Arts is shown separately ("Still deciding?") because it has no career links in the federal data.
+     "I'm not sure yet" (or no interest picked) shows the eight common fields, as before.
+  3. Two ways to start college (two-year / four-year), then Priorities.
+- Order of fields: more linked careers first, then more colleges. Careers on a card: most closely tied to the field first
+  (number of detailed programs in the field linked to the career), then less preparation needed, then name.
+- Counts use the same rule as the rest of the app (colleges with recent associate or bachelor's awards).
+- New data file data/processed/interest_links.csv, made by notebooks/04_interests.ipynb from
+  O*NET 31.0 (Career Interest Types, Job Zones) and the NCES/BLS CIP 2020 to SOC 2018 crosswalk.
+  If the file is missing, the app falls back to the eight common fields.
+- New class InterestLinks; UnsurePanel rewritten; CollegeFitSwingApp loads the links. Help "About the data" names the new sources.
+- Tests: 81 (11 new).
+- Build the jar with the new file:
+  jar cfe CollegeFit.jar CollegeFitSwingApp -C out . data/processed/colleges.csv data/processed/programs.csv data/processed/interest_links.csv
+
 ## Update 15: browser preview with CheerpJ (v0.4.5)
 
 - New folder web_browser/: index.html runs CollegeFit.jar in the browser with CheerpJ (Java 11), plus setup notes.
