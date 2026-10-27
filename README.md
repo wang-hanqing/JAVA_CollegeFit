@@ -94,7 +94,6 @@ a clear side-by-side comparison, and a useful shortlist export. It found three g
 Next steps:
 
 - [x] Improve the "Not sure" pathway with interest-to-major exploration (v0.5)
-- [ ] Validate students' actual college decision journeys with IRC Youth Education interns and staff
 - [ ] Explore reliable data sources for program information and application requirements
 - [ ] Add a school-specific verification checklist to Next steps
 
