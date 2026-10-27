@@ -72,6 +72,33 @@ CollegeFit describes colleges; it does not measure academic quality.
 - Completion and transfer rates describe past first-time, full-time students, not a student's own outcome.
 - Program accreditation (for example, for nursing) is not in the data and must be checked with the college.
 - The CIP-SOC crosswalk is descriptive, not based on where graduates actually work: a link means a program prepares for a career.
+- Program content, curriculum, program-specific admission requirements and application deadlines are not in the data.
+  The app points students to what to check with each college instead of stating it.
+- Belonging, community and student support are not covered, because no reliable comparable data is available.
 
-Possible future enrichment: retention and other College Scorecard outcome fields, IPEDS institutional indicators,
-and information from college and program websites. Rankings, if ever used, would stay outside the core logic.
+Possible future enrichment: NCES program definitions ("what you would learn"), a school-specific verification
+checklist built from data the app already has (test policy, net price calculator, license reminders), and,
+later, sourced application requirements with a "last checked" date. Rankings, if ever used, would stay outside the core logic.
+
+## Design feedback and roadmap
+
+A first design review (October 2026) confirmed three strengths: flexible ways to start exploring,
+a clear side-by-side comparison, and a useful shortlist export. It found three gaps:
+
+| Priority | Gap | Status |
+| --- | --- | --- |
+| P0 | Early-stage exploration: the app served students with a direction better than students unsure of their interests | Completed in v0.5 ("What do you enjoy doing?") |
+| P1 | Program information: little on program content, curriculum and program-specific requirements | Exploring reliable sources, starting with NCES program definitions |
+| P1 | Application readiness: no school-specific guidance on materials and deadlines | Planned: a school-specific verification checklist in Next steps |
+
+Next steps:
+
+- [x] Improve the "Not sure" pathway with interest-to-major exploration (v0.5)
+- [ ] Validate students' actual college decision journeys with IRC Youth Education interns and staff
+- [ ] Explore reliable data sources for program information and application requirements
+- [ ] Add a school-specific verification checklist to Next steps
+
+Deprioritized: belonging and community factors. They matter, but the current data cannot assess them reliably;
+we will revisit them based on student feedback.
+
+Product focus: strengthen early-stage exploration while keeping the existing search, comparison and export experience.
